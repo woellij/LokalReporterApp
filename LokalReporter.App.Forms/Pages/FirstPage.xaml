@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LokalReporter.App.FormsApp.Pages.FirstPage">
+  <StackLayout>
+    
+  <Label Text="{Binding TestText}" FontSize="Large" VerticalOptions="Center" HorizontalOptions="Center" />
+  <Button Text="test button" Command="{Binding NavigateToSecond}" />
+  </StackLayout>
+</ContentPage>
