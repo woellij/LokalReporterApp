@@ -24,7 +24,10 @@ namespace LokalReporter.App.FormsApp.Pages
             var htmlWebViewSource = new HtmlWebViewSource {
                 Html = html
             };
-            this.WebView.Source = htmlWebViewSource;
+
+            var webView = new WebView();
+            webView.Source = htmlWebViewSource;
+            this.Content = webView;
         }
     }
 }
