@@ -6,9 +6,9 @@ using LokalReporter.Responses;
 namespace LokalReporter {
 
     public interface IArticlesService {
-
         Task<ArticlesResult> GetArticlesAsync(Filter filter, CancellationToken cancellationToken);
 
+        Task<Article> GetArticleAsync(string id, CancellationToken cancellationToken);
     }
 
 }

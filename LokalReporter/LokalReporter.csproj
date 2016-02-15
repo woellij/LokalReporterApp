@@ -40,6 +40,11 @@
     <Compile Include="IArticlesService.cs" />
     <Compile Include="Requests\Filter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Responses\Category.cs" />
+    <Compile Include="Responses\HtmlContent.cs" />
+    <Compile Include="Responses\IdEntity.cs" />
+    <Compile Include="Responses\Image.cs" />
+    <Compile Include="Responses\Tag.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

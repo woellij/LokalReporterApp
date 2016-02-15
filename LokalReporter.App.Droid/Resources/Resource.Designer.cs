@@ -1505,6 +1505,8 @@ namespace LokalReporter.App.Droid
 			global::Xamarin.Forms.Platform.Resource.Styleable.ViewStubCompat_android_id = global::LokalReporter.App.Droid.Resource.Styleable.ViewStubCompat_android_id;
 			global::Xamarin.Forms.Platform.Resource.Styleable.ViewStubCompat_android_inflatedId = global::LokalReporter.App.Droid.Resource.Styleable.ViewStubCompat_android_inflatedId;
 			global::Xamarin.Forms.Platform.Resource.Styleable.ViewStubCompat_android_layout = global::LokalReporter.App.Droid.Resource.Styleable.ViewStubCompat_android_layout;
+			global::XLabs.Platform.Resource.String.ApplicationName = global::LokalReporter.App.Droid.Resource.String.ApplicationName;
+			global::XLabs.Platform.Resource.String.Hello = global::LokalReporter.App.Droid.Resource.String.Hello;
 		}
 		
 		public partial class Animation

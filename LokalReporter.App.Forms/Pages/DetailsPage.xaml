@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converters="clr-namespace:LokalReporter.App.FormsApp.Converters;assembly=LokalReporter.App.FormsApp"
+             x:Class="LokalReporter.App.FormsApp.Pages.DetailsPage">
+  <WebView VerticalOptions="Fill" HorizontalOptions="Fill" x:Name="WebView">
+  </WebView>
+  <Label Text="{Binding Article.Title}"></Label>
+</ContentPage>
