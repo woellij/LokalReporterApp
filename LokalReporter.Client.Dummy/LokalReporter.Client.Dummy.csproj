@@ -43,7 +43,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ArticlesXmlReader.cs" />
+    <Compile Include="FilterHandler.cs" />
+    <Compile Include="JsonArticlesReader.cs" />
+    <Compile Include="JsonArticlesService.cs" />
+    <Compile Include="XmlArticlesReader.cs" />
     <Compile Include="DummyClientDependencyModule.cs" />
     <Compile Include="Entities.cs" />
     <Compile Include="HtmlEncodedContentReader.cs" />
@@ -67,12 +70,15 @@
       <HintPath>..\packages\MvvmCross.Platform.4.0.0-beta8\lib\portable-net45+win+wpa81+wp80\MvvmCross.Platform.dll</HintPath>
       <Private>True</Private>
     </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.2\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="lokalreporter.xml" />
+    <EmbeddedResource Include="articles.json" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

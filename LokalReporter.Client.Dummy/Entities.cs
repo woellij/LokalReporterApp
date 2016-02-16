@@ -11,7 +11,9 @@ namespace LokalReporter.Client.Dummy {
             lock (entities) {
                 IdEntity entity;
                 if (entities.TryGetValue(id, out entity)) {
-                    return (T) entity;
+                    if (entity is T) {
+                        return (T) entity;
+                    }
                 }
 
                 entity = new T {Id = id, Name = name};

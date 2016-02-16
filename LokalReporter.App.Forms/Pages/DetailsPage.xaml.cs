@@ -19,7 +19,7 @@ namespace LokalReporter.App.FormsApp.Pages
         {
             base.OnBindingContextChanged();
 
-            var content = ((DetailsViewModel) this.BindingContext).Article.HtmlContent.InnerHtml;
+            var content = ((DetailsViewModel) this.BindingContext).Article.HtmlContent;
             var html = (string) Converters.Converters.StringToHtml.Convert(content, null, null, null);
             var htmlWebViewSource = new HtmlWebViewSource {
                 Html = html

@@ -1,3 +1,5 @@
+using System.Diagnostics;
+using System.Linq;
 using HtmlAgilityPack;
 using LokalReporter.Responses;
 
@@ -16,9 +18,14 @@ namespace LokalReporter.Client.Dummy {
             HtmlDocument htmlDocument = new HtmlDocument();
             htmlDocument.LoadHtml(this.value);
 
-            article.HtmlContent = new HtmlContent(htmlDocument.DocumentNode.InnerHtml);
+            article.HtmlContent = htmlDocument.DocumentNode.InnerHtml;
 
-            var htmlNodes = htmlDocument.DocumentNode.Elements("img");
+            var htmlNodes = htmlDocument.DocumentNode.Descendants("img").ToList();
+
+            var contains = article.HtmlContent.Contains("<img");
+            if (contains && htmlNodes.Count == 0) {
+                Debug.WriteLine($"ContainsImages BUT NO IMG TAGS FOUND");
+            }
 
             foreach (HtmlNode node in htmlNodes) {
                 Image image;
@@ -34,13 +41,14 @@ namespace LokalReporter.Client.Dummy {
 
             var name = node.Name.ToLowerInvariant();
             if (name == "img") {
-                var source = node.GetAttributeValue("src", "");
-                if (source != "") {
+                var empty = "";
+                var source = node.GetAttributeValue("src", empty);
+                if (source != empty) {
                     int width;
-                    int.TryParse(node.GetAttributeValue("width", ""), out width);
+                    int.TryParse(node.GetAttributeValue("width", empty), out width);
 
                     int height;
-                    int.TryParse(node.GetAttributeValue("height", ""), out height);
+                    int.TryParse(node.GetAttributeValue("height", empty), out height);
                     image = new Image(source, width, height);
                     return true;
                 }

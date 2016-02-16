@@ -2,6 +2,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading;
 using System.Windows.Input;
+using LokalReporter.Requests;
 using LokalReporter.Responses;
 using XLabs;
 

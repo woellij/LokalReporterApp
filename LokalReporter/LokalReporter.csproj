@@ -35,13 +35,14 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="IDependencyModule.cs" />
+    <Compile Include="Requests\Paging.cs" />
     <Compile Include="Responses\Article.cs" />
     <Compile Include="Responses\ArticlesResult.cs" />
     <Compile Include="IArticlesService.cs" />
     <Compile Include="Requests\Filter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Responses\Category.cs" />
-    <Compile Include="Responses\HtmlContent.cs" />
+    <Compile Include="Responses\District.cs" />
     <Compile Include="Responses\IdEntity.cs" />
     <Compile Include="Responses\Image.cs" />
     <Compile Include="Responses\Tag.cs" />

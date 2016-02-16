@@ -6,7 +6,7 @@ namespace LokalReporter.Client.Dummy {
 
         public void Initialize()
         {
-            Mvx.LazyConstructAndRegisterSingleton<IArticlesService>(Mvx.IocConstruct<XmlArticlesService>);
+            Mvx.LazyConstructAndRegisterSingleton<IArticlesService>(Mvx.IocConstruct<JsonArticlesService>);
         }
 
     }

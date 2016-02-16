@@ -1,4 +1,7 @@
-﻿namespace LokalReporter {
+﻿using System.Runtime.Serialization;
+using LokalReporter.Responses;
+
+namespace LokalReporter.Requests {
 
     public class Filter {
 
@@ -10,13 +13,14 @@
             set { this.paging = value; }
         }
 
-    }
+        [DataMember(Name = "tag")]
+        public Tag Tag { get; set; }
 
-    public class Paging {
+        [DataMember(Name = "category")]
+        public Category Category { get; set; }
 
-        public int Offset { get; set; }
-        public int Limit { get; set; }
-
+        [DataMember(Name = "district")]
+        public District District { get; set; }
     }
 
 }

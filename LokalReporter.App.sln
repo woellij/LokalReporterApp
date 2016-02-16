@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LokalReporter.App.Droid", "
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "model", "model", "{DE4EF7FA-1FE6-4966-9916-8AB0410C9D34}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "scheißfuck", "scheißfuck\scheißfuck.csproj", "{2D245E71-1DDB-40F3-AE43-50994FE17359}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,10 @@ Global
 		{E3562486-5E3C-4DD7-929B-AC49F3206F7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E3562486-5E3C-4DD7-929B-AC49F3206F7B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E3562486-5E3C-4DD7-929B-AC49F3206F7B}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{2D245E71-1DDB-40F3-AE43-50994FE17359}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D245E71-1DDB-40F3-AE43-50994FE17359}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D245E71-1DDB-40F3-AE43-50994FE17359}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D245E71-1DDB-40F3-AE43-50994FE17359}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
