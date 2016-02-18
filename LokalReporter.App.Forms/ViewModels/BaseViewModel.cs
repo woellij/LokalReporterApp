@@ -8,7 +8,7 @@ namespace LokalReporter.App.FormsApp.ViewModels {
     [ImplementPropertyChanged]
     public class BaseViewModel : MvxViewModel {
 
-        
+        public bool IsLoading { get; set; }
         protected CancellationToken CloseCancellationToken { get; } = CancellationToken.None;
     }
 

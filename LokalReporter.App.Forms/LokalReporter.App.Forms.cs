@@ -1,14 +1,14 @@
-﻿using MvvmCross.Core.ViewModels;
+﻿using LokalReporter.App.FormsApp.Helpers;
+using LokalReporter.App.FormsApp.ViewModels;
+using MvvmCross.Core.ViewModels;
+using MvvmCross.Core.Views;
 using MvvmCross.Forms.Presenter.Core;
 using MvvmCross.Platform;
-
 using Xamarin.Forms;
 
 namespace LokalReporter.App.FormsApp {
 
-    public class LokalReporterFormsApp : MvxFormsApp
-    {
-
+    public class LokalReporterFormsApp : MvxFormsApp {
         public LokalReporterFormsApp()
         {
             // The root page of your application
@@ -19,7 +19,9 @@ namespace LokalReporter.App.FormsApp {
         protected override void OnStart()
         {
             // Handle when your app starts
-            Mvx.Resolve<IMvxAppStart>().Start();
+            var presenter = Mvx.Resolve<IMvxViewPresenter>();
+            var vmType = Settings.SelectedDistrict == null ? typeof (FirstUseViewModel) : typeof (PersonalFeedsViewModel);
+            presenter.Show(new MvxViewModelRequest(vmType, null, null, null));
         }
 
         protected override void OnSleep()
@@ -31,7 +33,6 @@ namespace LokalReporter.App.FormsApp {
         {
             // Handle when your app resumes
         }
-
     }
 
 }

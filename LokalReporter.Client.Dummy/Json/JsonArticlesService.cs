@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using LokalReporter.Requests;
 using LokalReporter.Responses;
 
-namespace LokalReporter.Client.Dummy {
+namespace LokalReporter.Client.Dummy.Json {
 
     public class JsonArticlesService : IArticlesService {
         private Dictionary<string, Article> articles;
@@ -22,6 +22,18 @@ namespace LokalReporter.Client.Dummy {
             return this.articles[id];
         }
 
+        public async Task<IReadOnlyCollection<Category>> GetCategoriesAsync(CancellationToken cancellation)
+        {
+            await Task.Yield();
+            return Entities.Categories;
+        }
+
+        public async Task<IReadOnlyCollection<District>> GetDistrictsAsync(CancellationToken cancellation)
+        {
+            await Task.Yield();
+            return Entities.Districts;
+        }
+
         private async Task EnsureLoadedAsync()
         {
             if (this.articles == null) {
@@ -29,6 +41,9 @@ namespace LokalReporter.Client.Dummy {
                 this.articles = articles.Distinct().Select(a => {
                     if (a.Images.Count == 0) {
                         a.Images.Add(new Image("", 0, 0));
+                    }
+                    else {
+                        a.Images = a.Images.OrderByDescending(i => i.Height).ToList();
                     }
                     return a;
                 }).ToDictionary(a => a.Id, a => a);

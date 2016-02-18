@@ -8,30 +8,12 @@ using LokalReporter.Requests;
 using LokalReporter.Responses;
 using Newtonsoft.Json;
 
-namespace LokalReporter.Client.Dummy {
+namespace LokalReporter.Client.Dummy.Xml {
 
     public class XmlArticlesService : IArticlesService {
-        private readonly IDictionary<string, string> districts = new Dictionary<string, string> {
-            {"unterfranken", "Unterfranken"},
-            {"mittelfranken", "Mittelfranken"},
-            {"oberfranken", "Oberfranken"},
-            {"oberpfalz", "Oberpfalz"},
-            {"niederbayern", "Niederbayern"},
-            {"oberbayern", "Oberbayern"},
-            {"schwaben", "Schwaben"}
-        };
+
 
         private readonly Random random = new Random();
-
-        private readonly IDictionary<string, string> resorts = new Dictionary<string, string> {
-            {"wetter", "Wetter"},
-            {"sport", "Sport"},
-            {"verkehr", "Verkehr"},
-            {"polizei", "Polizei"},
-            {"ratgeber", "Ratgeber"},
-            {"kultur", "Kultur"},
-            {"religion", "Religion"}
-        };
 
         private IDictionary<string, Article> articles;
 
@@ -46,6 +28,16 @@ namespace LokalReporter.Client.Dummy {
             Article a = null;
             this.articles.TryGetValue(id, out a);
             return Task.FromResult(a);
+        }
+
+        public Task<IReadOnlyCollection<Category>> GetCategoriesAsync(CancellationToken cancellation)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<IReadOnlyCollection<District>> GetDistrictsAsync(CancellationToken cancellation)
+        {
+            throw new NotImplementedException();
         }
 
         private async Task EnsureXmlLoaded()
@@ -87,19 +79,18 @@ namespace LokalReporter.Client.Dummy {
 
         private IEnumerable<Category> GetResort(Article article)
         {
-            return this.Categories<Category>(article, this.resorts);
+            return this.Categories<Category>(article, Entities.Categories);
         }
 
-        private IEnumerable<T> Categories<T>(Article article, IDictionary<string, string> dictionary) where T : IdEntity, new()
+        private IEnumerable<T> Categories<T>(Article article, IReadOnlyCollection<IdEntity> entities) where T : IdEntity, new()
         {
             var tags = article.Tags;
-
-            var keys = dictionary.Keys;
-            var resortIds =
-                keys.Where(key => tags.Select(t => t.Id).Any(key.Contains))
-                    .Concat(keys.Where(key => article.HtmlContent.ToLowerInvariant().Contains(key)));
+            
+            IEnumerable<IdEntity> resortIds =
+                entities.Where(key => tags.Select(t => t.Id).Any(tId => key.Id.Contains(tId)))
+                    .Concat(entities.Where(key => article.HtmlContent.ToLowerInvariant().Contains(key.Id)));
             try {
-                return resortIds.Select(resortId => Entities.From<T>(resortId, dictionary[resortId]));
+                return resortIds.Select(e => Entities.From<T>(e.Id, e.Name));
             }
             catch {
                 return null;
@@ -108,14 +99,13 @@ namespace LokalReporter.Client.Dummy {
 
         private District GetBezirk(Article article)
         {
-            return this.Categories<District>(article, this.districts).FirstOrDefault() ?? this.RandomDistrict();
+            return this.Categories<District>(article, Entities.Districts).FirstOrDefault() ?? this.RandomDistrict();
         }
 
         private District RandomDistrict()
         {
-            var rndm = this.random.Next(this.districts.Count);
-            var pair = this.districts.ElementAt(rndm);
-            return Entities.From<District>(pair.Key, pair.Value);
+            var rndm = this.random.Next(Entities.Districts.Count);
+            return Entities.Districts.ElementAt(rndm);
         }
     }
 

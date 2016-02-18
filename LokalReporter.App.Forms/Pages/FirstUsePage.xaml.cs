@@ -2,9 +2,9 @@
 
 namespace LokalReporter.App.FormsApp.Pages
 {
-    public partial class FirstPage : ContentPage
+    public partial class FirstUsePage : ContentPage
     {
-        public FirstPage()
+        public FirstUsePage()
         {
             this.InitializeComponent();
         }

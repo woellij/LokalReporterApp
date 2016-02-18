@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Xml.Linq;
 using LokalReporter.Responses;
 
-namespace LokalReporter.Client.Dummy {
+namespace LokalReporter.Client.Dummy.Xml {
 
     public class XmlArticlesReader {
         private readonly IDictionary<string, Action<XElement, Article>> setterActions = new Dictionary<string, Action<XElement, Article>>();
@@ -20,7 +20,7 @@ namespace LokalReporter.Client.Dummy {
                 (element, article) => new HtmlEncodedContentReader(element.Value).Apply(article);
             this.setterActions[":pubDate"] = (element, article) => article.Date = DateTime.Parse(element.Value);
 
-            this.setterActions[":category"] = SetCategoryOrTags;
+            this.setterActions[":category"] = this.SetCategoryOrTags;
             this.setterActions["http://wordpress.org/export/1.2/:post_id"] = (element, article) => article.Id = element.Value;
         }
 

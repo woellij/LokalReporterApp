@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Grid xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:views="clr-namespace:LokalReporter.App.FormsApp.Views;assembly=LokalReporter.App.FormsApp"
+             xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+             xmlns:responses="clr-namespace:LokalReporter.Responses;assembly=LokalReporter"
+             xmlns:behaviors="clr-namespace:LokalReporter.App.FormsApp.Helpers.Behaviors;assembly=LokalReporter.App.FormsApp"
+             x:Class="LokalReporter.App.FormsApp.Views.FeedView"
+      HeightRequest="350"
+      Padding="0,0,0,10"
+      x:Name="Root"
+      >
+
+  <Grid.RowDefinitions>
+    <RowDefinition Height="Auto" />
+    <RowDefinition />
+    <RowDefinition Height="Auto" />
+  </Grid.RowDefinitions>
+  <Label FontSize="Large" LineBreakMode="TailTruncation" Text="{Binding Title}" />
+    <views:ArticleCarouselView  Grid.Row="1" Clicked="GalleryView_OnClicked" VerticalOptions="Fill" ItemsSource="{Binding TopArticles.Items}" />
+    <ScrollView HeightRequest="90" Orientation="Horizontal" InputTransparent="True"   Grid.Row="2">
+    <controls:RepeaterView  x:TypeArguments="responses:Article"
+                            Orientation="Horizontal"
+                            VerticalOptions="Fill"
+                            HorizontalOptions="Fill" ItemsSource="{Binding Articles.Items}">
+      <controls:RepeaterView.ItemTemplate>
+        <DataTemplate>
+          <Grid>
+            <Frame Padding="10"  HorizontalOptions="Fill" WidthRequest="200" VerticalOptions="Fill"  >
+              <Grid >
+                <Grid.RowDefinitions>
+                  <RowDefinition />
+                  <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Label LineBreakMode="WordWrap" VerticalOptions="Fill" FontSize="Medium" Text="{Binding Title}" />
+                <Label Grid.Row="1"  FontSize="14" Text="{Binding Date, StringFormat='{0:ddd. d.M, HH:mm}'}" />
+              </Grid>
+            </Frame>
+            <Button Opacity="0"  Command="{Binding Source={x:Reference Root}, Path=BindingContext.Articles.ShowDetails}" CommandParameter="{Binding}" />
+          </Grid>
+        </DataTemplate>
+      </controls:RepeaterView.ItemTemplate>
+    </controls:RepeaterView>
+  </ScrollView>
+
+  <ActivityIndicator Grid.Row="0" Grid.RowSpan="3" VerticalOptions="Center" HorizontalOptions="Center" IsRunning="{Binding IsLoading}" IsVisible="{Binding IsLoading}" />
+</Grid>

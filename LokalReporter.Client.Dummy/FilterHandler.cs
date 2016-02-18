@@ -28,10 +28,17 @@ namespace LokalReporter.Client.Dummy {
                 result = result.Where(a => a.District.Equals(filter.District));
             }
 
+            if (filter.IsTopStory) {
+                result = result.Where(a => a.Images.Any(i => !string.IsNullOrWhiteSpace(i.Source) && i.Height >= 100));
+            }
+
+            result = result.OrderByDescending(a => a.Date);
+
             //var filtered = result.ToList();
             if (filter.Paging != null) {
                 result = result.Skip(filter.Paging.Offset).Take(filter.Paging.Limit);
             }
+
 
             return new ArticlesResult {Articles = result.ToList()};
         }

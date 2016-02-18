@@ -44,13 +44,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FilterHandler.cs" />
-    <Compile Include="JsonArticlesReader.cs" />
-    <Compile Include="JsonArticlesService.cs" />
-    <Compile Include="XmlArticlesReader.cs" />
+    <Compile Include="Json\JsonArticlesReader.cs" />
+    <Compile Include="Json\JsonArticlesService.cs" />
+    <Compile Include="ListExtensions.cs" />
+    <Compile Include="Xml\XmlArticlesReader.cs" />
     <Compile Include="DummyClientDependencyModule.cs" />
     <Compile Include="Entities.cs" />
-    <Compile Include="HtmlEncodedContentReader.cs" />
-    <Compile Include="XmlArticlesService.cs" />
+    <Compile Include="Xml\HtmlEncodedContentReader.cs" />
+    <Compile Include="Xml\XmlArticlesService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -59,15 +60,11 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="MvvmCross.Core, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.Core.4.0.0-beta8\lib\portable-net45+win+wpa81+wp80\MvvmCross.Core.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="MvvmCross.Localization, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.Platform.4.0.0-beta8\lib\portable-net45+win+wpa81+wp80\MvvmCross.Localization.dll</HintPath>
+      <HintPath>..\packages\MvvmCross.Core.4.0.0\lib\portable-net45+win+wpa81+wp80\MvvmCross.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="MvvmCross.Platform, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.Platform.4.0.0-beta8\lib\portable-net45+win+wpa81+wp80\MvvmCross.Platform.dll</HintPath>
+      <HintPath>..\packages\MvvmCross.Platform.4.0.0\lib\portable-net45+win+wpa81+wp80\MvvmCross.Platform.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">

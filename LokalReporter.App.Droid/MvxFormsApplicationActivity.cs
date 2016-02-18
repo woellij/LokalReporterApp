@@ -3,7 +3,8 @@ using Android.Content.PM;
 using Android.OS;
 
 using LokalReporter.App.FormsApp;
-
+using LokalReporter.App.FormsApp.Helpers;
+using LokalReporter.App.FormsApp.ViewModels;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Core.Views;
 using MvvmCross.Forms.Presenter.Core;
@@ -38,8 +39,6 @@ namespace LokalReporter.App.Droid {
             presenter.MvxFormsApp = formsApp;
 
             Dependencies.Initialize();
-
-            Mvx.Resolve<IMvxAppStart>().Start();
         }
 
     }

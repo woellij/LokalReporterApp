@@ -1,4 +1,5 @@
-﻿using MvvmCross.Platform;
+﻿using LokalReporter.Client.Dummy.Json;
+using MvvmCross.Platform;
 
 namespace LokalReporter.Client.Dummy {
 

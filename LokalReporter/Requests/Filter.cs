@@ -4,12 +4,11 @@ using LokalReporter.Responses;
 namespace LokalReporter.Requests {
 
     public class Filter {
-
         private Paging paging;
 
         public Paging Paging
         {
-            get { return this.paging ?? (this.paging ?? (new Paging {Offset = 0, Limit = 10})); }
+            get { return this.paging ?? (this.paging ?? new Paging {Offset = 0, Limit = 10}); }
             set { this.paging = value; }
         }
 
@@ -21,6 +20,10 @@ namespace LokalReporter.Requests {
 
         [DataMember(Name = "district")]
         public District District { get; set; }
+
+        [DataMember(Name = "topStory")]
+        public bool IsTopStory { get; set; }
+        
     }
 
 }

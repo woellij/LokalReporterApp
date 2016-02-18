@@ -3,7 +3,7 @@ using System.Linq;
 using HtmlAgilityPack;
 using LokalReporter.Responses;
 
-namespace LokalReporter.Client.Dummy {
+namespace LokalReporter.Client.Dummy.Xml {
 
     internal class HtmlEncodedContentReader {
         private readonly string value;
