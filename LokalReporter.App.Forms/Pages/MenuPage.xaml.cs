@@ -8,9 +8,9 @@ using Xamarin.Forms;
 
 namespace LokalReporter.App.FormsApp.Pages
 {
-    public partial class NavigationPage : ContentPage
+    public partial class MenuPage : ContentPage
     {
-        public NavigationPage()
+        public MenuPage()
         {
             InitializeComponent();
         }

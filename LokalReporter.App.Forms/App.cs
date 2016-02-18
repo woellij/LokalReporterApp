@@ -9,7 +9,6 @@ namespace LokalReporter.App.FormsApp {
 
         public override void Initialize()
         {
-            
         }
 
     }

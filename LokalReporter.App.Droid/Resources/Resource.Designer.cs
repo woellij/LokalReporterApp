@@ -8080,11 +8080,8 @@ namespace LokalReporter.App.Droid
 			// aapt resource value: 0x7f020065
 			public const int mr_ic_settings_light = 2130837605;
 			
-			// aapt resource value: 0x7f020067
-			public const int notification_template_icon_bg = 2130837607;
-			
 			// aapt resource value: 0x7f020066
-			public const int splash = 2130837606;
+			public const int notification_template_icon_bg = 2130837606;
 			
 			static Drawable()
 			{

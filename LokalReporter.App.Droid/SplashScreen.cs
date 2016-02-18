@@ -3,7 +3,7 @@ using Android.Content.PM;
 using Android.OS;
 
 using MvvmCross.Droid.Views;
-
+using NControl.Controls.Droid;
 using Xamarin.Forms;
 
 namespace LokalReporter.App.Droid {
@@ -23,6 +23,7 @@ namespace LokalReporter.App.Droid {
                     e.NativeView.ContentDescription = e.View.StyleId;
                 }
             };
+            NControls.Init();
 
             base.OnCreate(bundle);
         }

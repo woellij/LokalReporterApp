@@ -37,8 +37,9 @@
   <ItemGroup>
     <Compile Include="App.cs" />
     <Compile Include="AppDepencencyModule.cs" />
-    <Compile Include="Converters\Converters.cs" />
-    <Compile Include="Converters\StringToHtmlConverter.cs" />
+    <Compile Include="Statics\Colors.cs" />
+    <Compile Include="Statics\Converters.cs" />
+    <Compile Include="Statics\StringToHtmlConverter.cs" />
     <Compile Include="LokalReporterAppMvxFormsPagePresenter.cs" />
     <Compile Include="Helpers\FilterExtensions.cs" />
     <Compile Include="Helpers\ISettingsExtensions.cs" />
@@ -50,8 +51,8 @@
     <Compile Include="Pages\FirstUsePage.xaml.cs">
       <DependentUpon>FirstUsePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\NavigationPage.xaml.cs">
-      <DependentUpon>NavigationPage.xaml</DependentUpon>
+    <Compile Include="Pages\MenuPage.xaml.cs">
+      <DependentUpon>MenuPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\PersonalFeedsPage.xaml.cs">
       <DependentUpon>PersonalFeedsPage.xaml</DependentUpon>
@@ -69,6 +70,7 @@
     <Compile Include="ViewModels\FirstViewModel.cs" />
     <Compile Include="ViewModels\Identifier.cs" />
     <Compile Include="ViewModels\PersonalFeedsViewModel.cs" />
+    <Compile Include="ViewModels\SetupFeedFilterViewModel.cs" />
     <Compile Include="Views\ArticleCarouselView.xaml.cs">
       <DependentUpon>ArticleCarouselView.xaml</DependentUpon>
     </Compile>
@@ -255,7 +257,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Pages\NavigationPage.xaml">
+    <EmbeddedResource Include="Pages\MenuPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

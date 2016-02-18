@@ -1,5 +1,6 @@
 using System;
 using System.Threading.Tasks;
+using LokalReporter.App.FormsApp.Pages;
 using LokalReporter.App.FormsApp.ViewModels;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Forms.Presenter.Core;
@@ -15,7 +16,7 @@ namespace LokalReporter.App.FormsApp {
         {
             if (request.ViewModelType == typeof (PersonalFeedsViewModel)) {
                 var masterDetailPage = new MasterDetailPage();
-                masterDetailPage.Master = new ContentPage {Title = "test"};
+                masterDetailPage.Master = new MenuPage {Title = "test"};
                 var navigationPage = new NavigationPage();
                 masterDetailPage.Detail = navigationPage;
                 Application.Current.MainPage = masterDetailPage;

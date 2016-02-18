@@ -5,6 +5,8 @@
              xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
              xmlns:responses="clr-namespace:LokalReporter.Responses;assembly=LokalReporter"
              xmlns:behaviors="clr-namespace:LokalReporter.App.FormsApp.Helpers.Behaviors;assembly=LokalReporter.App.FormsApp"
+             xmlns:statics="clr-namespace:LokalReporter.App.FormsApp.Statics;assembly=LokalReporter.App.FormsApp"
+             xmlns:controls1="clr-namespace:NControl.Controls;assembly=NControl.Controls"
              x:Class="LokalReporter.App.FormsApp.Views.FeedView"
       HeightRequest="350"
       Padding="0,0,0,10"
@@ -17,16 +19,16 @@
     <RowDefinition Height="Auto" />
   </Grid.RowDefinitions>
   <Label FontSize="Large" LineBreakMode="TailTruncation" Text="{Binding Title}" />
-    <views:ArticleCarouselView  Grid.Row="1" Clicked="GalleryView_OnClicked" VerticalOptions="Fill" ItemsSource="{Binding TopArticles.Items}" />
-    <ScrollView HeightRequest="90" Orientation="Horizontal" InputTransparent="True"   Grid.Row="2">
-    <controls:RepeaterView  x:TypeArguments="responses:Article"
+  <views:ArticleCarouselView  Grid.Row="1" Clicked="GalleryView_OnClicked" VerticalOptions="Fill" ItemsSource="{Binding TopArticles.Items}" />
+  <ScrollView HeightRequest="90" Orientation="Horizontal" InputTransparent="True"   Grid.Row="2">
+    <controls:RepeaterView x:TypeArguments="responses:Article"
                             Orientation="Horizontal"
                             VerticalOptions="Fill"
                             HorizontalOptions="Fill" ItemsSource="{Binding Articles.Items}">
       <controls:RepeaterView.ItemTemplate>
         <DataTemplate>
           <Grid>
-            <Frame Padding="10"  HorizontalOptions="Fill" WidthRequest="200" VerticalOptions="Fill"  >
+            <Frame  Padding="10"  HorizontalOptions="Fill" WidthRequest="200" VerticalOptions="Fill"  >
               <Grid >
                 <Grid.RowDefinitions>
                   <RowDefinition />
@@ -43,5 +45,5 @@
     </controls:RepeaterView>
   </ScrollView>
 
-  <ActivityIndicator Grid.Row="0" Grid.RowSpan="3" VerticalOptions="Center" HorizontalOptions="Center" IsRunning="{Binding IsLoading}" IsVisible="{Binding IsLoading}" />
+  <ActivityIndicator Grid.Row="0"  Grid.RowSpan="3" VerticalOptions="Center" HorizontalOptions="Center" IsRunning="{Binding IsLoading}" IsVisible="{Binding IsLoading}" />
 </Grid>
