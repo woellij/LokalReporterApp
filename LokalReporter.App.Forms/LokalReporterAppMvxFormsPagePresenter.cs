@@ -16,7 +16,11 @@ namespace LokalReporter.App.FormsApp {
         {
             if (request.ViewModelType == typeof (PersonalFeedsViewModel)) {
                 var masterDetailPage = new MasterDetailPage();
-                masterDetailPage.Master = new MenuPage {Title = "test"};
+                masterDetailPage.Master = new MenuPage {
+                    Title = "test",
+                    BindingContext = MvxPresenterHelpers.LoadViewModel(new MvxViewModelRequest(typeof (MenuViewModel), null, null, null))
+                };
+
                 var navigationPage = new NavigationPage();
                 masterDetailPage.Detail = navigationPage;
                 Application.Current.MainPage = masterDetailPage;

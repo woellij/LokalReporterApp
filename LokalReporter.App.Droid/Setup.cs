@@ -1,3 +1,4 @@
+using System;
 using Android.Content;
 using LokalReporter.App.FormsApp;
 using MvvmCross.Core.ViewModels;
@@ -6,6 +7,7 @@ using MvvmCross.Droid.Platform;
 using MvvmCross.Droid.Views;
 using MvvmCross.Platform;
 using MvvmCross.Platform.Platform;
+using Newtonsoft.Json;
 
 namespace LokalReporter.App.Droid {
 
@@ -29,7 +31,6 @@ namespace LokalReporter.App.Droid {
             return mvxFormsDroidPagePresenter;
         }
         private class LokalReporterAppAndroidMvxFormspagePresenter : LokalReporterAppMvxFormsPagePresenter, IMvxAndroidViewPresenter { }
+        
     }
-
-
 }

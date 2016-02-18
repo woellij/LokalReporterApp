@@ -3,9 +3,11 @@ using LokalReporter.Responses;
 
 namespace LokalReporter.Requests {
 
+    [DataContract]
     public class Filter {
         private Paging paging;
 
+        [DataMember(Name = "paging")]
         public Paging Paging
         {
             get { return this.paging ?? (this.paging ?? new Paging {Offset = 0, Limit = 10}); }
@@ -23,7 +25,6 @@ namespace LokalReporter.Requests {
 
         [DataMember(Name = "topStory")]
         public bool IsTopStory { get; set; }
-        
     }
 
 }

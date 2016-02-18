@@ -1,12 +1,41 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="LokalReporter.App.FormsApp.Pages.MenuPage">
- 
-  <StackLayout>
+             xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+             xmlns:viewModels="clr-namespace:LokalReporter.App.FormsApp.ViewModels;assembly=LokalReporter.App.FormsApp"
+             x:Class="LokalReporter.App.FormsApp.Pages.MenuPage" x:Name="Page">
+
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto"></RowDefinition>
+      <RowDefinition></RowDefinition>
+    </Grid.RowDefinitions>
     <ContentView VerticalOptions="Fill" Padding="20">
-      <Image VerticalOptions="Fill" Source="lokalreporter_logo.png"></Image>
+      <Image VerticalOptions="Fill" Source="lokalreporter_logo.png" />
     </ContentView>
-  </StackLayout>
-  
+
+    <ScrollView Grid.Row="1">
+      <controls:RepeaterView  ItemsSource="{Binding Items}" x:TypeArguments="viewModels:MenuSection">
+        <controls:RepeaterView.ItemTemplate>
+          <DataTemplate>
+            <StackLayout VerticalOptions="Start">
+              <ContentView Padding="16,0,0,0">
+                <Label  FontSize="Medium" Text="{Binding Title}" />
+              </ContentView>
+              <ListView ItemsSource="{Binding}" HasUnevenRows="False" >
+                <ListView.ItemTemplate>
+                  <DataTemplate>
+                    <TextCell Text="{Binding Title}" CommandParameter="{Binding}"
+                              Command="{Binding BindingContext.Navigate, Source={x:Reference Page}}" />
+                  </DataTemplate>
+                </ListView.ItemTemplate>
+              </ListView>
+            </StackLayout>
+          </DataTemplate>
+        </controls:RepeaterView.ItemTemplate>
+
+      </controls:RepeaterView>
+    </ScrollView>
+  </Grid>
+
 </ContentPage>

@@ -37,6 +37,9 @@
   <ItemGroup>
     <Compile Include="App.cs" />
     <Compile Include="AppDepencencyModule.cs" />
+    <Compile Include="Pages\FilteredArticlesPage.xaml.cs">
+      <DependentUpon>FilteredArticlesPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Statics\Colors.cs" />
     <Compile Include="Statics\Converters.cs" />
     <Compile Include="Statics\StringToHtmlConverter.cs" />
@@ -69,6 +72,7 @@
     <Compile Include="ViewModels\FirstUseViewModel.cs" />
     <Compile Include="ViewModels\FirstViewModel.cs" />
     <Compile Include="ViewModels\Identifier.cs" />
+    <Compile Include="ViewModels\MenuViewModel.cs" />
     <Compile Include="ViewModels\PersonalFeedsViewModel.cs" />
     <Compile Include="ViewModels\SetupFeedFilterViewModel.cs" />
     <Compile Include="Views\ArticleCarouselView.xaml.cs">
@@ -258,6 +262,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Pages\MenuPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\FilteredArticlesPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
