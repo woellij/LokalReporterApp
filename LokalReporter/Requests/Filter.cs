@@ -10,7 +10,7 @@ namespace LokalReporter.Requests {
         [DataMember(Name = "paging")]
         public Paging Paging
         {
-            get { return this.paging ?? (this.paging ?? new Paging {Offset = 0, Limit = 10}); }
+            get { return this.paging ?? (this.paging = new Paging {Offset = 0, Limit = 10}); }
             set { this.paging = value; }
         }
 
