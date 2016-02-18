@@ -49,8 +49,8 @@ namespace LokalReporter.App.FormsApp {
                     Mvx.Error("Exception pushing {0}: {1}\n{2}", (object) page.GetType(), (object) ex.Message, (object) ex.StackTrace);
                 }
             }
-            flag = true;
 
+            flag = true;
             return flag;
         }
     }

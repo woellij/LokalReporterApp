@@ -8042,46 +8042,49 @@ namespace LokalReporter.App.Droid
 			public const int Icon = 2130837592;
 			
 			// aapt resource value: 0x7f020059
-			public const int mr_ic_cast_dark = 2130837593;
+			public const int lokalreporter_logo = 2130837593;
 			
 			// aapt resource value: 0x7f02005a
-			public const int mr_ic_cast_light = 2130837594;
+			public const int mr_ic_cast_dark = 2130837594;
 			
 			// aapt resource value: 0x7f02005b
-			public const int mr_ic_media_route_connecting_mono_dark = 2130837595;
+			public const int mr_ic_cast_light = 2130837595;
 			
 			// aapt resource value: 0x7f02005c
-			public const int mr_ic_media_route_connecting_mono_light = 2130837596;
+			public const int mr_ic_media_route_connecting_mono_dark = 2130837596;
 			
 			// aapt resource value: 0x7f02005d
-			public const int mr_ic_media_route_mono_dark = 2130837597;
+			public const int mr_ic_media_route_connecting_mono_light = 2130837597;
 			
 			// aapt resource value: 0x7f02005e
-			public const int mr_ic_media_route_mono_light = 2130837598;
+			public const int mr_ic_media_route_mono_dark = 2130837598;
 			
 			// aapt resource value: 0x7f02005f
-			public const int mr_ic_pause_dark = 2130837599;
+			public const int mr_ic_media_route_mono_light = 2130837599;
 			
 			// aapt resource value: 0x7f020060
-			public const int mr_ic_pause_light = 2130837600;
+			public const int mr_ic_pause_dark = 2130837600;
 			
 			// aapt resource value: 0x7f020061
-			public const int mr_ic_play_dark = 2130837601;
+			public const int mr_ic_pause_light = 2130837601;
 			
 			// aapt resource value: 0x7f020062
-			public const int mr_ic_play_light = 2130837602;
+			public const int mr_ic_play_dark = 2130837602;
 			
 			// aapt resource value: 0x7f020063
-			public const int mr_ic_settings_dark = 2130837603;
+			public const int mr_ic_play_light = 2130837603;
 			
 			// aapt resource value: 0x7f020064
-			public const int mr_ic_settings_light = 2130837604;
-			
-			// aapt resource value: 0x7f020066
-			public const int notification_template_icon_bg = 2130837606;
+			public const int mr_ic_settings_dark = 2130837604;
 			
 			// aapt resource value: 0x7f020065
-			public const int splash = 2130837605;
+			public const int mr_ic_settings_light = 2130837605;
+			
+			// aapt resource value: 0x7f020067
+			public const int notification_template_icon_bg = 2130837607;
+			
+			// aapt resource value: 0x7f020066
+			public const int splash = 2130837606;
 			
 			static Drawable()
 			{
@@ -8423,14 +8426,17 @@ namespace LokalReporter.App.Droid
 			// aapt resource value: 0x7f0b0014
 			public const int showTitle = 2131427348;
 			
-			// aapt resource value: 0x7f0b0087
-			public const int sliding_tabs = 2131427463;
+			// aapt resource value: 0x7f0b0088
+			public const int sliding_tabs = 2131427464;
 			
 			// aapt resource value: 0x7f0b006a
 			public const int snackbar_action = 2131427434;
 			
 			// aapt resource value: 0x7f0b0069
 			public const int snackbar_text = 2131427433;
+			
+			// aapt resource value: 0x7f0b0087
+			public const int splashImage = 2131427463;
 			
 			// aapt resource value: 0x7f0b0007
 			public const int split_action_bar = 2131427335;
@@ -8483,8 +8489,8 @@ namespace LokalReporter.App.Droid
 			// aapt resource value: 0x7f0b0046
 			public const int title_template = 2131427398;
 			
-			// aapt resource value: 0x7f0b0088
-			public const int toolbar = 2131427464;
+			// aapt resource value: 0x7f0b0089
+			public const int toolbar = 2131427465;
 			
 			// aapt resource value: 0x7f0b0032
 			public const int top = 2131427378;

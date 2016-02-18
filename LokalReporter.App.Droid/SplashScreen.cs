@@ -8,7 +8,7 @@ using Xamarin.Forms;
 
 namespace LokalReporter.App.Droid {
 
-    [Activity(Label = "LokalReporter.App.Droid", MainLauncher = true, Icon = "@drawable/icon", Theme = "@style/Theme.Splash",
+    [Activity(Label = "Die Lokalreporter", MainLauncher = true, Icon = "@drawable/icon", Theme = "@style/Theme.Splash", 
         NoHistory = true, ScreenOrientation = ScreenOrientation.Portrait)]
     public class SplashScreen : MvxSplashScreenActivity {
 
