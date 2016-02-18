@@ -1,8 +1,11 @@
 using System;
+using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using LokalReporter.App.FormsApp.Pages;
 using LokalReporter.App.FormsApp.ViewModels;
 using MvvmCross.Core.ViewModels;
+using MvvmCross.Core.Views;
 using MvvmCross.Forms.Presenter.Core;
 using MvvmCross.Platform;
 using Xamarin.Forms;
@@ -12,8 +15,11 @@ namespace LokalReporter.App.FormsApp {
     public class LokalReporterAppMvxFormsPagePresenter : MvxFormsPagePresenter {
         private bool isOnMasterDetail;
 
+
+
         public override async void Show(MvxViewModelRequest request)
         {
+            
             if (request.ViewModelType == typeof (PersonalFeedsViewModel)) {
                 var masterDetailPage = new MasterDetailPage();
                 masterDetailPage.Master = new MenuPage {
@@ -25,6 +31,7 @@ namespace LokalReporter.App.FormsApp {
                 masterDetailPage.Detail = navigationPage;
                 Application.Current.MainPage = masterDetailPage;
                 this.isOnMasterDetail = true;
+                
             }
 
             if (this.isOnMasterDetail) {
@@ -38,7 +45,15 @@ namespace LokalReporter.App.FormsApp {
 
         private async Task<bool> TryShow(MvxViewModelRequest request, INavigation navigation)
         {
-            Page page = MvxPresenterHelpers.CreatePage(request);
+            Page page;
+            if (request.ViewModelType.GetTypeInfo().ImplementedInterfaces.Contains(typeof(IFeedsViewModel))) {
+                page = new FeedsPage();
+            }
+            else {
+
+                page = MvxPresenterHelpers.CreatePage(request);
+            }
+
             bool flag;
             if (page == null) {
                 flag = false;
@@ -59,5 +74,6 @@ namespace LokalReporter.App.FormsApp {
             return flag;
         }
     }
+
 
 }

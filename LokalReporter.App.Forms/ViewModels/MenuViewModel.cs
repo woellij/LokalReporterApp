@@ -60,7 +60,7 @@ namespace LokalReporter.App.FormsApp.ViewModels {
                 var filter = ((FilterMenuItem) i).Filter;
                 filter.Paging.Limit = 500;
                 var parameter = new FilterPreset {Filter = filter};
-                this.ShowViewModel<FilteredArticlesViewModel, FilterPreset>(parameter);
+                this.ShowViewModel<MultiFilteredArticlesViewModel, FilterPreset>(parameter);
             }
             else {
                 throw new NotSupportedException();

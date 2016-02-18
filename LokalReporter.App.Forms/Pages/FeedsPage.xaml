@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:behaviors="clr-namespace:Xamarin.Behaviors;assembly=Xamarin.Behaviors"
+             xmlns:controls="clr-namespace:NControl.Controls;assembly=NControl.Controls"
+             xmlns:controls1="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+             xmlns:responses="clr-namespace:LokalReporter.Responses;assembly=LokalReporter"
+             xmlns:converters="clr-namespace:LokalReporter.App.FormsApp.Converters;assembly=LokalReporter.App.FormsApp"
+             xmlns:views="clr-namespace:LokalReporter.App.FormsApp.Views;assembly=LokalReporter.App.FormsApp"
+             xmlns:viewModels="clr-namespace:LokalReporter.App.FormsApp.ViewModels;assembly=LokalReporter.App.FormsApp"
+             xmlns:statics="clr-namespace:LokalReporter.App.FormsApp.Statics;assembly=LokalReporter.App.FormsApp"
+             x:Class="LokalReporter.App.FormsApp.Pages.FeedsPage"
+  Title="{Binding Title}">
+
+  <ScrollView >
+    <StackLayout>
+
+      <controls1:RepeaterView x:TypeArguments="viewModels:FeedViewModel" ItemsSource="{Binding Feeds}">
+        <controls1:RepeaterView.ItemTemplate>
+          <DataTemplate>
+            <views:FeedView />
+          </DataTemplate>
+        </controls1:RepeaterView.ItemTemplate>
+      </controls1:RepeaterView>
+
+      <controls:ActionButton IsVisible="False" x:Name="AddFilterButton" HorizontalOptions="Center" WidthRequest="60" HeightRequest="60" Command="{Binding AddNewFeedFilter}"
+                              ButtonIcon="{x:Static controls:FontAwesomeLabel.FAPlus}"
+      ButtonColor="{x:Static statics:Colors.PrimaryDark}"
+      ButtonIconColor="White"
+      HasShadow="False"/>
+    </StackLayout>
+  </ScrollView>
+</ContentPage>

@@ -57,8 +57,8 @@
     <Compile Include="Pages\MenuPage.xaml.cs">
       <DependentUpon>MenuPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\PersonalFeedsPage.xaml.cs">
-      <DependentUpon>PersonalFeedsPage.xaml</DependentUpon>
+    <Compile Include="Pages\FeedsPage.xaml.cs">
+      <DependentUpon>FeedsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
@@ -72,7 +72,9 @@
     <Compile Include="ViewModels\FirstUseViewModel.cs" />
     <Compile Include="ViewModels\FirstViewModel.cs" />
     <Compile Include="ViewModels\Identifier.cs" />
+    <Compile Include="ViewModels\IFeedsViewModel.cs" />
     <Compile Include="ViewModels\MenuViewModel.cs" />
+    <Compile Include="ViewModels\MultiFilteredArticlesViewModel.cs" />
     <Compile Include="ViewModels\PersonalFeedsViewModel.cs" />
     <Compile Include="ViewModels\SetupFeedFilterViewModel.cs" />
     <Compile Include="Views\ArticleCarouselView.xaml.cs">
@@ -95,7 +97,7 @@
     <Content Include="FodyWeavers.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Pages\PersonalFeedsPage.xaml">
+    <EmbeddedResource Include="Pages\FeedsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
