@@ -1,6 +1,9 @@
 # LokalReporterApp
 Cross Platform App für Lokalreporter (im moment erstmal android mit dummy daten)
 
+![alt tag](screenshots/start.PNG)
+![alt tag](screenshots/menu.PNG)
+
 ## Projektstruktur
 
 ###LokalReporter 
