@@ -12,7 +12,8 @@ using XLabs;
 namespace LokalReporter.App.FormsApp.ViewModels {
 
     [ImplementPropertyChanged]
-    public class PersonalFeedsViewModel : BaseViewModel, IFeedsViewModel {
+    public class PersonalFeedsViewModel : BaseViewModel, IFeedsViewModel, INavigatedToAware
+    {
         public PersonalFeedsViewModel()
         {
             this.ShowDetails = new RelayCommand<Article>(a => this.ShowViewModel<DetailsViewModel>(new Identifier(a.Id)));
@@ -49,6 +50,13 @@ namespace LokalReporter.App.FormsApp.ViewModels {
             var districtFilter = new FilterPreset(selectedDistrict.Name, new Filter {District = selectedDistrict});
 
             return new[] {districtFilter}.Concat(filters).ToList();
+        }
+
+        public void OnNavigatedTo(NavigationEventType type)
+        {
+            if (type == NavigationEventType.Popped) {
+                this.Start();
+            }
         }
     }
 

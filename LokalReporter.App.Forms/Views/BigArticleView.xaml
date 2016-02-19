@@ -2,13 +2,14 @@
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:converters="clr-namespace:LokalReporter.App.FormsApp.Converters;assembly=LokalReporter.App.FormsApp"
+             xmlns:statics="clr-namespace:LokalReporter.App.FormsApp.Statics;assembly=LokalReporter.App.FormsApp"
              x:Class="LokalReporter.App.FormsApp.Views.BigArticleView"
              VerticalOptions="Fill" HorizontalOptions="Fill" HeightRequest="150">
   <Grid>
     <Image VerticalOptions="Fill"
            HorizontalOptions="Fill" Aspect="AspectFill" >
       <Image.Source>
-        <UriImageSource CachingEnabled="True" Uri="{Binding Images[0].Source, Converter={x:Static converters:Converters.StringToUri}" ></UriImageSource>
+        <UriImageSource CachingEnabled="True" Uri="{Binding Images[0].Source, Converter={x:Static statics:Converters.StringToUri}" ></UriImageSource>
       </Image.Source>
     </Image>
     <ContentView Padding="10" VerticalOptions="End" HorizontalOptions="Fill" BackgroundColor="#5000">

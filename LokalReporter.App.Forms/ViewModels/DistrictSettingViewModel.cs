@@ -46,6 +46,7 @@ namespace LokalReporter.App.FormsApp.ViewModels {
             base.Start();
             this.Districts = (await this.articlesService.GetDistrictsAsync(this.CloseCancellationToken)).ToList();
             this.DistrictNames = this.Districts.Select(d => d.Name).ToList();
+            this.SelectedDistrict = Settings.SelectedDistrict;
         }
     }
 

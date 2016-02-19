@@ -23,11 +23,8 @@
         </controls1:RepeaterView.ItemTemplate>
       </controls1:RepeaterView>
 
-      <controls:ActionButton IsVisible="False" x:Name="AddFilterButton" HorizontalOptions="Center" WidthRequest="60" HeightRequest="60" Command="{Binding AddNewFeedFilter}"
-                              ButtonIcon="{x:Static controls:FontAwesomeLabel.FAPlus}"
-      ButtonColor="{x:Static statics:Colors.PrimaryDark}"
-      ButtonIconColor="White"
-      HasShadow="False"/>
+     <views:AddFilterView  IsVisible="False" x:Name="AddFilterButton" 
+    Command="{Binding AddNewFeedFilter}"/>
     </StackLayout>
   </ScrollView>
 </ContentPage>

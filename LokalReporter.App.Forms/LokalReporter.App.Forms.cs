@@ -22,6 +22,8 @@ namespace LokalReporter.App.FormsApp {
             var presenter = Mvx.Resolve<IMvxViewPresenter>();
             var vmType = Settings.SelectedDistrict == null ? typeof (FirstUseViewModel) : typeof (PersonalFeedsViewModel);
             presenter.Show(new MvxViewModelRequest(vmType, null, null, null));
+
+            Mvx.LazyConstructAndRegisterSingleton<IMvxViewModelLocator, MvxDefaultViewModelLocator>();
         }
 
         protected override void OnSleep()

@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Globalization;
+using LokalReporter.App.FormsApp.Converters;
 using LokalReporter.App.FormsApp.Views;
+using LokalReporter.Responses;
 using Xamarin.Forms;
 using XLabs.Forms.Controls;
 
-namespace LokalReporter.App.FormsApp.Converters {
+namespace LokalReporter.App.FormsApp.Statics {
 
     public static class Converters {
         public static StringToHtmlConverter StringToHtml { get; } = new StringToHtmlConverter();
@@ -12,6 +14,8 @@ namespace LokalReporter.App.FormsApp.Converters {
         public static DataTemplateSelector ArticleCarouselItemTemplateSelector { get; } = new ArticlesCarouselTemplateSelector();
 
         public static StringToUriConverter StringToUri { get; } = new StringToUriConverter();
+
+        public static Func<object, string> DistrictNameSelector { get; } = o => ((District) o).Name;
     }
 
     public class StringToUriConverter : IValueConverter {

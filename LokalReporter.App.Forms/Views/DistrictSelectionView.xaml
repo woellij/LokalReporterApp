@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<StackLayout xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+             xmlns:statics="clr-namespace:LokalReporter.App.FormsApp.Statics;assembly=LokalReporter.App.FormsApp"
+             x:Class="LokalReporter.App.FormsApp.Views.DistrictSelectionView"  >
+  <ListView VerticalOptions="Start" HasUnevenRows="False"
+            ItemsSource="{Binding Districts}"
+            SelectedItem="{Binding SelectedDistrict, Mode=TwoWay}" >
+    <ListView.ItemTemplate>
+      <DataTemplate>
+        <TextCell Text="{Binding Name}" />
+      </DataTemplate>
+    </ListView.ItemTemplate>
+  </ListView>
+
+  <!--<controls:ExtendedPicker  ItemsSource="{Binding Districts}" DisplayProperty="Name"  SelectedItem="{Binding SelectedDistrict, Mode=TwoWay}" />-->
+</StackLayout>

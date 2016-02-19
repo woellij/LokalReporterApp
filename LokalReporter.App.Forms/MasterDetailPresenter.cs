@@ -8,9 +8,18 @@ using MvvmCross.Core.ViewModels;
 using MvvmCross.Forms.Presenter.Core;
 using MvvmCross.Platform;
 using Xamarin.Forms;
+using XLabs.Forms.Mvvm;
 using MenuItem = LokalReporter.App.FormsApp.ViewModels.MenuItem;
 
 namespace LokalReporter.App.FormsApp {
+
+    public interface INavigatedToAware {
+        void OnNavigatedTo(NavigationEventType type);
+    }
+
+    public interface INavigatedFromAware {
+        void OnNavigatedFrom();
+    }
 
     public class MasterDetailPresenter {
         private readonly MasterDetailPage masterDetailPage;
@@ -25,18 +34,21 @@ namespace LokalReporter.App.FormsApp {
             };
             masterDetailPage.Master = menuPage;
 
-            var navigationPage = new NavigationPage();
+            var navigationPage = new MainPage();
             masterDetailPage.Detail = navigationPage;
             Application.Current.MainPage = masterDetailPage;
 
-            navigationPage.Popped += NavigationPageOnNavigated;
-            navigationPage.Pushed += NavigationPageOnNavigated;
+            navigationPage.Popped += (sender, args) => NavigationPageOnNavigated(sender, args, NavigationEventType.Popped);
+            navigationPage.Pushed += (sender, args) => this.NavigationPageOnNavigated(sender, args, NavigationEventType.Pushed);
         }
 
-        private void NavigationPageOnNavigated(object sender, NavigationEventArgs navigationEventArgs)
+        private void NavigationPageOnNavigated(object sender, NavigationEventArgs navigationEventArgs, NavigationEventType type)
         {
             this.masterDetailPage.IsPresented = false;
-            this.menuPage.OnNavigated(((NavigationPage)sender).CurrentPage);
+            var currentPage = ((NavigationPage)sender).CurrentPage;
+            this.menuPage.OnNavigated(currentPage);
+
+            (currentPage.BindingContext as INavigatedToAware)?.OnNavigatedTo(type);
         }
 
         public async Task TryShow(MvxViewModelRequest request, INavigation navigation)
@@ -72,6 +84,11 @@ namespace LokalReporter.App.FormsApp {
         {
             return this.TryShow(request, this.masterDetailPage.Detail.Navigation);
         }
+    }
+
+    public enum NavigationEventType {
+        Popped,
+        Pushed
     }
 
 }
