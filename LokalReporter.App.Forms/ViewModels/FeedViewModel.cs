@@ -27,7 +27,10 @@ namespace LokalReporter.App.FormsApp.ViewModels {
 
             this.IsLoading = true;
             try {
-                await Task.WhenAll(this.TopArticles.Setup(topFilter), this.Articles.Setup(filter));
+                await this.TopArticles.Setup(topFilter);
+                this.IsLoading = false;
+                await Task.Delay(200);
+                await this.Articles.Setup(filter);
             }
             finally {
                 this.IsLoading = false;
