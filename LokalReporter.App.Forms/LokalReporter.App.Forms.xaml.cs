@@ -9,6 +9,7 @@ using Xamarin.Forms.Xaml;
 
 namespace LokalReporter.App.FormsApp {
     
+    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LokalReporterFormsApp : MvxFormsApp {
         public LokalReporterFormsApp()
         {

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -10,9 +11,12 @@ namespace LokalReporter.Client.Dummy.Json {
     public class JsonArticlesService : IArticlesService {
         private Dictionary<string, Article> articles;
 
+        private Random random = new Random();
         public async Task<ArticlesResult> GetArticlesAsync(Filter filter, CancellationToken cancellationToken)
         {
             await this.EnsureLoadedAsync();
+            var dummyWait = this.random.Next(200, 500);
+            await Task.Delay(dummyWait);
             return await Task.Run(() => new FilterHandler(this.articles.Values.AsQueryable()).FilterBy(filter));
         }
 
