@@ -5,12 +5,17 @@
              xmlns:views="clr-namespace:LokalReporter.App.FormsApp.Views;assembly=LokalReporter.App.FormsApp"
              xmlns:viewModels="clr-namespace:LokalReporter.App.FormsApp.ViewModels;assembly=LokalReporter.App.FormsApp"
              xmlns:controls1="clr-namespace:NControl.Controls;assembly=NControl.Controls"
-             x:Class="LokalReporter.App.FormsApp.Pages.ProfilePage">
+             x:Class="LokalReporter.App.FormsApp.Pages.ProfilePage"
+             Title="{Binding Title}">
   <ScrollView>
     <StackLayout VerticalOptions="Start">
+      <Label FontSize="Large"  Text="Ihre Region"/>
       <views:DistrictSelectionView VerticalOptions="Start" BindingContext="{Binding DistrictSetting}"/>
       <StackLayout x:Name="FiltersSettingRoot" BindingContext="{Binding FiltersSetting}">
         <Label FontSize="Large" Text="{Binding Title}"></Label>
+
+        <views:AddFilterView
+    Command="{Binding AddNewFeedFilter}"></views:AddFilterView>
         <controls:RepeaterView x:TypeArguments="viewModels:FilterPreset" ItemsSource="{Binding Filters}">
           <controls:RepeaterView.ItemTemplate>
             <DataTemplate>
@@ -32,8 +37,6 @@
             </DataTemplate>
           </controls:RepeaterView.ItemTemplate>
         </controls:RepeaterView>
-        <views:AddFilterView 
-    Command="{Binding AddNewFeedFilter}"></views:AddFilterView>
       </StackLayout>
     </StackLayout>
   </ScrollView>

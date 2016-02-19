@@ -1,16 +1,9 @@
-using LokalReporter.App.FormsApp.ViewModels;
-
 using MvvmCross.Core.ViewModels;
-using MvvmCross.Platform.IoC;
 
 namespace LokalReporter.App.FormsApp {
 
     public class App : MvxApplication {
-
-        public override void Initialize()
-        {
-        }
-
+        public override void Initialize() {}
     }
 
 }

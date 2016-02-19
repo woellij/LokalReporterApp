@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<core:MvxFormsApp xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:NControl.Controls;assembly=NControl.Controls"
+             xmlns:statics="clr-namespace:LokalReporter.App.FormsApp.Statics;assembly=LokalReporter.App.FormsApp"
+             xmlns:core="clr-namespace:MvvmCross.Forms.Presenter.Core;assembly=MvvmCross.Forms.Presenter.Core"
+             x:Class="LokalReporter.App.FormsApp.LokalReporterFormsApp">
+  
+  <Application.Resources>
+    <ResourceDictionary>
+      <Style TargetType="controls:ActionButton" x:Key="AddFilterActionButtonStyle">
+        <Setter Property="HeightRequest" Value="60"></Setter>
+        <Setter Property="WidthRequest" Value="60"></Setter>
+        <Setter Property="ButtonColor" Value="{x:Static statics:Colors.PrimaryDark}"></Setter>
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="ButtonIcon" Value="{x:Static controls:FontAwesomeLabel.FAPlus}" />
+        <Setter Property="HasShadow" Value="False"></Setter>
+      </Style>
+    </ResourceDictionary>
+  </Application.Resources>
+  
+</core:MvxFormsApp>

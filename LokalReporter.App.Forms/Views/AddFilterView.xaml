@@ -4,10 +4,5 @@
              xmlns:controls="clr-namespace:NControl.Controls;assembly=NControl.Controls"
              xmlns:statics="clr-namespace:LokalReporter.App.FormsApp.Statics;assembly=LokalReporter.App.FormsApp"
              x:Class="LokalReporter.App.FormsApp.Views.AddFilterView"
-                       HorizontalOptions="Center" WidthRequest="60" HeightRequest="60"
-                       
-                              ButtonIcon="{x:Static controls:FontAwesomeLabel.FAPlus}"
-      ButtonColor="{x:Static statics:Colors.PrimaryDark}"
-      ButtonIconColor="White"
-      HasShadow="False">
+                       Style="{StaticResource AddFilterActionButtonStyle}">
 </controls:ActionButton>

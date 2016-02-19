@@ -39,14 +39,6 @@ namespace LokalReporter.App.FormsApp.Helpers {
             get
             {
                 var complexValueOrDefault = AppSettings.GetComplexValueOrDefault<List<FilterPreset>>("feedFilters") ?? new List<FilterPreset>();
-#if DEBUG
-                for (int i = 0; i < 1; i++) {
-                    var filterPreset = new FilterPreset();
-                    filterPreset.Filter = new Filter { District = Entities.Districts[i] };
-                    filterPreset.Title = "Test Filter " + i;
-                    complexValueOrDefault.Add(filterPreset);
-                }
-#endif
                 return complexValueOrDefault;
             }
             set { AppSettings.AddOrUpdateComplexValue("feedFilters", value); }

@@ -4,7 +4,7 @@
              xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
              xmlns:statics="clr-namespace:LokalReporter.App.FormsApp.Statics;assembly=LokalReporter.App.FormsApp"
              x:Class="LokalReporter.App.FormsApp.Views.DistrictSelectionView"  >
-  <ListView VerticalOptions="Start" HasUnevenRows="False"
+  <ListView VerticalOptions="Start" HasUnevenRows="True"
             ItemsSource="{Binding Districts}"
             SelectedItem="{Binding SelectedDistrict, Mode=TwoWay}" >
     <ListView.ItemTemplate>

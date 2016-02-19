@@ -5,12 +5,14 @@ using MvvmCross.Core.Views;
 using MvvmCross.Forms.Presenter.Core;
 using MvvmCross.Platform;
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
 namespace LokalReporter.App.FormsApp {
-
-    public class LokalReporterFormsApp : MvxFormsApp {
+    
+    public partial class LokalReporterFormsApp : MvxFormsApp {
         public LokalReporterFormsApp()
         {
+            this.InitializeComponent();
             // The root page of your application
 
             this.MainPage = new ContentPage();

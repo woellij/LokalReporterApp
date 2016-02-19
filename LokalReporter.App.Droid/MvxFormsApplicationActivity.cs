@@ -10,7 +10,7 @@ using MvvmCross.Core.Views;
 using MvvmCross.Forms.Presenter.Core;
 using MvvmCross.Platform;
 using MvvmCross.Platform.IoC;
-
+using Plugin.Toasts;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
@@ -28,12 +28,17 @@ namespace LokalReporter.App.Droid {
 
             Forms.Init(this, bundle);
 
+
             // appCompat stuff
             FormsAppCompatActivity.ToolbarResource = Resource.Layout.toolbar;
             FormsAppCompatActivity.TabLayoutResource = Resource.Layout.tabs;
 
             var formsApp = new LokalReporterFormsApp();
             this.LoadApplication(formsApp);
+
+
+            Mvx.LazyConstructAndRegisterSingleton<IToastNotificator,ToastNotificatorImplementation>(); // Register your dependency
+            ToastNotificatorImplementation.Init(Current); //you can pass additional parameters here
 
             var presenter = (MvxFormsPagePresenter) Mvx.Resolve<IMvxViewPresenter>();
             presenter.MvxFormsApp = formsApp;

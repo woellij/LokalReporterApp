@@ -8,8 +8,6 @@ using MvvmCross.Core.ViewModels;
 using MvvmCross.Forms.Presenter.Core;
 using MvvmCross.Platform;
 using Xamarin.Forms;
-using XLabs.Forms.Mvvm;
-using MenuItem = LokalReporter.App.FormsApp.ViewModels.MenuItem;
 
 namespace LokalReporter.App.FormsApp {
 
@@ -45,7 +43,7 @@ namespace LokalReporter.App.FormsApp {
         private void NavigationPageOnNavigated(object sender, NavigationEventArgs navigationEventArgs, NavigationEventType type)
         {
             this.masterDetailPage.IsPresented = false;
-            var currentPage = ((NavigationPage)sender).CurrentPage;
+            var currentPage = ((NavigationPage) sender).CurrentPage;
             this.menuPage.OnNavigated(currentPage);
 
             (currentPage.BindingContext as INavigatedToAware)?.OnNavigatedTo(type);
@@ -69,6 +67,12 @@ namespace LokalReporter.App.FormsApp {
                 IMvxViewModel mvxViewModel = MvxPresenterHelpers.LoadViewModel(request);
                 page.BindingContext = mvxViewModel;
 
+                var busy = Binding.Create<BaseViewModel>(vm => vm.IsLoading);
+                page.SetBinding(Page.IsBusyProperty, busy);
+
+                var titleBinding = Binding.Create<BaseViewModel>(vm => vm.Title);
+                page.SetBinding(Page.TitleProperty, titleBinding);
+
                 try {
                     await navigation.PushAsync(page);
                 }
@@ -83,6 +87,13 @@ namespace LokalReporter.App.FormsApp {
         public Task TryShow(MvxViewModelRequest request)
         {
             return this.TryShow(request, this.masterDetailPage.Detail.Navigation);
+        }
+
+        public async void ChangePresentation(MvxPresentationHint hint)
+        {
+            if (hint is MvxClosePresentationHint) {
+                Page page = await ((NavigationPage) this.masterDetailPage.Detail).PopAsync();
+            }
         }
     }
 

@@ -22,8 +22,9 @@ namespace LokalReporter.App.FormsApp.ViewModels {
         {
             base.Start();
 
+            var canExecute = this.WhenAny(model => model.DistrictSetting.SelectedDistrict, change => change.Value != null);
             this.Continue =
-                new ReactiveCommand(this.WhenAny(model => model.DistrictSetting.SelectedDistrict, change => change.Value != null));
+                new ReactiveCommand(canExecute);
             
             this.Continue.Subscribe(o => this.ShowViewModel<PersonalFeedsViewModel>());
         }

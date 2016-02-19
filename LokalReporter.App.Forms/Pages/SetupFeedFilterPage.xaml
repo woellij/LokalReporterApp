@@ -1,6 +1,29 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="LokalReporter.App.FormsApp.Pages.SetupFeedFilterPage">
-  <Label Text="{Binding MainText}" VerticalOptions="Center" HorizontalOptions="Center" />
+             xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+             xmlns:controls1="clr-namespace:NControl.Controls;assembly=NControl.Controls"
+             x:Class="LokalReporter.App.FormsApp.Pages.SetupFeedFilterPage"
+             Title="{Binding Title}">
+  <StackLayout >
+    <Label Text="Name des Filters" FontSize="Medium" />
+    <Entry Text="{Binding FilterName}" FontSize="Large" />
+    <Label Text="{Binding CategorySelect.Title}" FontSize="Medium" />
+    <controls:ExtendedPicker BindingContext="{Binding CategorySelect}"
+                           ItemsSource="{Binding Items}"
+                           Title="{Binding Placeholder}"
+                           DisplayProperty="Name"
+                           SelectedItem="{Binding SelectedItem,Mode=TwoWay}" />
+
+    <Label Text="{Binding DistrictSelect.Title}" FontSize="Medium" />
+    
+    <controls:ExtendedPicker BindingContext="{Binding DistrictSelect}"
+                            Title="{Binding Placeholder}"
+                           ItemsSource="{Binding Items}"
+                           DisplayProperty="Name" 
+                           SelectedItem="{Binding SelectedItem, Mode=TwoWay}" />
+    <Button Text="Erstellen"
+            Command="{Binding Create}"                
+                            />
+  </StackLayout>
 </ContentPage>

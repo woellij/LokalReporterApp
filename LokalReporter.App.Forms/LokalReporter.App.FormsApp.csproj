@@ -58,7 +58,9 @@
     <Compile Include="Helpers\FilterExtensions.cs" />
     <Compile Include="Helpers\ISettingsExtensions.cs" />
     <Compile Include="Helpers\Settings.cs" />
-    <Compile Include="LokalReporter.App.Forms.cs" />
+    <Compile Include="LokalReporter.App.Forms.xaml.cs">
+      <DependentUpon>LokalReporter.App.Forms.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\DetailsPage.xaml.cs">
       <DependentUpon>DetailsPage.xaml</DependentUpon>
     </Compile>
@@ -90,6 +92,7 @@
     <Compile Include="ViewModels\MultiFilteredArticlesViewModel.cs" />
     <Compile Include="ViewModels\PersonalFeedsViewModel.cs" />
     <Compile Include="ViewModels\ProfileViewModel.cs" />
+    <Compile Include="ViewModels\SelectViewModel.cs" />
     <Compile Include="ViewModels\SetupFeedFilterViewModel.cs" />
     <Compile Include="Views\AddFilterView.xaml.cs">
       <DependentUpon>AddFilterView.xaml</DependentUpon>
@@ -111,6 +114,9 @@
     <EmbeddedResource Include="Pages\FirstUsePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LokalReporter.App.Forms.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -219,6 +225,10 @@
     </Reference>
     <Reference Include="System.Reactive.PlatformServices, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Rx-PlatformServices.2.2.5\lib\portable-windows8+net45+wp8\System.Reactive.PlatformServices.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Toasts.Forms.Plugin.Abstractions, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Toasts.Forms.Plugin.2.0.3\lib\portable-net45+wp8+win8+wpa81+netcore451+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Toasts.Forms.Plugin.Abstractions.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Xamarin.Behaviors, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">

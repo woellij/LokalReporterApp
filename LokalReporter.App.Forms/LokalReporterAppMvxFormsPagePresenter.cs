@@ -22,6 +22,16 @@ namespace LokalReporter.App.FormsApp {
                 base.Show(request);
             }
         }
+
+        public override void ChangePresentation(MvxPresentationHint hint)
+        {
+            if (this.MasterDetailPresenter != null) {
+                this.MasterDetailPresenter.ChangePresentation(hint);
+            }
+            else {
+                base.ChangePresentation(hint);
+            }
+        }
     }
 
 }
