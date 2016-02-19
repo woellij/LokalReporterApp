@@ -22,7 +22,7 @@ namespace LokalReporter.App.FormsApp.ViewModels {
 
         public string Title { get; set; }
 
-        public IReadOnlyCollection<FeedViewModel> Feeds { get; set; }
+        public ICollection<FeedViewModel> Feeds { get; set; }
 
         protected override async void InitFromBundle(IMvxBundle parameters)
         {

@@ -5,29 +5,44 @@
              xmlns:views="clr-namespace:LokalReporter.App.FormsApp.Views;assembly=LokalReporter.App.FormsApp"
              xmlns:viewModels="clr-namespace:LokalReporter.App.FormsApp.ViewModels;assembly=LokalReporter.App.FormsApp"
              xmlns:controls1="clr-namespace:NControl.Controls;assembly=NControl.Controls"
+             xmlns:statics="clr-namespace:LokalReporter.App.FormsApp.Statics;assembly=LokalReporter.App.FormsApp"
              x:Class="LokalReporter.App.FormsApp.Pages.ProfilePage"
              Title="{Binding Title}">
   <ScrollView>
     <StackLayout VerticalOptions="Start">
-      <Label FontSize="Large"  Text="Ihre Region"/>
+      <Frame HasShadow="True" HeightRequest="50"  Padding="15,0">
+        <Label FontSize="Large"  Text="Ihre Region" VerticalOptions="Center"/>
+      </Frame>
       <views:DistrictSelectionView VerticalOptions="Start" BindingContext="{Binding DistrictSetting}"/>
       <StackLayout x:Name="FiltersSettingRoot" BindingContext="{Binding FiltersSetting}">
-        <Label FontSize="Large" Text="{Binding Title}"></Label>
 
-        <views:AddFilterView
-    Command="{Binding AddNewFeedFilter}"></views:AddFilterView>
-        <controls:RepeaterView x:TypeArguments="viewModels:FilterPreset" ItemsSource="{Binding Filters}">
+
+        <Frame HeightRequest="60" HasShadow="True" Padding="15,0">
+          <Grid VerticalOptions="Center">
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition />
+              <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Label VerticalOptions="Center" FontSize="Large" Text="{Binding Title}" />
+            <views:AddFilterView
+              Grid.Column="1" HeightRequest="40" WidthRequest="40" Command="{Binding AddNewFeedFilter}" />
+          </Grid>
+        </Frame>
+       
+        <controls:RepeaterView Padding="20, 0,0,0" x:TypeArguments="viewModels:FilterPreset" ItemsSource="{Binding Filters}">
           <controls:RepeaterView.ItemTemplate>
             <DataTemplate>
               <Frame Padding="15,10">
                 <Grid>
                   <Grid.ColumnDefinitions>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition />
+                      <ColumnDefinition Width="Auto" />
                   </Grid.ColumnDefinitions>
-                  <Label VerticalOptions="Center" Text="{Binding Title}" FontSize="Medium"></Label>
-                  <StackLayout Grid.Column="1" Orientation="Horizontal">
-                    <controls1:ActionButton ButtonIcon="{x:Static controls1:FontAwesomeLabel.FATrashO}" HasShadow="False"
+                  <Label VerticalOptions="Center" Text="{Binding Title}" FontSize="Medium" />
+                    <StackLayout Grid.Column="1" Orientation="Horizontal">
+                    <controls1:ActionButton ButtonIcon="{x:Static controls1:FontAwesomeLabel.FATrashO}"
+                                            ButtonColor="Red"
+                                            HasShadow="False"
                                             Command="{Binding BindingContext.DeleteFilter ,Source={x:Reference FiltersSettingRoot}}"
                                             CommandParameter="{Binding}"
                                             HeightRequest="40" WidthRequest="40" />

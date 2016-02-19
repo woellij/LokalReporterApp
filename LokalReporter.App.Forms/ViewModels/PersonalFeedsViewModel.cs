@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -12,8 +13,9 @@ using XLabs;
 namespace LokalReporter.App.FormsApp.ViewModels {
 
     [ImplementPropertyChanged]
-    public class PersonalFeedsViewModel : BaseViewModel, IFeedsViewModel, INavigatedToAware
-    {
+    public class PersonalFeedsViewModel : BaseViewModel, IFeedsViewModel, INavigatedToAware {
+        private IReadOnlyCollection<FilterPreset> filters;
+
         public PersonalFeedsViewModel()
         {
             this.ShowDetails = new RelayCommand<Article>(a => this.ShowViewModel<DetailsViewModel>(new Identifier(a.Id)));
@@ -26,16 +28,41 @@ namespace LokalReporter.App.FormsApp.ViewModels {
 
         public ICommand ShowDetails { get; }
 
-        public IReadOnlyCollection<FeedViewModel> Feeds { get; set; }
+        public ICollection<FeedViewModel> Feeds { get; set; }
+
+        public void OnNavigatedTo(NavigationEventType type)
+        {
+            if (type == NavigationEventType.Popped) {
+                this.Start();
+            }
+        }
 
         public override async void Start()
         {
-            var filters = await Task.Run(() => GetUserFeedFilters());
-            if (filters == null) {
+            var startFilters = await Task.Run(() => GetUserFeedFilters());
+            if (startFilters == null) {
                 return;
             }
 
-            this.Feeds = filters.Select((f, i) => {
+            if (this.filters != null) {
+                var additional = startFilters.Except(this.filters).ToList();
+                if (additional.Any()) {
+                    var additionalFeeds = this.CreateFeeds(additional);
+                    foreach (var additionalFeed in additionalFeeds) {
+                        this.Feeds.Add(additionalFeed);
+                    }
+                }
+            }
+            else {
+                this.Feeds = new ObservableCollection<FeedViewModel>(this.CreateFeeds(startFilters));
+            }
+
+            this.filters = startFilters;
+        }
+
+        private List<FeedViewModel> CreateFeeds(IReadOnlyCollection<FilterPreset> filters)
+        {
+            return filters.Select((f, i) => {
                 var feedViewModel = Mvx.IocConstruct<FeedViewModel>();
 
                 Task.Delay(500*i).ContinueWith(t => { feedViewModel.Setup(f); }, TaskScheduler.FromCurrentSynchronizationContext());
@@ -50,13 +77,6 @@ namespace LokalReporter.App.FormsApp.ViewModels {
             var districtFilter = new FilterPreset(selectedDistrict.Name, new Filter {District = selectedDistrict});
 
             return new[] {districtFilter}.Concat(filters).ToList();
-        }
-
-        public void OnNavigatedTo(NavigationEventType type)
-        {
-            if (type == NavigationEventType.Popped) {
-                this.Start();
-            }
         }
     }
 

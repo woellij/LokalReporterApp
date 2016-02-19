@@ -68,9 +68,8 @@ namespace LokalReporter.App.FormsApp.ViewModels {
 
             this.IsLoading = true;
             try {
-                await Task.Delay(2000);
                 await Task.Run(() => Settings.AddFeedFilter(preset));
-                await this.notificator.Notify(ToastNotificationType.Success, "Filter erstellt",
+                this.notificator.Notify(ToastNotificationType.Success, "Filter erstellt",
                     $"Neuer Filter {preset.Title} erfolgreich erstellt.", TimeSpan.FromSeconds(3));
                 this.Close(this);
             }

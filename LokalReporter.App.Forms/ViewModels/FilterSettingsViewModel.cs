@@ -11,7 +11,7 @@ namespace LokalReporter.App.FormsApp.ViewModels {
     public class FilterSettingsViewModel : BaseViewModel {
         public FilterSettingsViewModel()
         {
-            this.Title = "Filter";
+            this.Title = "Ihre Filter";
         }
 
         public override async void Start()
