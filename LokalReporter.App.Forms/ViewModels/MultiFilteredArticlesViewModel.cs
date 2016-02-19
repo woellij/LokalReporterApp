@@ -26,7 +26,7 @@ namespace LokalReporter.App.FormsApp.ViewModels {
 
         protected override async void InitFromBundle(IMvxBundle parameters)
         {
-            var filterPreset = parameters.GetParameter<FilterPreset>();
+            var filterPreset = parameters.GetComplexParameter<FilterPreset>();
             this.Title = filterPreset.Title;
 
             var filter = filterPreset.Filter;
@@ -50,7 +50,10 @@ namespace LokalReporter.App.FormsApp.ViewModels {
                 setter(filter, entity);
                 var viewModel = Mvx.IocConstruct<FeedViewModel>();
                 Task.Delay(500*i)
-                    .ContinueWith(t => viewModel.Setup(new FilterPreset {Title = entity.Name, Filter = filterClone}),
+                    .ContinueWith(t => {
+                        var filterPreset = new FilterPreset {Title = entity.Name, Filter = filterClone};
+                        viewModel.Setup(filterPreset);
+                    },
                         TaskScheduler.FromCurrentSynchronizationContext());
                 return viewModel;
             }).ToList();

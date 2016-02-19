@@ -19,7 +19,7 @@
     <RowDefinition Height="Auto" />
   </Grid.RowDefinitions>
   <Label FontSize="Large" LineBreakMode="TailTruncation" Text="{Binding Title}" />
-  <views:ArticleCarouselView  Grid.Row="1" Clicked="GalleryView_OnClicked" VerticalOptions="Fill" ItemsSource="{Binding TopArticles.Items}" />
+  <views:ArticleCarouselView  BindingContext="{Binding TopArticles}" Grid.Row="1" VerticalOptions="Fill" ItemsSource="{Binding Items}" />
   <ScrollView HeightRequest="90" Orientation="Horizontal" InputTransparent="True"   Grid.Row="2">
     <controls:RepeaterView x:TypeArguments="responses:Article"
                             Orientation="Horizontal"

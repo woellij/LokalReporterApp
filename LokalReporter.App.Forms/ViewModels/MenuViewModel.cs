@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Input;
 using LokalReporter.App.FormsApp.Helpers;
+using LokalReporter.Requests;
 using PropertyChanged;
 using XLabs;
-using System.Linq;
-using LokalReporter.Requests;
 
 namespace LokalReporter.App.FormsApp.ViewModels {
 
@@ -59,7 +59,7 @@ namespace LokalReporter.App.FormsApp.ViewModels {
             if (i is FilterMenuItem) {
                 var filter = ((FilterMenuItem) i).Filter;
                 filter.Paging.Limit = 500;
-                var parameter = new FilterPreset {Filter = filter};
+                var parameter = new FilterPreset {Filter = filter, Title = i.Title};
                 this.ShowViewModel<MultiFilteredArticlesViewModel, FilterPreset>(parameter);
             }
             else {

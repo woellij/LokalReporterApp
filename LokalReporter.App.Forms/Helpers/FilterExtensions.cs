@@ -28,7 +28,7 @@ namespace LokalReporter.App.FormsApp.Helpers {
             viewDispatcher.ShowViewModel(new MvxViewModelRequest(typeof (TViewmodel), new MvxBundle(dict), null, null));
         }
 
-        public static TParameter GetParameter<TParameter>(this IMvxBundle bundle)
+        public static TParameter GetComplexParameter<TParameter>(this IMvxBundle bundle)
         {
             var paramString = bundle.SafeGetData()["param"];
             return JsonConvert.DeserializeObject<TParameter>(paramString);

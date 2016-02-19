@@ -37,6 +37,7 @@
   <ItemGroup>
     <Compile Include="App.cs" />
     <Compile Include="AppDepencencyModule.cs" />
+    <Compile Include="MasterDetailPresenter.cs" />
     <Compile Include="Pages\FilteredArticlesPage.xaml.cs">
       <DependentUpon>FilteredArticlesPage.xaml</DependentUpon>
     </Compile>

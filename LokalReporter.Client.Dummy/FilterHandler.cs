@@ -27,7 +27,7 @@ namespace LokalReporter.Client.Dummy {
             }
 
             if (filter.IsTopStory) {
-                result = result.Where(a => a.Images.Any(i => !string.IsNullOrWhiteSpace(i.Source) && i.Height >= 100));
+                result = result.Where(a => a.Images.Any(i => !string.IsNullOrWhiteSpace(i.Source)));
             }
 
             result = result.OrderByDescending(a => a.Date);
