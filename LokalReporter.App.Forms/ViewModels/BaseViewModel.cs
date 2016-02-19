@@ -10,6 +10,8 @@ namespace LokalReporter.App.FormsApp.ViewModels {
 
         public bool IsLoading { get; set; }
         protected CancellationToken CloseCancellationToken { get; } = CancellationToken.None;
+
+        public string Title { get; set; }
     }
 
 }

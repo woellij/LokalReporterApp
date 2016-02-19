@@ -14,7 +14,7 @@
       <Image VerticalOptions="Fill" Source="lokalreporter_logo.png" />
     </ContentView>
 
-    <ListView Grid.Row="1" IsGroupingEnabled="True" GroupDisplayBinding="{Binding Title}" ItemsSource="{Binding Items}">
+    <ListView x:Name="MenuListView" Grid.Row="1" IsGroupingEnabled="True" GroupDisplayBinding="{Binding Title}" ItemsSource="{Binding Items}">
       <ListView.ItemTemplate>
         <DataTemplate>
           <TextCell Text="{Binding Title}" CommandParameter="{Binding}"

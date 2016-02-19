@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Input;
@@ -8,37 +7,6 @@ using PropertyChanged;
 using XLabs;
 
 namespace LokalReporter.App.FormsApp.ViewModels {
-
-    public class MenuSections : List<MenuSection> {
-        public MenuSections(params MenuSection[] items) : base(items) {}
-    }
-
-    public class MenuSection : List<MenuItem> {
-        public MenuSection(string title, IEnumerable<MenuItem> items) : base(items)
-        {
-            this.Title = title;
-        }
-
-        public string Title { get; set; }
-    }
-
-    public class MenuItem {
-        public MenuItem(string title)
-        {
-            this.Title = title;
-        }
-
-        public string Title { get; set; }
-    }
-
-    internal class FilterMenuItem : MenuItem {
-        public FilterMenuItem(string title, Filter filter) : base(title)
-        {
-            this.Filter = filter;
-        }
-
-        public Filter Filter { get; }
-    }
 
     [ImplementPropertyChanged]
     public class MenuViewModel : BaseViewModel {
@@ -50,21 +18,13 @@ namespace LokalReporter.App.FormsApp.ViewModels {
             this.Navigate = new RelayCommand<MenuItem>(NavigateAction);
         }
 
-        public MenuSections Items { get; set; }
+        public List<MenuSection> Items { get; set; }
 
         public ICommand Navigate { get; }
 
         private void NavigateAction(MenuItem i)
         {
-            if (i is FilterMenuItem) {
-                var filter = ((FilterMenuItem) i).Filter;
-                filter.Paging.Limit = 500;
-                var parameter = new FilterPreset {Filter = filter, Title = i.Title};
-                this.ShowViewModel<MultiFilteredArticlesViewModel, FilterPreset>(parameter);
-            }
-            else {
-                throw new NotSupportedException();
-            }
+            this.ShowViewModelWithComplexParameter(i.TargetViewModelType, i.Parameter);
         }
 
         public override async void Start()
@@ -74,11 +34,18 @@ namespace LokalReporter.App.FormsApp.ViewModels {
             var categories = await this.service.GetCategoriesAsync(this.CloseCancellationToken);
             var districs = await this.service.GetDistrictsAsync(this.CloseCancellationToken);
 
-            var filterMenuItems = categories.Select(r => new FilterMenuItem(r.Name, new Filter {Category = r}));
+            var filterMenuItems =
+                categories.Select(
+                    r => new MenuItem(r.Name, new FilterPreset(r.Name, new Filter { Category = r }), typeof(MultiFilteredArticlesViewModel)));
 
-            var distMenuItems = districs.Select(d => new FilterMenuItem(d.Name, new Filter {District = d}));
+            var distMenuItems =
+                districs.Select(
+                    d => new MenuItem(d.Name, new FilterPreset(d.Name, new Filter { District = d }), typeof(MultiFilteredArticlesViewModel)));
 
-            this.Items = new MenuSections(new MenuSection("Resorts", filterMenuItems), new MenuSection("Bezirke", distMenuItems));
+            var startMenuItem = new MenuItem("Startseite", typeof(PersonalFeedsViewModel));
+
+            this.Items = new List<MenuSection> { new MenuSection(null, startMenuItem), new MenuSection("Resorts", filterMenuItems), new MenuSection("Bezirke", distMenuItems) };
+
         }
     }
 

@@ -74,6 +74,8 @@
     <Compile Include="ViewModels\FirstViewModel.cs" />
     <Compile Include="ViewModels\Identifier.cs" />
     <Compile Include="ViewModels\IFeedsViewModel.cs" />
+    <Compile Include="ViewModels\MenuItem.cs" />
+    <Compile Include="ViewModels\MenuSection.cs" />
     <Compile Include="ViewModels\MenuViewModel.cs" />
     <Compile Include="ViewModels\MultiFilteredArticlesViewModel.cs" />
     <Compile Include="ViewModels\PersonalFeedsViewModel.cs" />

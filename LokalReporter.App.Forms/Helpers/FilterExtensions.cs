@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using MvvmCross.Core.Platform;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Core.Views;
@@ -17,15 +18,19 @@ namespace LokalReporter.App.FormsApp.Helpers {
     }
 
     public static class NavigationExtensions {
-        public static void ShowViewModel<TViewmodel, TParameter>(this IMvxViewModel viewmodel, TParameter parameter)
+        public static void ShowViewModelWithComplexParameter<TViewmodel, TParameter>(this IMvxViewModel viewmodel, TParameter parameter) { 
+            viewmodel.ShowViewModelWithComplexParameter(typeof(TViewmodel), parameter);
+        }
+
+        public static void ShowViewModelWithComplexParameter(this IMvxViewModel viewModel, Type targetViewModelType, object parameter)
         {
-            MvxTrace.Trace("Showing ViewModel {0}", typeof (TViewmodel).Name);
+            MvxTrace.Trace("Showing ViewModel {0}", targetViewModelType.Name);
             IMvxViewDispatcher viewDispatcher = Mvx.Resolve<IMvxViewDispatcher>();
 
             var paramString = JsonConvert.SerializeObject(parameter);
 
-            IDictionary<string, string> dict = new Dictionary<string, string> {{"param", paramString}};
-            viewDispatcher.ShowViewModel(new MvxViewModelRequest(typeof (TViewmodel), new MvxBundle(dict), null, null));
+            IDictionary<string, string> dict = new Dictionary<string, string> { { "param", paramString } };
+            viewDispatcher.ShowViewModel(new MvxViewModelRequest(targetViewModelType, new MvxBundle(dict), null, null));
         }
 
         public static TParameter GetComplexParameter<TParameter>(this IMvxBundle bundle)
