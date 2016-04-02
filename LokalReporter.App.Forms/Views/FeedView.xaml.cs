@@ -1,24 +1,32 @@
 ﻿using System;
+
 using LokalReporter.App.FormsApp.ViewModels;
+
 using NControl.Controls;
 
-namespace LokalReporter.App.FormsApp.Views {
+using Xamarin.Forms;
 
-    public partial class FeedView {
+namespace LokalReporter.App.FormsApp.Views
+{
+    public partial class FeedView : Grid
+    {
+
         public FeedView()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
 
         private void GalleryView_OnClicked(object sender, EventArgs e)
         {
-            if (sender is GalleryView) {
+            if (sender is GalleryView)
+            {
                 var article = ((GalleryView) sender)?.Page?.BindingContext;
-                if (article != null) {
+                if (article != null)
+                {
                     ((FeedViewModel) this.BindingContext).Articles.ShowDetails.Execute(article);
                 }
             }
         }
-    }
 
+    }
 }

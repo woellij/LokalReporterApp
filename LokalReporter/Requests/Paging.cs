@@ -1,4 +1,4 @@
-﻿namespace LokalReporter {
+﻿namespace LokalReporter.Requests {
 
     public class Paging {
 

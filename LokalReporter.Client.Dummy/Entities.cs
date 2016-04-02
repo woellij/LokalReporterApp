@@ -7,7 +7,7 @@ namespace LokalReporter.Client.Dummy {
     public static class Entities {
         private static readonly IDictionary<string, IdEntity> entities = new Dictionary<string, IdEntity>();
 
-        private static readonly IDictionary<string, string> resorts = new Dictionary<string, string> {
+        private static readonly IDictionary<string, string> Resorts = new Dictionary<string, string> {
             {"wetter", "Wetter"},
             {"sport", "Sport"},
             {"verkehr", "Verkehr"},
@@ -29,7 +29,7 @@ namespace LokalReporter.Client.Dummy {
 
         public static List<District> Districts => districts.Select(pair => From<District>(pair.Key, pair.Value)).ToList();
 
-        public static List<Category> Categories => resorts.Select(pair => From<Category>(pair.Key, pair.Value)).ToList();
+        public static List<Category> Categories => Resorts.Select(pair => From<Category>(pair.Key, pair.Value)).ToList();
 
         public static T From<T>(string id, string name) where T : IdEntity, new()
         {

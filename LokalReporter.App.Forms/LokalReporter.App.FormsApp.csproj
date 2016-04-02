@@ -56,8 +56,6 @@
     <Compile Include="Statics\StringToHtmlConverter.cs" />
     <Compile Include="LokalReporterAppMvxFormsPagePresenter.cs" />
     <Compile Include="Helpers\FilterExtensions.cs" />
-    <Compile Include="Helpers\ISettingsExtensions.cs" />
-    <Compile Include="Helpers\Settings.cs" />
     <Compile Include="LokalReporter.App.Forms.xaml.cs">
       <DependentUpon>LokalReporter.App.Forms.xaml</DependentUpon>
     </Compile>
@@ -81,9 +79,9 @@
     <Compile Include="Helpers\Behaviors\EventToCommandBehavior.cs" />
     <Compile Include="ViewModels\FeedViewModel.cs" />
     <Compile Include="ViewModels\FilteredArticlesViewModel.cs" />
-    <Compile Include="ViewModels\FilterPreset.cs" />
     <Compile Include="ViewModels\FilterSettingsViewModel.cs" />
     <Compile Include="ViewModels\FirstUseViewModel.cs" />
+    <Compile Include="ViewModels\FirstViewModel.cs" />
     <Compile Include="ViewModels\Identifier.cs" />
     <Compile Include="ViewModels\IFeedsViewModel.cs" />
     <Compile Include="ViewModels\MenuItem.cs" />
@@ -148,51 +146,43 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="MvvmCross.Binding, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.Binding.4.0.0\lib\portable-net45+win+wpa81+wp80\MvvmCross.Binding.dll</HintPath>
+      <HintPath>..\packages\MvvmCross.Binding.4.1.0\lib\portable-net45+win+wpa81+wp80\MvvmCross.Binding.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="MvvmCross.Core, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.Core.4.0.0\lib\portable-net45+win+wpa81+wp80\MvvmCross.Core.dll</HintPath>
+      <HintPath>..\packages\MvvmCross.Core.4.1.0\lib\portable-net45+win+wpa81+wp80\MvvmCross.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="MvvmCross.Forms.Presenter.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.Forms.Presenter.4.0.1\lib\portable-net45+netcore45+wpa81+wp8+MonoAndroid10+Xamarin.iOS10\MvvmCross.Forms.Presenter.Core.dll</HintPath>
+    <Reference Include="MvvmCross.Forms.Presenter.Core, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmCross.Forms.Presenter.4.1.0\lib\portable-net45+netcore45+wpa81+wp8+MonoAndroid10+Xamarin.iOS10\MvvmCross.Forms.Presenter.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="MvvmCross.Localization, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.Binding.4.0.0\lib\portable-net45+win+wpa81+wp80\MvvmCross.Localization.dll</HintPath>
+      <HintPath>..\packages\MvvmCross.Binding.4.1.0\lib\portable-net45+win+wpa81+wp80\MvvmCross.Localization.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="MvvmCross.Platform, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.Platform.4.0.0\lib\portable-net45+win+wpa81+wp80\MvvmCross.Platform.dll</HintPath>
+      <HintPath>..\packages\MvvmCross.Platform.4.1.0\lib\portable-net45+win+wpa81+wp80\MvvmCross.Platform.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="NControl, Version=0.2.5886.19900, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\NControl.0.8.6\lib\portable-net45+wp8+wp80+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10\NControl.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="NControl.Controls, Version=1.0.5889.36171, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\NControl.Controls.0.8.9\lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10\NControl.Controls.dll</HintPath>
+    <Reference Include="NControl.Controls, Version=1.0.5899.16180, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NControl.Controls.0.9.0\lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10\NControl.Controls.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.8.0.2\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="NGraphics, Version=0.2.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\NGraphics.0.4.0\lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10\NGraphics.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Plugin.Settings, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Xam.Plugins.Settings.2.1.0\lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10\Plugin.Settings.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Plugin.Settings.Abstractions, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Xam.Plugins.Settings.2.1.0\lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10\Plugin.Settings.Abstractions.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="PropertyChanged, Version=1.50.4.0, Culture=neutral, PublicKeyToken=ee3ee20bcf148ddd, processorArchitecture=MSIL">
-      <HintPath>..\packages\PropertyChanged.Fody.1.50.4\lib\portable-net4+sl4+wp8+win8+wpa81+MonoAndroid16+MonoTouch40\PropertyChanged.dll</HintPath>
+    <Reference Include="PropertyChanged, Version=1.51.0.0, Culture=neutral, PublicKeyToken=ee3ee20bcf148ddd, processorArchitecture=MSIL">
+      <HintPath>..\packages\PropertyChanged.Fody.1.51.0\lib\portable-net4+sl4+wp8+win8+wpa81+MonoAndroid16+MonoTouch40\PropertyChanged.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="ReactiveUI, Version=6.5.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -236,15 +226,15 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Xamarin.Forms.Core, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Xamarin.Forms.2.0.1.6505\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.Core.dll</HintPath>
+      <HintPath>..\packages\Xamarin.Forms.2.1.0.6529\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Xamarin.Forms.Platform, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Xamarin.Forms.2.0.1.6505\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.Platform.dll</HintPath>
+      <HintPath>..\packages\Xamarin.Forms.2.1.0.6529\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.Platform.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Xamarin.Forms.Xaml, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Xamarin.Forms.2.0.1.6505\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.Xaml.dll</HintPath>
+      <HintPath>..\packages\Xamarin.Forms.2.1.0.6529\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.Xaml.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="XLabs.Core, Version=2.0.5782.12218, Culture=neutral, PublicKeyToken=d65109b36e5040e4, processorArchitecture=MSIL">
@@ -340,10 +330,10 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Fody.1.29.4\build\portable-net+sl+win+wpa+wp\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Fody.1.29.4\build\portable-net+sl+win+wpa+wp\Fody.targets'))" />
-    <Error Condition="!Exists('..\packages\Xamarin.Forms.2.0.1.6505\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.Forms.2.0.1.6505\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets'))" />
+    <Error Condition="!Exists('..\packages\Xamarin.Forms.2.1.0.6529\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.Forms.2.1.0.6529\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets'))" />
   </Target>
   <Import Project="..\packages\Fody.1.29.4\build\portable-net+sl+win+wpa+wp\Fody.targets" Condition="Exists('..\packages\Fody.1.29.4\build\portable-net+sl+win+wpa+wp\Fody.targets')" />
-  <Import Project="..\packages\Xamarin.Forms.2.0.1.6505\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.0.1.6505\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />
+  <Import Project="..\packages\Xamarin.Forms.2.1.0.6529\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.1.0.6529\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

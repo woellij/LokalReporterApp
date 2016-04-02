@@ -2,25 +2,31 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+
 using LokalReporter.App.FormsApp.Helpers;
+using LokalReporter.Common;
 using LokalReporter.Requests;
 using LokalReporter.Responses;
+
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
+
 using PropertyChanged;
 
-namespace LokalReporter.App.FormsApp.ViewModels {
-
+namespace LokalReporter.App.FormsApp.ViewModels
+{
     [ImplementPropertyChanged]
-    public class MultiFilteredArticlesViewModel : BaseViewModel, IFeedsViewModel {
-        private readonly IArticlesService service;
+    public class MultiFilteredArticlesViewModel : BaseViewModel, IFeedsViewModel
+    {
 
-        public MultiFilteredArticlesViewModel(IArticlesService service)
+        private readonly IArticlesService service;
+        private readonly IUserSettings userSettings;
+
+        public MultiFilteredArticlesViewModel(IArticlesService service, IUserSettings userSettings)
         {
             this.service = service;
+            this.userSettings = userSettings;
         }
-
-        public string Title { get; set; }
 
         public ICollection<FeedViewModel> Feeds { get; set; }
 
@@ -31,26 +37,35 @@ namespace LokalReporter.App.FormsApp.ViewModels {
 
             var filter = filterPreset.Filter;
 
-            if (filter.Category == null && filter.District != null) {
+            if (filter.Category == null && filter.District != null)
+            {
                 var categories = await this.service.GetCategoriesAsync(this.CloseCancellationToken);
                 this.SetViewModels(categories, filter, (f, entity) => f.Category = entity);
             }
-            else if (filter.District == null && filter.Category != null) {
+            else if (filter.District == null && filter.Category != null)
+            {
+                var setDistrict = await this.userSettings.DistrictSetting.GetValueAsync();
                 var districts = await this.service.GetDistrictsAsync(this.CloseCancellationToken);
-                this.SetViewModels(districts.OrderByDescending(district => district.Equals(Settings.SelectedDistrict)), filter,
+                this.SetViewModels(
+                    districts.OrderByDescending(
+                        district => district.Equals(setDistrict)),
+                    filter,
                     (f, entity) => f.District = entity);
             }
         }
 
-        private void SetViewModels<TEntitiy>(IEnumerable<TEntitiy> byEntity, Filter filter, Action<Filter, TEntitiy> setter)
+        private void SetViewModels<TEntitiy>(IEnumerable<TEntitiy> byEntity, Filter filter,
+            Action<Filter, TEntitiy> setter)
             where TEntitiy : IdEntity
         {
-            this.Feeds = byEntity.Select((entity, i) => {
+            this.Feeds = byEntity.Select((entity, i) =>
+            {
                 var filterClone = filter.Clone();
                 setter(filter, entity);
                 var viewModel = Mvx.IocConstruct<FeedViewModel>();
                 Task.Delay(500*i)
-                    .ContinueWith(t => {
+                    .ContinueWith(t =>
+                    {
                         var filterPreset = new FilterPreset {Title = entity.Name, Filter = filterClone};
                         viewModel.Setup(filterPreset);
                     },
@@ -58,6 +73,6 @@ namespace LokalReporter.App.FormsApp.ViewModels {
                 return viewModel;
             }).ToList();
         }
-    }
 
+    }
 }

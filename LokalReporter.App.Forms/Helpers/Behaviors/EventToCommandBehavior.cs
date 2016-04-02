@@ -16,8 +16,8 @@ namespace LokalReporter.App.FormsApp.Helpers.Behaviors {
         public static readonly BindableProperty EventArgsConverterProperty = BindableProperty.Create<EventToCommandBehavior, IValueConverter>(p => p.EventArgsConverter, null);
         public static readonly BindableProperty EventArgsConverterParameterProperty = BindableProperty.Create<EventToCommandBehavior, object>(p => p.EventArgsConverterParameter, null);
 
-        private Delegate _handler;
-        private EventInfo _eventInfo;
+        private Delegate handler;
+        private EventInfo eventInfo;
 
         public string EventName
         {
@@ -56,18 +56,18 @@ namespace LokalReporter.App.FormsApp.Helpers.Behaviors {
             var events = this.AssociatedObject.GetType().GetRuntimeEvents().ToArray();
             if (events.Any())
             {
-                this._eventInfo = events.FirstOrDefault(e => e.Name == this.EventName);
-                if (this._eventInfo == null)
+                this.eventInfo = events.FirstOrDefault(e => e.Name == this.EventName);
+                if (this.eventInfo == null)
                     throw new ArgumentException(String.Format("EventToCommand: Can't find any event named '{0}' on attached type", this.EventName));
 
-                this.AddEventHandler(this._eventInfo, this.AssociatedObject, this.OnFired);
+                this.AddEventHandler(this.eventInfo, this.AssociatedObject, this.OnFired);
             }
         }
 
         protected override void OnDetachingFrom(View view)
         {
-            if (this._handler != null)
-                this._eventInfo.RemoveEventHandler(this.AssociatedObject, this._handler);
+            if (this.handler != null)
+                this.eventInfo.RemoveEventHandler(this.AssociatedObject, this.handler);
 
             base.OnDetachingFrom(view);
         }
@@ -83,14 +83,14 @@ namespace LokalReporter.App.FormsApp.Helpers.Behaviors {
             var actionInvoke = action.GetType()
                 .GetRuntimeMethods().First(m => m.Name == "Invoke");
 
-            this._handler = Expression.Lambda(
+            this.handler = Expression.Lambda(
                 eventInfo.EventHandlerType,
                 Expression.Call(Expression.Constant(action), actionInvoke, eventParameters[0], eventParameters[1]),
                 eventParameters
                 )
                 .Compile();
 
-            eventInfo.AddEventHandler(item, this._handler);
+            eventInfo.AddEventHandler(item, this.handler);
         }
 
         private void OnFired(object sender, EventArgs eventArgs)

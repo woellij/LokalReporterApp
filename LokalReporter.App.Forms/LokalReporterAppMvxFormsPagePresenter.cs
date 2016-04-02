@@ -10,8 +10,10 @@ namespace LokalReporter.App.FormsApp {
         public override async void Show(MvxViewModelRequest request)
         {
             if (request.ViewModelType == typeof (PersonalFeedsViewModel)) {
-                if (this.MasterDetailPresenter == null) {
-                    this.MasterDetailPresenter = new MasterDetailPresenter();
+                if (this.MasterDetailPresenter == null)
+                {
+                    this.MasterDetailPresenter = new MasterDetailPresenter(request);
+                    return;
                 }
             }
 

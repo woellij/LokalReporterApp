@@ -1,8 +1,9 @@
 using System;
 using System.Runtime.Serialization;
+
 using LokalReporter.Requests;
 
-namespace LokalReporter.App.FormsApp.ViewModels {
+namespace LokalReporter.Common {
 
     [DataContract]
     public class FilterPreset : IEquatable<FilterPreset> {
@@ -42,7 +43,7 @@ namespace LokalReporter.App.FormsApp.ViewModels {
             if (obj.GetType() != this.GetType()) {
                 return false;
             }
-            return Equals((FilterPreset) obj);
+            return this.Equals((FilterPreset) obj);
         }
 
         public override int GetHashCode()

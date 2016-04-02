@@ -1,41 +1,48 @@
 using System.Threading.Tasks;
+
 using LokalReporter.App.FormsApp.Helpers;
+using LokalReporter.Common;
+using LokalReporter.Requests;
+
 using MvvmCross.Platform;
+
 using PropertyChanged;
 
-namespace LokalReporter.App.FormsApp.ViewModels {
-
+namespace LokalReporter.App.FormsApp.ViewModels
+{
     [ImplementPropertyChanged]
-    public class FeedViewModel : BaseViewModel {
+    public class FeedViewModel : BaseViewModel
+    {
+
         public FilteredArticlesViewModel TopArticles { get; set; }
         public FilteredArticlesViewModel Articles { get; set; }
-
-        public string Title { get; set; }
 
         public async void Setup(FilterPreset preset)
         {
             this.Title = preset.Title;
 
-            var filter = preset.Filter.Clone();
+            Filter filter = preset.Filter.Clone();
             filter.Paging = new Paging {Limit = 20};
             this.Articles = Mvx.IocConstruct<FilteredArticlesViewModel>();
 
-            var topFilter = filter.Clone();
+            Filter topFilter = filter.Clone();
             topFilter.IsTopStory = true;
 
             this.TopArticles = Mvx.IocConstruct<FilteredArticlesViewModel>();
 
             this.IsLoading = true;
-            try {
+            try
+            {
                 await this.TopArticles.Setup(topFilter);
                 this.IsLoading = false;
                 await Task.Delay(200);
                 await this.Articles.Setup(filter);
             }
-            finally {
+            finally
+            {
                 this.IsLoading = false;
             }
         }
-    }
 
+    }
 }

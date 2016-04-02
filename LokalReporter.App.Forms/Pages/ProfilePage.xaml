@@ -3,9 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
              xmlns:views="clr-namespace:LokalReporter.App.FormsApp.Views;assembly=LokalReporter.App.FormsApp"
-             xmlns:viewModels="clr-namespace:LokalReporter.App.FormsApp.ViewModels;assembly=LokalReporter.App.FormsApp"
              xmlns:controls1="clr-namespace:NControl.Controls;assembly=NControl.Controls"
-             xmlns:statics="clr-namespace:LokalReporter.App.FormsApp.Statics;assembly=LokalReporter.App.FormsApp"
+             xmlns:common="clr-namespace:LokalReporter.Common;assembly=LokalReporter"
              x:Class="LokalReporter.App.FormsApp.Pages.ProfilePage"
              Title="{Binding Title}">
   <ScrollView>
@@ -29,7 +28,7 @@
           </Grid>
         </Frame>
        
-        <controls:RepeaterView Padding="20, 0,0,0" x:TypeArguments="viewModels:FilterPreset" ItemsSource="{Binding Filters}">
+        <controls:RepeaterView Padding="20, 0,0,0" x:TypeArguments="common:FilterPreset" ItemsSource="{Binding Filters}">
           <controls:RepeaterView.ItemTemplate>
             <DataTemplate>
               <Frame Padding="15,10">

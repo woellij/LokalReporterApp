@@ -1,19 +1,27 @@
 using System.Collections.Generic;
 using System.Linq;
-using LokalReporter.App.FormsApp.Helpers;
+
+using LokalReporter.Common;
 using LokalReporter.Responses;
+
 using PropertyChanged;
+using LokalReporter;
 
-namespace LokalReporter.App.FormsApp.ViewModels {
-
+namespace LokalReporter.App.FormsApp.ViewModels
+{
     [ImplementPropertyChanged]
-    public class DistrictSettingViewModel : BaseViewModel {
+    public class DistrictSettingViewModel : BaseViewModel
+    {
+
         private readonly IArticlesService articlesService;
+        private readonly IAsyncSetting<District> setting;
+        private District selectedDistrict;
         private int selectedDistrictIndex;
 
-        public DistrictSettingViewModel(IArticlesService articlesService)
+        public DistrictSettingViewModel(IArticlesService articlesService, IUserSettings userSettings)
         {
             this.articlesService = articlesService;
+            this.setting = userSettings.DistrictSetting;
         }
 
         public int SelectedDistrictIndex
@@ -33,8 +41,12 @@ namespace LokalReporter.App.FormsApp.ViewModels {
 
         public District SelectedDistrict
         {
-            get { return Settings.SelectedDistrict; }
-            set { Settings.SelectedDistrict = value; }
+            get { return this.selectedDistrict; }
+            set
+            {
+                this.selectedDistrict = value;
+                this.setting.SetValueAsync(value);
+            }
         }
 
         public IList<District> Districts { get; set; }
@@ -46,8 +58,8 @@ namespace LokalReporter.App.FormsApp.ViewModels {
             base.Start();
             this.Districts = (await this.articlesService.GetDistrictsAsync(this.CloseCancellationToken)).ToList();
             this.DistrictNames = this.Districts.Select(d => d.Name).ToList();
-            this.SelectedDistrict = Settings.SelectedDistrict;
+            this.SelectedDistrict = await this.setting.GetValueAsync();
         }
-    }
 
+    }
 }

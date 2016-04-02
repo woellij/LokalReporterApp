@@ -7,7 +7,6 @@ using LokalReporter.Requests;
 using LokalReporter.Responses;
 
 namespace LokalReporter.Client.Dummy.Json {
-
     public class JsonArticlesService : IArticlesService {
         private Dictionary<string, Article> articles;
 

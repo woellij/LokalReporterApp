@@ -3,6 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:converters="clr-namespace:LokalReporter.App.FormsApp.Converters;assembly=LokalReporter.App.FormsApp"
              x:Class="LokalReporter.App.FormsApp.Pages.DetailsPage">
+  <ScrollView>
+    
   <WebView  VerticalOptions="Fill" HorizontalOptions="Fill" x:Name="WebView">
   </WebView>
+    <Button Text="TEST"></Button>
+  </ScrollView>
 </ContentPage>

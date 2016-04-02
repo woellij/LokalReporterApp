@@ -22,9 +22,7 @@ namespace LokalReporter.App.FormsApp.ViewModels {
 
         public IReadOnlyCollection<Article> Items { get; private set; } = new List<Article>();
         public ICommand ShowDetails { get; }
-
-        public string Title { get; set; }
-
+        
         public async Task<FilteredArticlesViewModel> Setup(Filter filter)
         {
             if (filter == null) {

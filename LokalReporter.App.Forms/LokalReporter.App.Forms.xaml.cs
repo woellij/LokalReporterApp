@@ -1,5 +1,7 @@
 ﻿using LokalReporter.App.FormsApp.Helpers;
 using LokalReporter.App.FormsApp.ViewModels;
+using LokalReporter.Client.Dummy.Settings;
+
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Core.Views;
 using MvvmCross.Forms.Presenter.Core;
@@ -19,11 +21,12 @@ namespace LokalReporter.App.FormsApp {
             this.MainPage = new ContentPage();
         }
 
-        protected override void OnStart()
+        protected override async void OnStart()
         {
             // Handle when your app starts
             var presenter = Mvx.Resolve<IMvxViewPresenter>();
-            var vmType = Settings.SelectedDistrict == null ? typeof (FirstUseViewModel) : typeof (PersonalFeedsViewModel);
+            var districtSetting = await Mvx.Resolve<IUserSettings>().DistrictSetting.GetValueAsync();
+            var vmType = districtSetting == null ? typeof (FirstUseViewModel) : typeof (PersonalFeedsViewModel);
             presenter.Show(new MvxViewModelRequest(vmType, null, null, null));
 
             Mvx.LazyConstructAndRegisterSingleton<IMvxViewModelLocator, MvxDefaultViewModelLocator>();

@@ -34,7 +34,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Common\IAsyncSetting.cs" />
+    <Compile Include="Common\FilterPreset.cs" />
+    <Compile Include="Common\ICollectionAsyncSetting.cs" />
     <Compile Include="IDependencyModule.cs" />
+    <Compile Include="IUserSettings.cs" />
     <Compile Include="Requests\Paging.cs" />
     <Compile Include="Responses\Article.cs" />
     <Compile Include="Responses\ArticlesResult.cs" />
@@ -49,11 +53,11 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MvvmCross.Core, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.Core.4.0.0\lib\portable-net45+win+wpa81+wp80\MvvmCross.Core.dll</HintPath>
+      <HintPath>..\packages\MvvmCross.Core.4.1.0\lib\portable-net45+win+wpa81+wp80\MvvmCross.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="MvvmCross.Platform, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.Platform.4.0.0\lib\portable-net45+win+wpa81+wp80\MvvmCross.Platform.dll</HintPath>
+      <HintPath>..\packages\MvvmCross.Platform.4.1.0\lib\portable-net45+win+wpa81+wp80\MvvmCross.Platform.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>

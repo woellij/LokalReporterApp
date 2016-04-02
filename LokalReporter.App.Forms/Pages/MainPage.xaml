@@ -6,4 +6,4 @@
     <ToolbarItem Clicked="ProfileMenuItemClicked" Text="Profil" Order="Secondary" Priority="1" ></ToolbarItem>
   </Page.ToolbarItems>
 
-  </NavigationPage>
+</NavigationPage>

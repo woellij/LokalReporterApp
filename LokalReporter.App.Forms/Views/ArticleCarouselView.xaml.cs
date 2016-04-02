@@ -4,9 +4,10 @@ using LokalReporter.App.FormsApp.ViewModels;
 using NControl.Controls;
 using Xamarin.Forms;
 
-namespace LokalReporter.App.FormsApp.Views {
-
-    public partial class ArticleCarouselView {
+namespace LokalReporter.App.FormsApp.Views
+{
+    public partial class ArticleCarouselView : GalleryView
+    {
         public static readonly BindableProperty ItemsSourceProperty =
             BindableProperty.Create<ArticleCarouselView, object>(b => b.ItemsSource, default(object),
                 propertyChanged: ItemsSourcePropertyChanged);
@@ -18,7 +19,7 @@ namespace LokalReporter.App.FormsApp.Views {
 
         public object ItemsSource
         {
-            get { return this.GetValue(ItemsSourceProperty); }
+            get { return GetValue(ItemsSourceProperty); }
             set { SetValue(ItemsSourceProperty, value); }
         }
 
@@ -26,18 +27,25 @@ namespace LokalReporter.App.FormsApp.Views {
         {
             var articles = newValue as IEnumerable;
             var view = bindable as ArticleCarouselView;
-            if (view != null) {
-                if (articles != null) {
-                    foreach (var article in articles) {
-                        try {
+            if (view != null)
+            {
+                if (articles != null)
+                {
+                    foreach (var article in articles)
+                    {
+                        try
+                        {
                             view.BatchBegin();
                             view.Children.Add(new BigArticleView {BindingContext = article});
                             view.BatchCommit();
                         }
-                        catch {}
+                        catch
+                        {
+                        }
                     }
                 }
-                else {
+                else
+                {
                     view.Children.Clear();
                 }
             }
@@ -45,12 +53,11 @@ namespace LokalReporter.App.FormsApp.Views {
 
         private void TapGestureRecognizer_OnTapped(object sender, EventArgs e)
         {
-            var article = ((GalleryView)sender)?.Page?.BindingContext;
+            var article = ((GalleryView) sender)?.Page?.BindingContext;
             if (article != null)
             {
-                ((FilteredArticlesViewModel)this.BindingContext).ShowDetails.Execute(article);
+                ((FilteredArticlesViewModel) BindingContext).ShowDetails.Execute(article);
             }
         }
     }
-
 }

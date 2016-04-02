@@ -7,11 +7,11 @@ namespace LokalReporter.App.Droid {
 
     public class Dependencies {
 
-        static bool isInitialized;
+        static bool _isInitialized;
 
         public static void Initialize()
         {
-            if (Dependencies.isInitialized) {
+            if (Dependencies._isInitialized) {
                 return;
             }
 

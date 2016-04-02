@@ -6,6 +6,8 @@ using LokalReporter.Responses;
 using Xamarin.Forms;
 using XLabs.Forms.Controls;
 
+using DataTemplateSelector = XLabs.Forms.Controls.DataTemplateSelector;
+
 namespace LokalReporter.App.FormsApp.Statics {
 
     public static class Converters {
