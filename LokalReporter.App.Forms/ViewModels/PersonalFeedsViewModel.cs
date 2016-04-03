@@ -48,7 +48,7 @@ namespace LokalReporter.App.FormsApp.ViewModels
 
         public override async void Start()
         {
-            var startFilters = await Task.Run(this.GetUserFeedFilters);
+            var startFilters = await this.GetUserFeedFilters();
             if (startFilters == null)
             {
                 return;

@@ -3,7 +3,19 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
              xmlns:statics="clr-namespace:LokalReporter.App.FormsApp.Statics;assembly=LokalReporter.App.FormsApp"
+             xmlns:controls1="clr-namespace:NControl.Controls;assembly=NControl.Controls"
+             xmlns:views="clr-namespace:LokalReporter.App.FormsApp.Views;assembly=LokalReporter.App.FormsApp"
              x:Class="LokalReporter.App.FormsApp.Views.DistrictSelectionView"  >
+
+  <Grid BackgroundColor="Blue" AnchorX="0.3" AnchorY="0" HorizontalOptions="Center" MinimumHeightRequest="1000" MinimumWidthRequest="300" HeightRequest="1000" WidthRequest="400" x:Name="Map">
+    <views:ToggleImageView HorizontalOptions="Start" VerticalOptions="Start" BindingContext="{Binding Districts[0] }" TranslationX="0"   Source="a.png"  IsCheckedImageSource="asel.png"/>
+    <views:ToggleImageView HorizontalOptions="Start" VerticalOptions="Start" BindingContext="{Binding Districts[1]}"  AnchorY="0" TranslationX="117" TranslationY="5"  Source="b.png" IsCheckedImageSource="bsel.png"/>
+    <views:ToggleImageView HorizontalOptions="Start" VerticalOptions="Start" BindingContext="{Binding Districts[2]}" AnchorY="0" TranslationX="86" TranslationY="94"  Source="c.png"  IsCheckedImageSource="csel.png"/>
+    <views:ToggleImageView HorizontalOptions="Start" VerticalOptions="Start" BindingContext="{Binding Districts[3]}" TranslationX="175" TranslationY="58"  Source="d.png" IsCheckedImageSource="dsel.png"/>    
+    <views:ToggleImageView HorizontalOptions="Start" VerticalOptions="Start" BindingContext="{Binding Districts[4]}" TranslationX="47"  TranslationY="184" Source="e.png" IsCheckedImageSource="esel.png"/>
+    <views:ToggleImageView HorizontalOptions="Start" VerticalOptions="Start" BindingContext="{Binding Districts[5]}" TranslationX="136" TranslationY="178" Source="g.png" IsCheckedImageSource="gsel.png"/>
+    <views:ToggleImageView HorizontalOptions="Start" VerticalOptions="Start" BindingContext="{Binding Districts[6]}" TranslationX="208" TranslationY="177" Source="h.png" IsCheckedImageSource="hsel.png"/>
+  </Grid>
   <ListView VerticalOptions="Start" HasUnevenRows="True"
             ItemsSource="{Binding Districts}"
             SelectedItem="{Binding SelectedDistrict, Mode=TwoWay}" >

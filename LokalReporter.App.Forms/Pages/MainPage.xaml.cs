@@ -11,7 +11,6 @@ namespace LokalReporter.App.FormsApp.Pages
 {
     public partial class MainPage : NavigationPage
     {
-
         public MainPage()
         {
             this.InitializeComponent();

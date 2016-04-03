@@ -81,7 +81,6 @@
     <Compile Include="ViewModels\FilteredArticlesViewModel.cs" />
     <Compile Include="ViewModels\FilterSettingsViewModel.cs" />
     <Compile Include="ViewModels\FirstUseViewModel.cs" />
-    <Compile Include="ViewModels\FirstViewModel.cs" />
     <Compile Include="ViewModels\Identifier.cs" />
     <Compile Include="ViewModels\IFeedsViewModel.cs" />
     <Compile Include="ViewModels\MenuItem.cs" />
@@ -107,6 +106,7 @@
     <Compile Include="Views\FeedView.xaml.cs">
       <DependentUpon>FeedView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ToggleImageView.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Pages\FirstUsePage.xaml">
@@ -118,6 +118,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Assets\Images\as.svg" />
     <Content Include="FodyWeavers.xml" />
   </ItemGroup>
   <ItemGroup>
@@ -138,7 +139,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="ExifLib, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
@@ -324,6 +327,7 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

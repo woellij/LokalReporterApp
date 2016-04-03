@@ -83,11 +83,11 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="MvvmCross.Forms.Presenter.Core, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.Forms.Presenter.4.0.3\lib\MonoAndroid403\MvvmCross.Forms.Presenter.Core.dll</HintPath>
+      <HintPath>..\packages\MvvmCross.Forms.Presenter.4.1.0\lib\MonoAndroid403\MvvmCross.Forms.Presenter.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="MvvmCross.Forms.Presenter.Droid, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.Forms.Presenter.4.0.3\lib\MonoAndroid403\MvvmCross.Forms.Presenter.Droid.dll</HintPath>
+      <HintPath>..\packages\MvvmCross.Forms.Presenter.4.1.0\lib\MonoAndroid403\MvvmCross.Forms.Presenter.Droid.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="MvvmCross.Localization, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -309,6 +309,20 @@
     <Content Include="FodyWeavers.xml" />
     <AndroidResource Include="Resources\values\SplashStyle.xml" />
     <AndroidResource Include="Resources\drawable\lokalreporter_logo.png" />
+    <AndroidResource Include="Resources\drawable\a.png" />
+    <AndroidResource Include="Resources\drawable\asel.png" />
+    <AndroidResource Include="Resources\drawable\b.png" />
+    <AndroidResource Include="Resources\drawable\bsel.png" />
+    <AndroidResource Include="Resources\drawable\c.png" />
+    <AndroidResource Include="Resources\drawable\csel.png" />
+    <AndroidResource Include="Resources\drawable\d.png" />
+    <AndroidResource Include="Resources\drawable\dsel.png" />
+    <AndroidResource Include="Resources\drawable\e.png" />
+    <AndroidResource Include="Resources\drawable\esel.png" />
+    <AndroidResource Include="Resources\drawable\g.png" />
+    <AndroidResource Include="Resources\drawable\gsel.png" />
+    <AndroidResource Include="Resources\drawable\h.png" />
+    <AndroidResource Include="Resources\drawable\hsel.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

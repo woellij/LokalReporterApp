@@ -6,11 +6,11 @@ using LokalReporter.Common;
 
 namespace LokalReporter.Client.Dummy.Settings
 {
-    internal class CollectionAsyncSetting<TItem> : SettingsAsyncSetting<IReadOnlyCollection<TItem>>,
+    internal class CollectionAsyncSetting<TItem> : SettingsAsyncSetting<List<TItem>>,
         ICollectionAsyncSetting<TItem>
     {
 
-        public CollectionAsyncSetting(string key, IReadOnlyCollection<TItem> defaultValue) : base(key, defaultValue)
+        public CollectionAsyncSetting(string key, List<TItem> defaultValue) : base(key, defaultValue)
         {
         }
 
@@ -21,6 +21,16 @@ namespace LokalReporter.Client.Dummy.Settings
             var current = filters as List<TItem> ?? filters.ToList();
             current.Add(item);
             await this.SetValueAsync(current);
+        }
+
+        public async Task<IReadOnlyCollection<TItem>> GetValueAsync()
+        {
+            return await base.GetValueAsync();
+        }
+
+        public async Task SetValueAsync(IReadOnlyCollection<TItem> value)
+        {
+            await base.SetValueAsync(value as List<TItem> ?? value.ToList());
         }
 
     }
