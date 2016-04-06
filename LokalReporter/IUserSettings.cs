@@ -10,5 +10,7 @@ namespace LokalReporter
 
         ICollectionAsyncSetting<FilterPreset> UserFiltersSetting { get; }
 
+        ICollectionAsyncSetting<int> BookmarksSetting { get; } 
+
     }
 }

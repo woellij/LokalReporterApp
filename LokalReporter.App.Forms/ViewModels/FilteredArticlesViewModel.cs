@@ -17,7 +17,7 @@ namespace LokalReporter.App.FormsApp.ViewModels {
         public FilteredArticlesViewModel(IArticlesService articlesService)
         {
             this.articlesService = articlesService;
-            this.ShowDetails = new RelayCommand<Article>(a => this.ShowViewModel<DetailsViewModel>(new Identifier(a.Id)));
+            this.ShowDetails = new RelayCommand<Article>(a => this.ShowViewModel<DetailsViewModel>(new Identifier(a.Id.ToString())));
         }
 
         public IReadOnlyCollection<Article> Items { get; private set; } = new List<Article>();

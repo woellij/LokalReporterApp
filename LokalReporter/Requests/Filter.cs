@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Runtime.Serialization;
 using LokalReporter.Responses;
 
@@ -26,6 +27,9 @@ namespace LokalReporter.Requests {
 
         [DataMember(Name = "topStory")]
         public bool IsTopStory { get; set; }
+
+        [DataMember(Name = "ids")]
+        public IEnumerable<int> Ids { get; set; }
 
         public bool Equals(Filter other)
         {

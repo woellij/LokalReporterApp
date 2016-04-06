@@ -7,7 +7,7 @@
              xmlns:views="clr-namespace:LokalReporter.App.FormsApp.Views;assembly=LokalReporter.App.FormsApp"
              x:Class="LokalReporter.App.FormsApp.Views.DistrictSelectionView"  >
 
-  <Grid BackgroundColor="Blue" AnchorX="0.3" AnchorY="0" HorizontalOptions="Center" MinimumHeightRequest="1000" MinimumWidthRequest="300" HeightRequest="1000" WidthRequest="400" x:Name="Map">
+  <Grid AnchorX="0.3" Scale="0.9" AnchorY="0" HorizontalOptions="Center" MinimumHeightRequest="400" MinimumWidthRequest="300" HeightRequest="400" WidthRequest="400" x:Name="Map">
     <views:ToggleImageView HorizontalOptions="Start" VerticalOptions="Start" BindingContext="{Binding Districts[0] }" TranslationX="0"   Source="a.png"  IsCheckedImageSource="asel.png"/>
     <views:ToggleImageView HorizontalOptions="Start" VerticalOptions="Start" BindingContext="{Binding Districts[1]}"  AnchorY="0" TranslationX="117" TranslationY="5"  Source="b.png" IsCheckedImageSource="bsel.png"/>
     <views:ToggleImageView HorizontalOptions="Start" VerticalOptions="Start" BindingContext="{Binding Districts[2]}" AnchorY="0" TranslationX="86" TranslationY="94"  Source="c.png"  IsCheckedImageSource="csel.png"/>
@@ -16,15 +16,4 @@
     <views:ToggleImageView HorizontalOptions="Start" VerticalOptions="Start" BindingContext="{Binding Districts[5]}" TranslationX="136" TranslationY="178" Source="g.png" IsCheckedImageSource="gsel.png"/>
     <views:ToggleImageView HorizontalOptions="Start" VerticalOptions="Start" BindingContext="{Binding Districts[6]}" TranslationX="208" TranslationY="177" Source="h.png" IsCheckedImageSource="hsel.png"/>
   </Grid>
-  <ListView VerticalOptions="Start" HasUnevenRows="True"
-            ItemsSource="{Binding Districts}"
-            SelectedItem="{Binding SelectedDistrict, Mode=TwoWay}" >
-    <ListView.ItemTemplate>
-      <DataTemplate>
-        <TextCell Text="{Binding Name}" />
-      </DataTemplate>
-    </ListView.ItemTemplate>
-  </ListView>
-
-  <!--<controls:ExtendedPicker  ItemsSource="{Binding Districts}" DisplayProperty="Name"  SelectedItem="{Binding SelectedDistrict, Mode=TwoWay}" />-->
 </StackLayout>

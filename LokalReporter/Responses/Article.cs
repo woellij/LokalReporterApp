@@ -44,7 +44,7 @@ namespace LokalReporter.Responses {
         }
 
         [DataMember(Name = "id")]
-        public string Id { get; set; }
+        public int Id { get; set; }
 
         [DataMember(Name = "district")]
         public District District { get; set; }

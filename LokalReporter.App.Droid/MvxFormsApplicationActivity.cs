@@ -27,8 +27,6 @@ namespace LokalReporter.App.Droid {
             MvxFormsApplicationActivity.Current = this;
 
             Forms.Init(this, bundle);
-
-
             // appCompat stuff
             FormsAppCompatActivity.ToolbarResource = Resource.Layout.toolbar;
             FormsAppCompatActivity.TabLayoutResource = Resource.Layout.tabs;
@@ -37,8 +35,8 @@ namespace LokalReporter.App.Droid {
             this.LoadApplication(formsApp);
 
 
-            Mvx.LazyConstructAndRegisterSingleton<IToastNotificator,ToastNotificatorImplementation>(); // Register your dependency
-            ToastNotificatorImplementation.Init(Current); //you can pass additional parameters here
+            Mvx.LazyConstructAndRegisterSingleton<IToastNotificator,ToastNotificatorImplementation>();
+            ToastNotificatorImplementation.Init(Current);
 
             var presenter = (MvxFormsPagePresenter) Mvx.Resolve<IMvxViewPresenter>();
             presenter.MvxFormsApp = formsApp;

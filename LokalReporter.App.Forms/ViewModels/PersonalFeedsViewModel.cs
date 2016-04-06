@@ -8,6 +8,7 @@ using LokalReporter.Common;
 using LokalReporter.Requests;
 using LokalReporter.Responses;
 
+using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
 
 using PropertyChanged;
@@ -26,11 +27,15 @@ namespace LokalReporter.App.FormsApp.ViewModels
         public PersonalFeedsViewModel(IUserSettings userSettings)
         {
             this.userSettings = userSettings;
-            this.ShowDetails = new RelayCommand<Article>(a => this.ShowViewModel<DetailsViewModel>(new Identifier(a.Id)));
+            this.ShowDetails = new RelayCommand<Article>(a => this.ShowViewModel<DetailsViewModel>(new Identifier(a.Id.ToString())));
             this.AddNewFeedFilter = new RelayCommand(() => this.ShowViewModel<SetupFeedFilterViewModel>());
 
+            this.BookmarksViewModel = Mvx.IocConstruct<BookmarksViewModel>();
+            
             this.Title = "Startseite";
         }
+
+        public BookmarksViewModel BookmarksViewModel { get; set; }
 
         public ICommand AddNewFeedFilter { get; }
 
@@ -44,10 +49,13 @@ namespace LokalReporter.App.FormsApp.ViewModels
             {
                 this.Start();
             }
+            this.BookmarksViewModel.Start();
         }
 
         public override async void Start()
         {
+            this.BookmarksViewModel.Start();
+
             var startFilters = await this.GetUserFeedFilters();
             if (startFilters == null)
             {
@@ -64,6 +72,12 @@ namespace LokalReporter.App.FormsApp.ViewModels
                     {
                         this.Feeds.Add(additionalFeed);
                     }
+                }
+                
+                var deletedFeeds = this.Feeds.Where(f => this.filters.Except(startFilters).Any(preset => preset.Title == f.Title)).ToList();
+                foreach (var feedViewModel in deletedFeeds)
+                {
+                    this.Feeds.Remove(feedViewModel);
                 }
             }
             else

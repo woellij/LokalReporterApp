@@ -17,5 +17,7 @@ namespace LokalReporter.Client.Dummy.Settings
             new CollectionAsyncSetting<FilterPreset>("filter_presets",
                 new List<FilterPreset>());
 
+        public ICollectionAsyncSetting<int> BookmarksSetting { get; } = new CollectionAsyncSetting<int>("bookmarks", new List<int>());
+
     }
 }

@@ -21,7 +21,7 @@ namespace LokalReporter.Client.Dummy.Xml {
             this.setterActions[":pubDate"] = (element, article) => article.Date = DateTime.Parse(element.Value);
 
             this.setterActions[":category"] = this.SetCategoryOrTags;
-            this.setterActions["http://wordpress.org/export/1.2/:post_id"] = (element, article) => article.Id = element.Value;
+            this.setterActions["http://wordpress.org/export/1.2/:post_id"] = (element, article) => article.Id = int.Parse(element.Value);
         }
 
         private void SetCategoryOrTags(XElement element, Article article)

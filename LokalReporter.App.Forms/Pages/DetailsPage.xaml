@@ -1,12 +1,35 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:converters="clr-namespace:LokalReporter.App.FormsApp.Converters;assembly=LokalReporter.App.FormsApp"
-             x:Class="LokalReporter.App.FormsApp.Pages.DetailsPage">
-  <ScrollView>
-    
-  <WebView  VerticalOptions="Fill" HorizontalOptions="Fill" x:Name="WebView">
-  </WebView>
-    <Button Text="TEST"></Button>
+             xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+             xmlns:responses="clr-namespace:LokalReporter.Responses;assembly=LokalReporter"
+             x:Class="LokalReporter.App.FormsApp.Pages.DetailsPage"
+             IsBookmarked="{Binding IsBookmarked}">
+  <ContentPage.ToolbarItems>
+    <ToolbarItem Order="Primary"  x:Name="BookmarkItem" Command="{Binding Bookmark}"  Priority="0" Text="Speichern" Icon="bookmark_outline.png" />
+    <ToolbarItem Order="Primary" x:Name="BookmarkedItem" Command="{Binding Bookmark}" Priority="0" Text="Entfernen" Icon="bookmark.png" />
+  </ContentPage.ToolbarItems>
+  <ScrollView Orientation="Vertical">
+    <Grid x:Name="ContentLayout">
+      <Grid.RowDefinitions>
+        <RowDefinition />
+        <RowDefinition Height="Auto"></RowDefinition>
+      </Grid.RowDefinitions>
+      <StackLayout Grid.Row="1">
+        <!--<controls:RepeaterView x:TypeArguments="responses:Tag"  ItemsSource="{Binding Article.Tags}">
+          <controls:RepeaterView.ItemTemplate>
+            <DataTemplate>
+              <Label Text="{Binding Name}" />
+            </DataTemplate>
+          </controls:RepeaterView.ItemTemplate>
+        </controls:RepeaterView>-->
+        <StackLayout Orientation="Horizontal">
+          <Button HorizontalOptions="FillAndExpand" Text="Vorheriger" />
+          <Button HorizontalOptions="FillAndExpand" Text="Nächster" />
+          <Button HorizontalOptions="FillAndExpand" Text="Bookmark" IsVisible="{Binding IsBookmarked}" />
+        </StackLayout>
+
+      </StackLayout>
+    </Grid>
   </ScrollView>
 </ContentPage>

@@ -43,9 +43,17 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FilterHandler.cs" />
+    <Compile Include="Data\Reading\DataReader.cs" />
+    <Compile Include="Json\FileLocations.cs" />
+    <Compile Include="Json\ILocations.cs" />
     <Compile Include="Json\JsonArticlesReader.cs" />
     <Compile Include="Json\JsonArticlesService.cs" />
+    <Compile Include="LocalBookmarkService.cs" />
+    <Compile Include="Locations\ArticleRelation.cs" />
+    <Compile Include="Locations\Location.cs" />
+    <Compile Include="Locations\DistrictRelation.cs" />
+    <Compile Include="Locations\LocationRelation.cs" />
+    <Compile Include="Locations\ReferencedLocation.cs" />
     <Compile Include="Settings\CollectionAsyncSetting.cs" />
     <Compile Include="Settings\LocalUserSettings.cs" />
     <Compile Include="Settings\SettingsAsyncSetting.cs" />
@@ -86,6 +94,10 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="articles.json" />
+    <EmbeddedResource Include="Data\article_locations.json" />
+    <EmbeddedResource Include="Data\district_articles.json" />
+    <EmbeddedResource Include="Data\locations.json" />
+    <EmbeddedResource Include="Data\location_article.json" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />

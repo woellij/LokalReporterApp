@@ -12,6 +12,8 @@ namespace LokalReporter.Client.Dummy
         {
             Mvx.LazyConstructAndRegisterSingleton<IArticlesService>(Mvx.IocConstruct<JsonArticlesService>);
             Mvx.LazyConstructAndRegisterSingleton<IUserSettings>(Mvx.IocConstruct<LocalUserSettings>);
+            Mvx.LazyConstructAndRegisterSingleton<ILocations>(Mvx.IocConstruct<FileLocations>);
+            Mvx.LazyConstructAndRegisterSingleton<IBookmarkService>(Mvx.IocConstruct<LocalBookmarkService>);
         }
 
     }

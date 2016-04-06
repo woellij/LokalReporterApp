@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ScrollView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+             xmlns:responses="clr-namespace:LokalReporter.Responses;assembly=LokalReporter"
+             x:Class="LokalReporter.App.FormsApp.Views.SimpleFeed" 
+            HeightRequest="90"
+            x:Name="Root"
+            Orientation="Horizontal" InputTransparent="True"  >
+  <controls:RepeaterView x:TypeArguments="responses:Article"
+                          Orientation="Horizontal" ItemsSource="{Binding Source={x:Reference Root}, Path=ItemsSource}"
+                          VerticalOptions="Fill"
+                          HorizontalOptions="Fill">
+    <controls:RepeaterView.ItemTemplate>
+      <DataTemplate>
+        <Grid>
+          <Frame Padding="10"  WidthRequest="200" VerticalOptions="Fill"  >
+            <Grid>
+              <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="Auto" />
+              </Grid.RowDefinitions>
+              <Label LineBreakMode="WordWrap" VerticalOptions="Fill" FontSize="Medium" Text="{Binding Title}" />
+              <Label Grid.Row="1"  FontSize="14" Text="{Binding Date, StringFormat='{0:ddd. d.M, HH:mm}'}" />
+            </Grid>
+          </Frame>
+          <Button Opacity="0"  Command="{Binding Source={x:Reference Root}, Path=ItemClickCommand}" CommandParameter="{Binding}" />
+        </Grid>
+      </DataTemplate>
+    </controls:RepeaterView.ItemTemplate>
+  </controls:RepeaterView>
+</ScrollView>

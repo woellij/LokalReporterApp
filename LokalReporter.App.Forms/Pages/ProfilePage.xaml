@@ -12,7 +12,7 @@
       <Frame HasShadow="True" HeightRequest="50"  Padding="15,0">
         <Label FontSize="Large"  Text="Ihre Region" VerticalOptions="Center"/>
       </Frame>
-      <views:DistrictSelectionView VerticalOptions="Start" BindingContext="{Binding DistrictSetting}"/>
+      <views:DistrictSelectionView  VerticalOptions="Start" BindingContext="{Binding DistrictSetting}" SelectedDistrict="{Binding SelectedDistrict, Mode=TwoWay}"/>
       <StackLayout x:Name="FiltersSettingRoot" BindingContext="{Binding FiltersSetting}">
 
 

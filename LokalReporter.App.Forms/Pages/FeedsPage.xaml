@@ -14,7 +14,10 @@
 
   <ScrollView >
     <StackLayout>
-
+      <StackLayout IsVisible="{Binding HasItems}">
+        <Label FontSize="Large" Text="Ihre Leseliste"></Label>
+        <views:SimpleFeed ItemsSource="{Binding BookmarksViewModel.BookmarkedArticles}" ItemClickCommand="{Binding ShowDetails}"></views:SimpleFeed>
+      </StackLayout>
       <controls1:RepeaterView x:TypeArguments="viewModels:FeedViewModel" ItemsSource="{Binding Feeds}">
         <controls1:RepeaterView.ItemTemplate>
           <DataTemplate>
@@ -22,7 +25,6 @@
           </DataTemplate>
         </controls1:RepeaterView.ItemTemplate>
       </controls1:RepeaterView>
-
      <views:AddFilterView  IsVisible="False" x:Name="AddFilterButton" 
     Command="{Binding AddNewFeedFilter}"/>
     </StackLayout>

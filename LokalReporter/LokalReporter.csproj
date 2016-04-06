@@ -37,6 +37,7 @@
     <Compile Include="Common\IAsyncSetting.cs" />
     <Compile Include="Common\FilterPreset.cs" />
     <Compile Include="Common\ICollectionAsyncSetting.cs" />
+    <Compile Include="IBookmarkService.cs" />
     <Compile Include="IDependencyModule.cs" />
     <Compile Include="IUserSettings.cs" />
     <Compile Include="Requests\Paging.cs" />

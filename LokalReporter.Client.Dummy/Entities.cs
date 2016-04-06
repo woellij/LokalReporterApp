@@ -4,6 +4,7 @@ using LokalReporter.Responses;
 
 namespace LokalReporter.Client.Dummy {
 
+
     public static class Entities {
         private static readonly IDictionary<string, IdEntity> entities = new Dictionary<string, IdEntity>();
 
@@ -19,12 +20,12 @@ namespace LokalReporter.Client.Dummy {
 
         private static readonly IDictionary<string, string> districts = new Dictionary<string, string> {
             {"unterfranken", "Unterfranken"},
-            {"mittelfranken", "Mittelfranken"},
             {"oberfranken", "Oberfranken"},
+            {"mittelfranken", "Mittelfranken"},
             {"oberpfalz", "Oberpfalz"},
-            {"niederbayern", "Niederbayern"},
+            {"schwaben", "Schwaben"},
             {"oberbayern", "Oberbayern"},
-            {"schwaben", "Schwaben"}
+            {"niederbayern", "Niederbayern"},
         };
 
         public static List<District> Districts => districts.Select(pair => From<District>(pair.Key, pair.Value)).ToList();

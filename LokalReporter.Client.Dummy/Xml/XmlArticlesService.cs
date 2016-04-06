@@ -15,7 +15,7 @@ namespace LokalReporter.Client.Dummy.Xml {
 
         private readonly Random random = new Random();
 
-        private IDictionary<string, Article> articles;
+        private Dictionary<int, Article> articles;
 
         public async Task<ArticlesResult> GetArticlesAsync(Filter filter, CancellationToken cancellationToken)
         {
@@ -26,7 +26,7 @@ namespace LokalReporter.Client.Dummy.Xml {
         public Task<Article> GetArticleAsync(string id, CancellationToken cancellationToken)
         {
             Article a = null;
-            this.articles.TryGetValue(id, out a);
+            this.articles.TryGetValue(Int32.Parse(id), out a);
             return Task.FromResult(a);
         }
 
