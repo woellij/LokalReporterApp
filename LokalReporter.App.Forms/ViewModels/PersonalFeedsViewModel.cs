@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
+using LokalReporter.App.FormsApp.Presenter;
 using LokalReporter.Common;
 using LokalReporter.Requests;
 using LokalReporter.Responses;
@@ -18,7 +19,7 @@ using XLabs;
 namespace LokalReporter.App.FormsApp.ViewModels
 {
     [ImplementPropertyChanged]
-    public class PersonalFeedsViewModel : BaseViewModel, IFeedsViewModel, INavigatedToAware
+    public class PersonalFeedsViewModel : BaseViewModel, INavigatedToAware
     {
 
         private readonly IUserSettings userSettings;

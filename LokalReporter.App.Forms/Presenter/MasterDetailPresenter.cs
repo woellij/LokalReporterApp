@@ -12,23 +12,9 @@ using MvvmCross.Platform;
 
 using Xamarin.Forms;
 
-namespace LokalReporter.App.FormsApp
+namespace LokalReporter.App.FormsApp.Presenter
 {
-    public interface INavigatedToAware
-    {
-
-        void OnNavigatedTo(NavigationEventType type);
-
-    }
-
-    public interface INavigatedFromAware
-    {
-
-        void OnNavigatedFrom();
-
-    }
-
-    public class MasterDetailPresenter
+    public class MasterDetailPresenter : MvxFormsPagePresenter
     {
 
         private readonly MasterDetailPage masterDetailPage;
@@ -70,14 +56,21 @@ namespace LokalReporter.App.FormsApp
 
         public async Task TryShow(MvxViewModelRequest request, INavigation navigation)
         {
-            Page page;
+            Page page = null;
             if (request.ViewModelType.GetTypeInfo().ImplementedInterfaces.Contains(typeof (IFeedsViewModel)))
             {
                 page = new FeedsPage();
             }
             else
             {
-                page = MvxPresenterHelpers.CreatePage(request);
+                try
+                {
+                    page = MvxPresenterHelpers.CreatePage(request);
+                }
+                catch (Exception e)
+                {
+                    
+                }
             }
 
             bool flag;
@@ -122,14 +115,6 @@ namespace LokalReporter.App.FormsApp
                 Page page = await ((NavigationPage) this.masterDetailPage.Detail).PopAsync();
             }
         }
-
-    }
-
-    public enum NavigationEventType
-    {
-
-        Popped,
-        Pushed
 
     }
 }

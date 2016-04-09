@@ -1,15 +1,19 @@
 using LokalReporter.App.FormsApp.ViewModels;
+
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Forms.Presenter.Core;
 
-namespace LokalReporter.App.FormsApp {
+namespace LokalReporter.App.FormsApp.Presenter
+{
+    public class LokalReporterAppMvxFormsPagePresenter : MvxFormsPagePresenter
+    {
 
-    public class LokalReporterAppMvxFormsPagePresenter : MvxFormsPagePresenter {
         public MasterDetailPresenter MasterDetailPresenter { get; set; }
 
         public override async void Show(MvxViewModelRequest request)
         {
-            if (request.ViewModelType == typeof (PersonalFeedsViewModel)) {
+            if (request.ViewModelType == typeof (PersonalFeedsViewModel))
+            {
                 if (this.MasterDetailPresenter == null)
                 {
                     this.MasterDetailPresenter = new MasterDetailPresenter(request);
@@ -17,23 +21,27 @@ namespace LokalReporter.App.FormsApp {
                 }
             }
 
-            if (this.MasterDetailPresenter != null) {
+            if (this.MasterDetailPresenter != null)
+            {
                 await this.MasterDetailPresenter.TryShow(request);
             }
-            else {
+            else
+            {
                 base.Show(request);
             }
         }
 
         public override void ChangePresentation(MvxPresentationHint hint)
         {
-            if (this.MasterDetailPresenter != null) {
+            if (this.MasterDetailPresenter != null)
+            {
                 this.MasterDetailPresenter.ChangePresentation(hint);
             }
-            else {
+            else
+            {
                 base.ChangePresentation(hint);
             }
         }
-    }
 
+    }
 }

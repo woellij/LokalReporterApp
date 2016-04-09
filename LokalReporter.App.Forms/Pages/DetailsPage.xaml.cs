@@ -30,20 +30,25 @@ namespace LokalReporter.App.FormsApp.Pages
 
             if (propertyName == IsBookmarkedProperty.PropertyName)
             {
-                this.ToolbarItems.Remove(this.BookmarkItem);
-                this.ToolbarItems.Remove(this.BookmarkedItem);
-                if (this.IsBookmarked)
-                {
-                    this.ToolbarItems.Add(this.BookmarkedItem);
-                    }
-                else
-                {
-                    this.ToolbarItems.Add(this.BookmarkItem);
-                }
-                foreach (var toolbarItem in this.ToolbarItems)
-                {
-                    toolbarItem.BindingContext = this.BindingContext;
-                }
+                this.AdjustBookmarkedState();
+            }
+        }
+
+        private void AdjustBookmarkedState()
+        {
+            this.ToolbarItems.Remove(this.BookmarkItem);
+            this.ToolbarItems.Remove(this.BookmarkedItem);
+            if (this.IsBookmarked)
+            {
+                this.ToolbarItems.Add(this.BookmarkedItem);
+            }
+            else
+            {
+                this.ToolbarItems.Add(this.BookmarkItem);
+            }
+            foreach (var toolbarItem in this.ToolbarItems)
+            {
+                toolbarItem.BindingContext = this.BindingContext;
             }
         }
 
@@ -51,6 +56,8 @@ namespace LokalReporter.App.FormsApp.Pages
         protected override async void OnBindingContextChanged()
         {
             base.OnBindingContextChanged();
+
+            this.AdjustBookmarkedState();
 
             var content = ((DetailsViewModel) this.BindingContext).Article.HtmlContent;
             var html = (string) Statics.Converters.StringToHtml.Convert(content, null, null, null);
@@ -61,10 +68,11 @@ namespace LokalReporter.App.FormsApp.Pages
             
             var webView = new WebView {Source = htmlWebViewSource};
             webView.WidthRequest = this.Width;
+            webView.HorizontalOptions = LayoutOptions.Fill;
+
             this.ContentLayout.Children.Add(webView);
 
             await Task.Delay(2000);
-            this.ToolbarItems.Remove(this.BookmarkItem);
         }
 
     }

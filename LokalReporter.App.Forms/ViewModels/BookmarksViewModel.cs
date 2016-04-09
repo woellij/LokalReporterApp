@@ -3,8 +3,11 @@ using System.Linq;
 
 using LokalReporter.Responses;
 
+using PropertyChanged;
+
 namespace LokalReporter.App.FormsApp.ViewModels
 {
+    [ImplementPropertyChanged]
     public class BookmarksViewModel : BaseViewModel
     {
 

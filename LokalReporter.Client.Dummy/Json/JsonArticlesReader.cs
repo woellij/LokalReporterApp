@@ -12,17 +12,17 @@ namespace LokalReporter.Client.Dummy.Json
     {
 
         private readonly object lo = new object();
-        private Task<List<Article>> readTask;
+        private static Task<IEnumerable<Article>> _readTask;
 
-        public Task<List<Article>> ReadAsync()
+        public Task<IEnumerable<Article>> ReadAsync()
         {
             lock (this.lo)
             {
-                return this.readTask ?? (this.readTask = this.ReadTask());
+                return _readTask ?? (_readTask = this.ReadTask());
             }
         }
 
-        private async Task<List<Article>> ReadTask()
+        private async Task<IEnumerable<Article>> ReadTask()
         {
             var articles = await DataReader.ReadFromEmbeddedResourceAsync<List<Article>>(this.GetType().GetTypeInfo().Assembly, "LokalReporter.Client.Dummy.articles.json");
 
@@ -37,7 +37,7 @@ namespace LokalReporter.Client.Dummy.Json
                     a.Images = a.Images.OrderByDescending(i => i.Height).ToList();
                 }
                 return a;
-            }).ToList();
+            });
         }
 
     }

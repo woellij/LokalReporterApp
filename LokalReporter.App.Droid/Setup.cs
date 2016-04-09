@@ -1,6 +1,7 @@
 using Android.Content;
 
 using LokalReporter.App.FormsApp;
+using LokalReporter.App.FormsApp.Presenter;
 
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Core.Views;

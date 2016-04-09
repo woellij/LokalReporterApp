@@ -11,7 +11,7 @@ namespace LokalReporter.Client.Dummy.Locations
         public string DistrictId { get; set; }
 
         [DataMember(Name = "aIds")]
-        public List<int> ArticleIds { get; set; }
+        public HashSet<int> ArticleIds { get; set; }
 
     }
 }

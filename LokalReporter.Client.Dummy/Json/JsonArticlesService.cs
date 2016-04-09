@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -14,9 +13,9 @@ namespace LokalReporter.Client.Dummy.Json
     {
 
         private readonly ILocations locations;
+        private readonly object lockObject = new object();
         private Dictionary<int, Article> articles;
         private Task loadTask;
-        private readonly object lockObject = new object();
 
         public JsonArticlesService(ILocations locations)
         {
@@ -52,8 +51,13 @@ namespace LokalReporter.Client.Dummy.Json
             List<DistrictRelation> districtRel = null;
             if (filter.District != null)
             {
-                districtRel = await this.locations.GetDistrictRelationsAsync(); 
+                districtRel = await this.locations.GetDistrictRelationsAsync();
             }
+            return await Task.Run(() => this.GetArticles(filter, districtRel));
+        }
+
+        private ArticlesResult GetArticles(Filter filter, List<DistrictRelation> districtRel)
+        {
             lock (this.lockObject)
             {
                 var result = this.articles.Values.AsQueryable();
@@ -61,6 +65,11 @@ namespace LokalReporter.Client.Dummy.Json
                 if (filter.Ids != null && filter.Ids.Any())
                 {
                     result = result.Where(a => filter.Ids.Contains(a.Id));
+                }
+
+                if (filter.IsTopStory)
+                {
+                    result = result.Where(a => a.Images.Any(i => !string.IsNullOrWhiteSpace(i.Source)));
                 }
 
                 if (filter.District != null)
@@ -71,6 +80,7 @@ namespace LokalReporter.Client.Dummy.Json
                         result = result.Where(a => articleIds.Contains(a.Id));
                     }
                 }
+
                 if (filter.Category != null)
                 {
                     result = result.Where(a => a.Categories != null && a.Categories.Any(c => c.Equals(filter.Category)));
@@ -80,20 +90,13 @@ namespace LokalReporter.Client.Dummy.Json
                     result = result.Where(a => a.Tags != null && a.Tags.Any(t => t.Equals(filter.District)));
                 }
 
-                if (filter.IsTopStory)
-                {
-                    result = result.Where(a => a.Images.Any(i => !string.IsNullOrWhiteSpace(i.Source)));
-                }
-
-                result = result.OrderByDescending(a => a.Date);
-
                 //var filtered = result.ToList();
                 if (filter.Paging != null)
                 {
                     result = result.Skip(filter.Paging.Offset).Take(filter.Paging.Limit);
                 }
 
-                return new ArticlesResult { Articles = result.ToList() };
+                return new ArticlesResult {Articles = result.ToList()};
             }
         }
 
@@ -102,7 +105,7 @@ namespace LokalReporter.Client.Dummy.Json
             if (this.articles == null)
             {
                 if (this.loadTask == null)
-                    this.loadTask = this.LoadArticlesAsync();
+                    this.loadTask = Task.Run(async () => await this.LoadArticlesAsync());
                 await this.loadTask;
             }
         }
@@ -110,7 +113,7 @@ namespace LokalReporter.Client.Dummy.Json
         private async Task LoadArticlesAsync()
         {
             var articles = await new JsonArticlesReader().ReadAsync();
-            this.articles = articles.ToDictionary(a => a.Id, a => a);
+            this.articles = articles.OrderByDescending(a => a.Date).ToDictionary(a => a.Id, a => a);
         }
 
     }

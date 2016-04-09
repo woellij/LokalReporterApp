@@ -1,4 +1,6 @@
 ﻿using LokalReporter.App.FormsApp.Helpers;
+using LokalReporter.App.FormsApp.Presenter;
+
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
 

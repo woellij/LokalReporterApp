@@ -4,10 +4,15 @@
              xmlns:controls1="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
              xmlns:views="clr-namespace:LokalReporter.App.FormsApp.Views;assembly=LokalReporter.App.FormsApp"
              xmlns:viewModels="clr-namespace:LokalReporter.App.FormsApp.ViewModels;assembly=LokalReporter.App.FormsApp"
-             x:Class="LokalReporter.App.FormsApp.Pages.FeedsPage"
-  Title="{Binding Title}">
+             x:Class="LokalReporter.App.FormsApp.Pages.PersonalFeedsPage"
+             Title="{Binding Title}">
 
   <ScrollView >
+    <StackLayout>
+      <StackLayout IsVisible="{Binding BookmarksViewModel.HasItems}">
+        <Label FontSize="Large" Text="Ihre Leseliste" />
+        <views:SimpleFeed ItemsSource="{Binding BookmarksViewModel.BookmarkedArticles}" ItemClickCommand="{Binding ShowDetails}" />
+      </StackLayout>
       <controls1:RepeaterView x:TypeArguments="viewModels:FeedViewModel" ItemsSource="{Binding Feeds}">
         <controls1:RepeaterView.ItemTemplate>
           <DataTemplate>
@@ -15,5 +20,7 @@
           </DataTemplate>
         </controls1:RepeaterView.ItemTemplate>
       </controls1:RepeaterView>
+      <views:AddFilterView Command="{Binding AddNewFeedFilter}"/>
+    </StackLayout>
   </ScrollView>
 </ContentPage>

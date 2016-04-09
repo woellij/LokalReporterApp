@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Globalization;
+
 using Xamarin.Forms;
 
-namespace LokalReporter.App.FormsApp.Converters
+namespace LokalReporter.App.FormsApp.Statics
 {
 
     public class StringToHtmlConverter : IValueConverter

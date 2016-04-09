@@ -25,7 +25,7 @@ namespace LokalReporter.Client.Dummy
 
         public async Task<bool> ToggleBookmarkAsync(int articleId)
         {
-            IReadOnlyCollection<int> bookmarks = await this.bookmarksSetting.GetValueAsync();
+            var bookmarks = await this.bookmarksSetting.GetValueAsync();
             var bms = bookmarks as List<int> ?? bookmarks.ToList();
 
             if (bookmarks.Contains(articleId))
@@ -34,18 +34,19 @@ namespace LokalReporter.Client.Dummy
                 await this.bookmarksSetting.SetValueAsync(bms);
                 return false;
             }
-            else
-            {
-                await this.bookmarksSetting.AddItemAndSave(articleId);
-                return true;
-            }
+            await this.bookmarksSetting.AddItemAndSave(articleId);
+            return true;
         }
 
         public async Task<IEnumerable<Article>> GetBookmarkedArticlesAsync()
         {
             var bs = await this.bookmarksSetting.GetValueAsync();
-            var articlesResult = await this.articlesService.GetArticlesAsync(new Filter {Ids = bs}, CancellationToken.None);
-            return articlesResult.Articles;
+            if (bs.Count > 0)
+            {
+                var articlesResult = await this.articlesService.GetArticlesAsync(new Filter {Ids = bs}, CancellationToken.None);
+                return articlesResult.Articles;
+            }
+            return new List<Article>();
         }
 
     }
