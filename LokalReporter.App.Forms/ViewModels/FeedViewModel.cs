@@ -23,20 +23,19 @@ namespace LokalReporter.App.FormsApp.ViewModels
 
         private FilterPreset preset;
 
-        public FilteredArticlesViewModel TopArticles { get; set; }
-        public FilteredArticlesViewModel Articles { get; set; }
-
         public FeedViewModel()
         {
             this.ShowDetails = new RelayCommand<Article>(a => this.ShowViewModel<DetailsViewModel>(new Identifier(a.Id.ToString())));
             this.ShowMore = new RelayCommand(() =>
             {
-
                 var parameter = new MvxBundle();
-                parameter.Data["preset"] = JsonConvert.SerializeObject((object)this.preset);
+                parameter.Data["preset"] = JsonConvert.SerializeObject(this.preset);
                 this.ShowViewModel<FeedViewModel>(parameter);
             });
         }
+
+        public FilteredArticlesViewModel TopArticles { get; set; }
+        public FilteredArticlesViewModel Articles { get; set; }
 
         public ICommand ShowDetails { get; }
 
@@ -46,19 +45,19 @@ namespace LokalReporter.App.FormsApp.ViewModels
         {
             base.InitFromBundle(parameters);
             this.preset = JsonConvert.DeserializeObject<FilterPreset>(parameters.Data["preset"]);
-            this.Setup(preset);
+            this.Setup(this.preset, false);
         }
 
-        public async void Setup(FilterPreset preset)
+        public async void Setup(FilterPreset preset, bool isSubViewModel)
         {
-            this.Title = preset.Title;
+            this.Title = isSubViewModel ? preset.Title : preset.ExtendedTitle ?? preset.Title;
             this.preset = preset;
 
-            Filter filter = preset.Filter.Clone();
-            filter.Paging = new Paging {Limit = 5 };
+            var filter = preset.Filter.Clone();
+            filter.Paging = new Paging {Limit = 5};
             this.Articles = Mvx.IocConstruct<FilteredArticlesViewModel>();
 
-            Filter topFilter = filter.Clone();
+            var topFilter = filter.Clone();
             topFilter.IsTopStory = true;
             topFilter.Paging = new Paging {Limit = 5};
 

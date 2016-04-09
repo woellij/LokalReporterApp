@@ -7,20 +7,13 @@
              x:Class="LokalReporter.App.FormsApp.Pages.PersonalFeedsPage"
              Title="{Binding Title}">
 
-  <ScrollView >
-    <StackLayout>
-      <StackLayout IsVisible="{Binding BookmarksViewModel.HasItems}">
-        <Label FontSize="Large" Text="Ihre Leseliste" />
-        <views:SimpleFeed ItemsSource="{Binding BookmarksViewModel.BookmarkedArticles}" ItemClickCommand="{Binding ShowDetails}" />
-      </StackLayout>
-      <controls1:RepeaterView x:TypeArguments="viewModels:FeedViewModel" ItemsSource="{Binding Feeds}">
-        <controls1:RepeaterView.ItemTemplate>
-          <DataTemplate>
-            <views:FeedView />
-          </DataTemplate>
-        </controls1:RepeaterView.ItemTemplate>
-      </controls1:RepeaterView>
-      <views:AddFilterView Command="{Binding AddNewFeedFilter}"/>
-    </StackLayout>
-  </ScrollView>
-</ContentPage>
+  <views:FeedsListView Footer="{Binding}" ItemsSource="{Binding Feeds}" HasUnevenRows="True" VerticalOptions="Fill" >
+    <ListView.FooterTemplate>
+      <DataTemplate>
+        <Grid Padding="0,10,0,20">
+          <views:AddFilterView HorizontalOptions="Center"  Command="{Binding AddNewFeedFilter}"/>
+        </Grid>
+      </DataTemplate>
+    </ListView.FooterTemplate>
+    </views:FeedsListView>
+  </ContentPage>

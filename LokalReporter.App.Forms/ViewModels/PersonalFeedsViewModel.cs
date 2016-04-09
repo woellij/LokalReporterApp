@@ -96,7 +96,7 @@ namespace LokalReporter.App.FormsApp.ViewModels
                 var feedViewModel = Mvx.IocConstruct<FeedViewModel>();
 
                 Task.Delay(500*i)
-                    .ContinueWith(t => { feedViewModel.Setup(f); }, TaskScheduler.FromCurrentSynchronizationContext());
+                    .ContinueWith(t => { feedViewModel.Setup(f, true); }, TaskScheduler.FromCurrentSynchronizationContext());
                 return feedViewModel;
             }).ToList();
         }

@@ -66,8 +66,8 @@ namespace LokalReporter.App.FormsApp.ViewModels
                 Task.Delay(500*i)
                     .ContinueWith(t =>
                     {
-                        var filterPreset = new FilterPreset {Title = entity.Name, Filter = filterClone};
-                        viewModel.Setup(filterPreset);
+                        var filterPreset = new FilterPreset {Title = entity.Name, ExtendedTitle = $"{this.Title} - {entity.Name}", Filter = filterClone};
+                        viewModel.Setup(filterPreset, true);
                     },
                         TaskScheduler.FromCurrentSynchronizationContext());
                 return viewModel;

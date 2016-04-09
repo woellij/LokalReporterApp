@@ -49,8 +49,9 @@ namespace LokalReporter.App.FormsApp.ViewModels
                     d => new MenuItem(d.Name, new FilterPreset(d.Name, new Filter {District = d}), typeof (MultiFilteredArticlesViewModel)));
 
             var startMenuItem = new MenuItem("Startseite", typeof (PersonalFeedsViewModel));
+            var bookmarks = new MenuItem("Ihre Leseliste", typeof (BookmarksViewModel));
 
-            this.Items = new List<MenuSection> {new MenuSection(null, startMenuItem), new MenuSection("Resorts", filterMenuItems), new MenuSection("Bezirke", distMenuItems)};
+            this.Items = new List<MenuSection> {new MenuSection(null, new List<MenuItem> {startMenuItem, bookmarks}), new MenuSection("Bezirke", distMenuItems), new MenuSection("Resorts", filterMenuItems), };
         }
 
     }

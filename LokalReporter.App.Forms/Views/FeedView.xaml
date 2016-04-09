@@ -9,7 +9,7 @@
   <StackLayout>
     <Grid>
       <StackLayout Orientation="Horizontal">
-        <Label FontSize="Large" LineBreakMode="TailTruncation" Text="{Binding Title}" />
+        <Label FontSize="24" FontAttributes="Bold" LineBreakMode="TailTruncation" Text="{Binding Title}" />
         <Label FontSize="Large" Text=" >" />
       </StackLayout>
       <Button Opacity="0" MinimumHeightRequest="0" HeightRequest="0" VerticalOptions="Fill" Command="{Binding ShowMore}" />

@@ -10,6 +10,9 @@ namespace LokalReporter.Responses {
         private List<Image> images;
         private List<Tag> tags;
 
+        [DataMember(Name = "isBookmarked")]
+        public bool IsBookmarked { get; set; }
+
         [DataMember(Name = "title")]
         public string Title { get; set; }
 

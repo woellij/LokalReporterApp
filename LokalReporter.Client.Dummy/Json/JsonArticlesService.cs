@@ -11,7 +11,6 @@ namespace LokalReporter.Client.Dummy.Json
 {
     public class JsonArticlesService : IArticlesService
     {
-
         private readonly ILocations locations;
         private readonly object lockObject = new object();
         private Dictionary<int, Article> articles;
@@ -31,7 +30,9 @@ namespace LokalReporter.Client.Dummy.Json
         public async Task<Article> GetArticleAsync(string id, CancellationToken cancellationToken)
         {
             await this.EnsureLoadedAsync();
-            return this.articles[int.Parse(id)];
+            var intId = int.Parse(id);
+            var article = this.articles[intId];
+            return article;
         }
 
         public async Task<IReadOnlyCollection<Category>> GetCategoriesAsync(CancellationToken cancellation)
@@ -96,7 +97,8 @@ namespace LokalReporter.Client.Dummy.Json
                     result = result.Skip(filter.Paging.Offset).Take(filter.Paging.Limit);
                 }
 
-                return new ArticlesResult {Articles = result.ToList()};
+                var list = result.ToList();
+                return new ArticlesResult {Articles = list};
             }
         }
 

@@ -7,13 +7,6 @@
              x:Class="LokalReporter.App.FormsApp.Pages.FeedsPage"
   Title="{Binding Title}">
 
-  <ScrollView >
-      <controls1:RepeaterView x:TypeArguments="viewModels:FeedViewModel" ItemsSource="{Binding Feeds}">
-        <controls1:RepeaterView.ItemTemplate>
-          <DataTemplate>
-            <views:FeedView />
-          </DataTemplate>
-        </controls1:RepeaterView.ItemTemplate>
-      </controls1:RepeaterView>
-  </ScrollView>
+  <views:FeedsListView ItemsSource="{Binding Feeds}" HasUnevenRows="True" VerticalOptions="Fill" >
+  </views:FeedsListView>
 </ContentPage>

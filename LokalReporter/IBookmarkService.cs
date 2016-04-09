@@ -10,7 +10,7 @@ namespace LokalReporter
     {
 
         Task<bool> ToggleBookmarkAsync(int articleId);
-
+        
         Task<IEnumerable<Article>> GetBookmarkedArticlesAsync();
 
     }

@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ListView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:views="clr-namespace:LokalReporter.App.FormsApp.Views;assembly=LokalReporter.App.FormsApp"
+             x:Class="LokalReporter.App.FormsApp.Views.FeedsListView"
+          SeparatorVisibility="None"
+      >
+  <ListView.ItemTemplate>
+    <DataTemplate>
+      <ViewCell>
+        <views:FeedView />
+      </ViewCell>
+    </DataTemplate>
+  </ListView.ItemTemplate>
+</ListView>

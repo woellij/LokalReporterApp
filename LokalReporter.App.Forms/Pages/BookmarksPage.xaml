@@ -8,16 +8,11 @@
              xmlns:views="clr-namespace:LokalReporter.App.FormsApp.Views;assembly=LokalReporter.App.FormsApp"
              xmlns:viewModels="clr-namespace:LokalReporter.App.FormsApp.ViewModels;assembly=LokalReporter.App.FormsApp"
              xmlns:statics="clr-namespace:LokalReporter.App.FormsApp.Statics;assembly=LokalReporter.App.FormsApp"
-             x:Class="LokalReporter.App.FormsApp.Pages.FeedPage"
+             x:Class="LokalReporter.App.FormsApp.Pages.BookmarksPage"
              x:Name="Page"
   Title="{Binding Title}">
   <Grid>
-    <ListView SeparatorVisibility="None" x:Name="ArticlesListView" ItemsSource="{Binding Articles.Items}" HasUnevenRows="False" RowHeight="90" Header="{Binding TopArticles}">
-      <ListView.HeaderTemplate>
-        <DataTemplate>
-          <views:ArticleCarouselView HeightRequest="200" ItemsSource="{Binding Items}" />
-        </DataTemplate>
-      </ListView.HeaderTemplate>
+    <ListView SeparatorVisibility="None" x:Name="ArticlesListView" ItemsSource="{Binding BookmarkedArticles}" HasUnevenRows="False" RowHeight="90" >
       <ListView.ItemTemplate>
         <DataTemplate>
           <ViewCell>
@@ -26,7 +21,8 @@
         </DataTemplate>
       </ListView.ItemTemplate>
     </ListView>
-
+    
+    <Label FontSize="Large" IsVisible="{Binding HasNoItems}" Text="Sobald Sie Artikel mit einem Lesezeichen versehen, erscheinen diese hier und sie können sie später lesen."></Label>
     <ActivityIndicator VerticalOptions="Center" HorizontalOptions="Center" IsRunning="{Binding IsLoading}" InputTransparent="True" />
   </Grid>
 </ContentPage>

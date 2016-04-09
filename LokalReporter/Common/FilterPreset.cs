@@ -18,6 +18,9 @@ namespace LokalReporter.Common {
         [DataMember(Name = "title")]
         public string Title { get; set; }
 
+        [DataMember(Name="extTitle")]
+        public string ExtendedTitle { get; set; }
+
         [DataMember(Name = "filter")]
         public Filter Filter { get; set; }
 
