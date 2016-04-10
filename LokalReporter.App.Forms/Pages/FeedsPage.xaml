@@ -1,12 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage x:Class="LokalReporter.App.FormsApp.Pages.FeedsPage"
+             xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:controls1="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
-             xmlns:views="clr-namespace:LokalReporter.App.FormsApp.Views;assembly=LokalReporter.App.FormsApp"
              xmlns:viewModels="clr-namespace:LokalReporter.App.FormsApp.ViewModels;assembly=LokalReporter.App.FormsApp"
-             x:Class="LokalReporter.App.FormsApp.Pages.FeedsPage"
-  Title="{Binding Title}">
+             xmlns:views="clr-namespace:LokalReporter.App.FormsApp.Views;assembly=LokalReporter.App.FormsApp"
+             Title="{Binding Title}">
 
-  <views:FeedsListView ItemsSource="{Binding Feeds}" HasUnevenRows="True" VerticalOptions="Fill" >
-  </views:FeedsListView>
+    <views:FeedsListView HasUnevenRows="True"
+                         ItemsSource="{Binding Feeds}"
+                         VerticalOptions="Fill" />
 </ContentPage>

@@ -66,7 +66,15 @@ namespace LokalReporter.App.FormsApp.Views
             if (propertyName == SelectedDistrictProperty.PropertyName)
             {
                 var toggleImageViews = this.Map.Children.OfType<ToggleImageView>().ToList();
-                toggleImageViews.Where(i => i.BindingContext.Equals(this.SelectedDistrict)).ForEach(i => i.IsChecked = true).ToList();
+                if (this.SelectedDistrict == null)
+                {
+                    foreach (var tiv in toggleImageViews)
+                    {
+                        tiv.IsChecked = false;
+                    }
+                }
+                else
+                    toggleImageViews.Where(i => i.BindingContext.Equals(this.SelectedDistrict)).ForEach(i => i.IsChecked = true).ToList();
             }
         }
 

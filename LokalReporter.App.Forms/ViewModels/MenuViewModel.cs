@@ -5,23 +5,63 @@ using System.Windows.Input;
 using LokalReporter.App.FormsApp.Helpers;
 using LokalReporter.Common;
 using LokalReporter.Requests;
+using LokalReporter.Responses;
 
 using PropertyChanged;
+
+using Xamarin.Forms;
 
 using XLabs;
 
 namespace LokalReporter.App.FormsApp.ViewModels
 {
     [ImplementPropertyChanged]
-    public class MenuViewModel : BaseViewModel
+    public class MenuViewModel : DistrictSelectionViewModel
     {
 
         private readonly IArticlesService service;
+        private MenuItem selectedItem;
+        private bool inOnNavitated;
 
-        public MenuViewModel(IArticlesService service)
+        public MenuViewModel(IArticlesService service) : base(service)
         {
             this.service = service;
             this.Navigate = new RelayCommand<MenuItem>(this.NavigateAction);
+        }
+
+        public MenuItem SelectedItem
+        {
+            get { return this.selectedItem; }
+            set
+            {
+                if (this.selectedItem != null)
+                {
+                    this.selectedItem.ForegroundColor = MenuItem.DefaultColor;
+                }
+                this.selectedItem = value;
+
+                if (this.selectedItem != null)
+                {
+                    this.selectedItem.ForegroundColor = Color.White;
+                }
+            }
+        }
+
+        protected override void OnSelectedDistrictChanged(District d)
+        {
+            if (this.inOnNavitated)
+            {
+                return;
+            }
+
+            base.OnSelectedDistrictChanged(d);
+            if (d == null)
+            {
+                return;
+            }
+            var mi = new MenuItem(d.Name, new FilterPreset(d.Name, new Filter {District = d}), typeof (MultiFilteredArticlesViewModel));
+            this.NavigateAction(mi);
+
         }
 
         public List<MenuSection> Items { get; set; }
@@ -51,7 +91,31 @@ namespace LokalReporter.App.FormsApp.ViewModels
             var startMenuItem = new MenuItem("Startseite", typeof (PersonalFeedsViewModel));
             var bookmarks = new MenuItem("Ihre Leseliste", typeof (BookmarksViewModel));
 
-            this.Items = new List<MenuSection> {new MenuSection(null, new List<MenuItem> {startMenuItem, bookmarks}), new MenuSection("Bezirke", distMenuItems), new MenuSection("Resorts", filterMenuItems), };
+            this.Items = new List<MenuSection> {new MenuSection(null, new List<MenuItem> {startMenuItem, bookmarks}), new MenuSection("Resorts", filterMenuItems) 
+
+                };
+            //new MenuSection("Bezirke", distMenuItems),
+        }
+
+        public void OnNavigated(Page page)
+        {
+            try
+            {
+                this.inOnNavitated = true;
+
+                IEnumerable<MenuItem> menuItems = this.Items.SelectMany(ien => ien).ToList();
+
+                var filtered = page.BindingContext as IFiltered;
+                this.SelectedDistrict = filtered?.Filter?.District;
+
+                var newSelected = menuItems.FirstOrDefault(mi => mi.TargetViewModelType == page?.BindingContext?.GetType() && mi.Title.Equals((page.BindingContext as BaseViewModel).Title));
+                newSelected = newSelected ?? menuItems.FirstOrDefault(mi => mi.Title == page?.Title);
+                this.SelectedItem = newSelected;
+            }
+            finally
+            {
+                this.inOnNavitated = false;
+            }
         }
 
     }

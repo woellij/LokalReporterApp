@@ -1,27 +1,45 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage x:Class="LokalReporter.App.FormsApp.Pages.MenuPage"
+             xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
-             xmlns:viewModels="clr-namespace:LokalReporter.App.FormsApp.ViewModels;assembly=LokalReporter.App.FormsApp"
-             x:Class="LokalReporter.App.FormsApp.Pages.MenuPage" x:Name="Page">
- 
-  <Grid>
-    <Grid.RowDefinitions>
-      <RowDefinition Height="Auto"></RowDefinition>
-      <RowDefinition></RowDefinition>
-    </Grid.RowDefinitions>
-    <ContentView VerticalOptions="Fill" Padding="20">
-      <Image VerticalOptions="Fill" Source="lokalreporter_logo.png" />
-    </ContentView>
+             xmlns:views="clr-namespace:LokalReporter.App.FormsApp.Views;assembly=LokalReporter.App.FormsApp"
+             x:Name="Page">
 
-    <ListView x:Name="MenuListView" Grid.Row="1" IsGroupingEnabled="True" GroupDisplayBinding="{Binding Title}" ItemsSource="{Binding Items}">
-      <ListView.ItemTemplate>
-        <DataTemplate>
-          <TextCell Text="{Binding Title}" CommandParameter="{Binding}"
-                    Command="{Binding BindingContext.Navigate, Source={x:Reference Page}}" />
-        </DataTemplate>
-      </ListView.ItemTemplate>
+
+    <ListView x:Name="MenuListView"
+              Footer="{Binding}"
+              GroupDisplayBinding="{Binding Title}"
+              IsGroupingEnabled="True"
+              ItemsSource="{Binding Items}"
+              SelectedItem="{Binding SelectedItem}"
+              SeparatorVisibility="None">
+        <ListView.Header>
+            <ContentView Padding="20,20,20,0" VerticalOptions="Fill">
+                <Image Source="lokalreporter_logo.png" VerticalOptions="Fill" />
+            </ContentView>
+        </ListView.Header>
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <TextCell Command="{Binding BindingContext.Navigate,
+                                            Source={x:Reference Page}}"
+                          CommandParameter="{Binding}"
+                          Text="{Binding Title}"
+                          TextColor="{Binding ForegroundColor}" />
+            </DataTemplate>
+        </ListView.ItemTemplate>
+        <ListView.FooterTemplate>
+            <DataTemplate>
+                <Grid>
+                    <views:DistrictSelectionView AnchorX="0"
+                                                 AnchorY="0"
+                                                 HorizontalOptions="Start"
+                                                 Scale="0.7"
+                                                 SelectedDistrict="{Binding SelectedDistrict,
+                                                                            Mode=TwoWay}"
+                                                 VerticalOptions="Start"
+                                                 WidthRequest="700" />
+                </Grid>
+            </DataTemplate>
+        </ListView.FooterTemplate>
     </ListView>
-  </Grid>
-
 </ContentPage>

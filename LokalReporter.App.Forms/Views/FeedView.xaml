@@ -1,23 +1,38 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<Grid xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:views="clr-namespace:LokalReporter.App.FormsApp.Views;assembly=LokalReporter.App.FormsApp"
-             x:Class="LokalReporter.App.FormsApp.Views.FeedView"
-      Padding="0,8,0,4"
+<Grid x:Class="LokalReporter.App.FormsApp.Views.FeedView"
+      xmlns="http://xamarin.com/schemas/2014/forms"
+      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+      xmlns:views="clr-namespace:LokalReporter.App.FormsApp.Views;assembly=LokalReporter.App.FormsApp"
       x:Name="Root"
-      >
-  <StackLayout>
-    <Grid>
-      <StackLayout Orientation="Horizontal">
-        <Label FontSize="24" FontAttributes="Bold" LineBreakMode="TailTruncation" Text="{Binding Title}" />
-        <Label FontSize="Large" Text=" >" />
-      </StackLayout>
-      <Button Opacity="0" MinimumHeightRequest="0" HeightRequest="0" VerticalOptions="Fill" Command="{Binding ShowMore}" />
-    </Grid>
+      Padding="0,8,0,4">
+    <StackLayout>
+        <Grid>
+            <StackLayout Orientation="Horizontal">
+                <Label FontAttributes="Bold"
+                       FontSize="24"
+                       LineBreakMode="TailTruncation"
+                       Text="{Binding Title}" />
+                <Label FontSize="Large" Text=" &gt;" />
+            </StackLayout>
+            <Button Command="{Binding ShowMore}"
+                    HeightRequest="0"
+                    MinimumHeightRequest="0"
+                    Opacity="0"
+                    VerticalOptions="Fill" />
+        </Grid>
 
-    <views:ArticleCarouselView HeightRequest="200" BindingContext="{Binding TopArticles}" IsVisible="{Binding HasItems}"  VerticalOptions="Fill" ItemsSource="{Binding Items}" />
-    <views:SimpleFeed ItemsSource="{Binding Articles.Items}" RestockCommand="{Binding Articles.Restock}" ItemClickCommand="{Binding ShowDetails}" />
-  </StackLayout>
+        <views:ArticleCarouselView BindingContext="{Binding TopArticles}"
+                                   HeightRequest="200"
+                                   IsVisible="{Binding HasItems}"
+                                   ItemsSource="{Binding Items}"
+                                   VerticalOptions="Fill" />
+        <views:SimpleFeed ItemClickCommand="{Binding ShowDetails}"
+                          ItemsSource="{Binding Articles.Items}"
+                          RestockCommand="{Binding Articles.Restock}" />
+    </StackLayout>
 
-  <ActivityIndicator VerticalOptions="Center" HorizontalOptions="Center" IsRunning="{Binding IsLoading}" IsVisible="{Binding IsLoading}" />
+    <ActivityIndicator HorizontalOptions="Center"
+                       IsRunning="{Binding IsLoading}"
+                       IsVisible="{Binding IsLoading}"
+                       VerticalOptions="Center" />
 </Grid>

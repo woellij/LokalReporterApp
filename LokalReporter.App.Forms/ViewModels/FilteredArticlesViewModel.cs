@@ -14,11 +14,10 @@ using XLabs;
 namespace LokalReporter.App.FormsApp.ViewModels
 {
     [ImplementPropertyChanged]
-    public class FilteredArticlesViewModel : BaseViewModel
+    public class FilteredArticlesViewModel : BaseViewModel, IFiltered
     {
 
         private readonly IArticlesService articlesService;
-        private Filter filter;
 
         public FilteredArticlesViewModel(IArticlesService articlesService)
         {
@@ -39,7 +38,7 @@ namespace LokalReporter.App.FormsApp.ViewModels
                 throw new ArgumentNullException(nameof(filter));
             }
 
-            this.filter = filter;
+            this.Filter = filter;
 
             var result = await this.articlesService.GetArticlesAsync(filter, this.CloseCancellationToken);
             this.Items = new ObservableCollection<Article>(result.Articles);
@@ -60,7 +59,7 @@ namespace LokalReporter.App.FormsApp.ViewModels
             this.IsRestocking = true;
             try
             {
-                var restockFilter = this.filter.Clone();
+                var restockFilter = this.Filter.Clone();
                 restockFilter.Paging = new Paging {Offset = this.Items.Count, Limit = 20};
                 var articlesResult = await this.articlesService.GetArticlesAsync(restockFilter, this.CloseCancellationToken);
                 foreach (var article in articlesResult.Articles)
@@ -73,6 +72,8 @@ namespace LokalReporter.App.FormsApp.ViewModels
                 this.IsRestocking = false;
             }
         }
+
+        public Filter Filter { get; private set; }
 
     }
 }

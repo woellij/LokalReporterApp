@@ -1,19 +1,70 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<StackLayout xmlns="http://xamarin.com/schemas/2014/forms"
+<StackLayout x:Class="LokalReporter.App.FormsApp.Views.DistrictSelectionView"
+             xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
-             xmlns:statics="clr-namespace:LokalReporter.App.FormsApp.Statics;assembly=LokalReporter.App.FormsApp"
              xmlns:controls1="clr-namespace:NControl.Controls;assembly=NControl.Controls"
-             xmlns:views="clr-namespace:LokalReporter.App.FormsApp.Views;assembly=LokalReporter.App.FormsApp"
-             x:Class="LokalReporter.App.FormsApp.Views.DistrictSelectionView"  >
+             xmlns:statics="clr-namespace:LokalReporter.App.FormsApp.Statics;assembly=LokalReporter.App.FormsApp"
+             xmlns:views="clr-namespace:LokalReporter.App.FormsApp.Views;assembly=LokalReporter.App.FormsApp">
 
-  <Grid AnchorX="0.3" Scale="0.9" AnchorY="0" HorizontalOptions="Center" MinimumHeightRequest="400" MinimumWidthRequest="300" HeightRequest="400" WidthRequest="400" x:Name="Map">
-    <views:ToggleImageView HorizontalOptions="Start" VerticalOptions="Start" BindingContext="{Binding Districts[0] }" TranslationX="0"   Source="a.png"  IsCheckedImageSource="asel.png"/>
-    <views:ToggleImageView HorizontalOptions="Start" VerticalOptions="Start" BindingContext="{Binding Districts[1]}"  AnchorY="0" TranslationX="117" TranslationY="5"  Source="isSubViewModel.png" IsCheckedImageSource="isSubViewModelsel.png"/>
-    <views:ToggleImageView HorizontalOptions="Start" VerticalOptions="Start" BindingContext="{Binding Districts[2]}" AnchorY="0" TranslationX="86" TranslationY="94"  Source="c.png"  IsCheckedImageSource="csel.png"/>
-    <views:ToggleImageView HorizontalOptions="Start" VerticalOptions="Start" BindingContext="{Binding Districts[3]}" TranslationX="175" TranslationY="58"  Source="d.png" IsCheckedImageSource="dsel.png"/>    
-    <views:ToggleImageView HorizontalOptions="Start" VerticalOptions="Start" BindingContext="{Binding Districts[4]}" TranslationX="47"  TranslationY="184" Source="e.png" IsCheckedImageSource="esel.png"/>
-    <views:ToggleImageView HorizontalOptions="Start" VerticalOptions="Start" BindingContext="{Binding Districts[5]}" TranslationX="136" TranslationY="178" Source="g.png" IsCheckedImageSource="gsel.png"/>
-    <views:ToggleImageView HorizontalOptions="Start" VerticalOptions="Start" BindingContext="{Binding Districts[6]}" TranslationX="208" TranslationY="177" Source="h.png" IsCheckedImageSource="hsel.png"/>
-  </Grid>
+    <Grid x:Name="Map"
+          AnchorX="0.3"
+          AnchorY="0"
+          HeightRequest="400"
+          HorizontalOptions="Center"
+          MinimumHeightRequest="400"
+          MinimumWidthRequest="500"
+          Scale="0.9"
+          WidthRequest="500">
+        <views:ToggleImageView BindingContext="{Binding Districts[0]}"
+                               HorizontalOptions="Start"
+                               IsCheckedImageSource="asel.png"
+                               Source="a.png"
+                               TranslationX="0"
+                               VerticalOptions="Start" />
+        <views:ToggleImageView AnchorY="0"
+                               BindingContext="{Binding Districts[1]}"
+                               HorizontalOptions="Start"
+                               IsCheckedImageSource="bsel.png"
+                               Source="b.png"
+                               TranslationX="117"
+                               TranslationY="5"
+                               VerticalOptions="Start" />
+        <views:ToggleImageView AnchorY="0"
+                               BindingContext="{Binding Districts[2]}"
+                               HorizontalOptions="Start"
+                               IsCheckedImageSource="csel.png"
+                               Source="c.png"
+                               TranslationX="86"
+                               TranslationY="94"
+                               VerticalOptions="Start" />
+        <views:ToggleImageView BindingContext="{Binding Districts[3]}"
+                               HorizontalOptions="Start"
+                               IsCheckedImageSource="dsel.png"
+                               Source="d.png"
+                               TranslationX="175"
+                               TranslationY="58"
+                               VerticalOptions="Start" />
+        <views:ToggleImageView BindingContext="{Binding Districts[4]}"
+                               HorizontalOptions="Start"
+                               IsCheckedImageSource="esel.png"
+                               Source="e.png"
+                               TranslationX="47"
+                               TranslationY="184"
+                               VerticalOptions="Start" />
+        <views:ToggleImageView BindingContext="{Binding Districts[5]}"
+                               HorizontalOptions="Start"
+                               IsCheckedImageSource="gsel.png"
+                               Source="g.png"
+                               TranslationX="136"
+                               TranslationY="178"
+                               VerticalOptions="Start" />
+        <views:ToggleImageView BindingContext="{Binding Districts[6]}"
+                               HorizontalOptions="Start"
+                               IsCheckedImageSource="hsel.png"
+                               Source="h.png"
+                               TranslationX="208"
+                               TranslationY="177"
+                               VerticalOptions="Start" />
+    </Grid>
 </StackLayout>

@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 
+using LokalReporter.App.FormsApp.Statics;
 using LokalReporter.App.FormsApp.ViewModels;
 
 using Xamarin.Forms;
@@ -10,18 +11,19 @@ namespace LokalReporter.App.FormsApp.Pages
     {
 
         public static readonly BindableProperty IsBookmarkedProperty = BindableProperty.Create("IsBookmarked", typeof (bool), typeof (DetailsPage), default(bool));
-
-        public bool IsBookmarked
-        {
-            get { return (bool) this.GetValue(IsBookmarkedProperty); }
-            set { this.SetValue(IsBookmarkedProperty, value); }
-        }
+        private WebView webView;
 
         public DetailsPage()
         {
             this.InitializeComponent();
             this.ToolbarItems.Remove(this.BookmarkItem);
             this.ToolbarItems.Remove(this.BookmarkedItem);
+        }
+
+        public bool IsBookmarked
+        {
+            get { return (bool) this.GetValue(IsBookmarkedProperty); }
+            set { this.SetValue(IsBookmarkedProperty, value); }
         }
 
         protected override void OnPropertyChanged(string propertyName = null)
@@ -60,17 +62,17 @@ namespace LokalReporter.App.FormsApp.Pages
             this.AdjustBookmarkedState();
 
             var content = ((DetailsViewModel) this.BindingContext).Article.HtmlContent;
-            var html = (string) Statics.Converters.StringToHtml.Convert(content, null, null, null);
+            var html = (string) Converters.StringToHtml.Convert(content, null, null, null);
             var htmlWebViewSource = new HtmlWebViewSource
             {
                 Html = html
             };
-            
-            var webView = new WebView {Source = htmlWebViewSource};
-            webView.WidthRequest = this.Width;
-            webView.HorizontalOptions = LayoutOptions.Fill;
 
-            this.ContentLayout.Children.Add(webView);
+            this.webView = new WebView {Source = htmlWebViewSource};
+            this.webView.VerticalOptions = LayoutOptions.FillAndExpand;
+            this.webView.HorizontalOptions = LayoutOptions.Fill;
+
+            this.ContentLayout.Children.Add(this.webView);
 
             await Task.Delay(2000);
         }

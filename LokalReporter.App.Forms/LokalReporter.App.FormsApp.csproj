@@ -92,14 +92,16 @@
     <Compile Include="Helpers\Behaviors\BindableBehavior.cs" />
     <Compile Include="ViewModels\BookmarksViewModel.cs" />
     <Compile Include="ViewModels\DetailsViewModel.cs" />
-    <Compile Include="ViewModels\DistrictSettingViewModel.cs" />
+    <Compile Include="ViewModels\DistrictSelectionViewModel.cs" />
     <Compile Include="Helpers\Behaviors\EventToCommandBehavior.cs" />
+    <Compile Include="ViewModels\DistrictSettingViewModel.cs" />
     <Compile Include="ViewModels\FeedViewModel.cs" />
     <Compile Include="ViewModels\FilteredArticlesViewModel.cs" />
     <Compile Include="ViewModels\FilterSettingsViewModel.cs" />
     <Compile Include="ViewModels\FirstUseViewModel.cs" />
     <Compile Include="ViewModels\Identifier.cs" />
     <Compile Include="ViewModels\IFeedsViewModel.cs" />
+    <Compile Include="ViewModels\IFiltered.cs" />
     <Compile Include="ViewModels\MenuItem.cs" />
     <Compile Include="ViewModels\MenuSection.cs" />
     <Compile Include="ViewModels\MenuViewModel.cs" />

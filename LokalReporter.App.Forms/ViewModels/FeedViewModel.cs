@@ -18,7 +18,7 @@ using XLabs;
 namespace LokalReporter.App.FormsApp.ViewModels
 {
     [ImplementPropertyChanged]
-    public class FeedViewModel : BaseViewModel
+    public class FeedViewModel : BaseViewModel, IFiltered
     {
 
         private FilterPreset preset;
@@ -52,6 +52,7 @@ namespace LokalReporter.App.FormsApp.ViewModels
         {
             this.Title = isSubViewModel ? preset.Title : preset.ExtendedTitle ?? preset.Title;
             this.preset = preset;
+            this.Filter = preset.Filter;
 
             var filter = preset.Filter.Clone();
             filter.Paging = new Paging {Limit = 5};
@@ -76,6 +77,8 @@ namespace LokalReporter.App.FormsApp.ViewModels
                 this.IsLoading = false;
             }
         }
+
+        public Filter Filter { get; set; }
 
     }
 }

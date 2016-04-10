@@ -1,19 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage x:Class="LokalReporter.App.FormsApp.Pages.PersonalFeedsPage"
+             xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:controls1="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
              xmlns:views="clr-namespace:LokalReporter.App.FormsApp.Views;assembly=LokalReporter.App.FormsApp"
-             xmlns:viewModels="clr-namespace:LokalReporter.App.FormsApp.ViewModels;assembly=LokalReporter.App.FormsApp"
-             x:Class="LokalReporter.App.FormsApp.Pages.PersonalFeedsPage"
              Title="{Binding Title}">
 
-  <views:FeedsListView Footer="{Binding}" ItemsSource="{Binding Feeds}" HasUnevenRows="True" VerticalOptions="Fill" >
-    <ListView.FooterTemplate>
-      <DataTemplate>
-        <Grid Padding="0,10,0,20">
-          <views:AddFilterView HorizontalOptions="Center"  Command="{Binding AddNewFeedFilter}"/>
-        </Grid>
-      </DataTemplate>
-    </ListView.FooterTemplate>
+    <views:FeedsListView Footer="{Binding}"
+                         HasUnevenRows="True"
+                         ItemsSource="{Binding Feeds}"
+                         VerticalOptions="Fill">
+        <ListView.FooterTemplate>
+            <DataTemplate>
+                <Grid Padding="0,10,0,20">
+                    <views:AddFilterView Command="{Binding AddNewFeedFilter}" HorizontalOptions="Center" />
+                </Grid>
+            </DataTemplate>
+        </ListView.FooterTemplate>
     </views:FeedsListView>
-  </ContentPage>
+</ContentPage>

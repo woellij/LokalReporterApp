@@ -49,7 +49,7 @@ namespace LokalReporter.App.FormsApp.Presenter
         {
             this.masterDetailPage.IsPresented = false;
             var currentPage = ((NavigationPage) sender).CurrentPage;
-            this.menuPage.OnNavigated(currentPage);
+            ((MenuViewModel)this.menuPage.BindingContext).OnNavigated(currentPage);
 
             (currentPage.BindingContext as INavigatedToAware)?.OnNavigatedTo(type);
         }
