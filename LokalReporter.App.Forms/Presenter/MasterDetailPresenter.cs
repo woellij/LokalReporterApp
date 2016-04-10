@@ -33,7 +33,7 @@ namespace LokalReporter.App.FormsApp.Presenter
 
             var navigationPage = new MainPage();
             this.masterDetailPage.Detail = navigationPage;
-
+            
             this.TryShow(request);
 
             Application.Current.MainPage = this.masterDetailPage;

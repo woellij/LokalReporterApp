@@ -8,9 +8,8 @@ using LokalReporter.Responses;
 
 namespace LokalReporter.Client.Dummy.Json
 {
-    internal class JsonArticlesReader
+    public class JsonArticlesReader
     {
-
         private readonly object lo = new object();
         private static Task<IEnumerable<Article>> _readTask;
 

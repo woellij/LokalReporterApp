@@ -36,13 +36,13 @@ namespace LokalReporter.App.FormsApp.ViewModels
             {
                 if (this.selectedItem != null)
                 {
-                    this.selectedItem.ForegroundColor = MenuItem.DefaultColor;
+                    this.Dispatcher.RequestMainThreadAction(() => this.selectedItem.ForegroundColor = MenuItem.DefaultColor);
                 }
                 this.selectedItem = value;
 
-                if (this.selectedItem != null)
+                if (value != null)
                 {
-                    this.selectedItem.ForegroundColor = Color.White;
+                    this.Dispatcher.RequestMainThreadAction(() => value.ForegroundColor = Color.White);
                 }
             }
         }
@@ -91,7 +91,7 @@ namespace LokalReporter.App.FormsApp.ViewModels
             var startMenuItem = new MenuItem("Startseite", typeof (PersonalFeedsViewModel));
             var bookmarks = new MenuItem("Ihre Leseliste", typeof (BookmarksViewModel));
 
-            this.Items = new List<MenuSection> {new MenuSection(null, new List<MenuItem> {startMenuItem, bookmarks}), new MenuSection("Resorts", filterMenuItems) 
+            this.Items = new List<MenuSection> {new MenuSection("Allgemeines", new List<MenuItem> {startMenuItem, bookmarks}), new MenuSection("Resorts", filterMenuItems) 
 
                 };
             //new MenuSection("Bezirke", distMenuItems),

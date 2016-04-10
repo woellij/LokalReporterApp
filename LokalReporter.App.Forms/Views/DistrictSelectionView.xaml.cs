@@ -4,8 +4,6 @@ using System.Linq;
 
 using Xamarin.Forms;
 
-using XLabs;
-
 namespace LokalReporter.App.FormsApp.Views
 {
     public partial class DistrictSelectionView
@@ -74,7 +72,13 @@ namespace LokalReporter.App.FormsApp.Views
                     }
                 }
                 else
-                    toggleImageViews.Where(i => i.BindingContext.Equals(this.SelectedDistrict)).ForEach(i => i.IsChecked = true).ToList();
+                {
+                    var selectedViews = toggleImageViews.Where(i => i.BindingContext.Equals(this.SelectedDistrict));
+                    foreach (var selectedView in selectedViews)
+                    {
+                        selectedView.IsChecked = true;
+                    }
+                }
             }
         }
 

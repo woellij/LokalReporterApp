@@ -5,11 +5,15 @@ using PropertyChanged;
 
 using Xamarin.Forms;
 
-namespace LokalReporter.App.FormsApp.ViewModels {
-
+namespace LokalReporter.App.FormsApp.ViewModels
+{
     [DataContract]
     [ImplementPropertyChanged]
-    public class MenuItem {
+    public class MenuItem
+    {
+
+        public static Color DefaultColor = Color.Black;
+
         public MenuItem(string title, object parameter, Type targetType)
         {
             this.Title = title;
@@ -17,12 +21,12 @@ namespace LokalReporter.App.FormsApp.ViewModels {
             this.TargetViewModelType = targetType;
         }
 
-        public MenuItem(string title, Type targetViewModelType) : this(title, null, targetViewModelType) {}
+        public MenuItem(string title, Type targetViewModelType) : this(title, null, targetViewModelType)
+        {
+        }
 
         [DataMember(Name = "t")]
         public string Title { get; set; }
-
-        public static Color DefaultColor = Color.Black;
 
         [IgnoreDataMember]
         public Color ForegroundColor { get; set; } = DefaultColor;
@@ -32,6 +36,6 @@ namespace LokalReporter.App.FormsApp.ViewModels {
 
         [DataMember(Name = "p")]
         public object Parameter { get; set; }
-    }
 
+    }
 }

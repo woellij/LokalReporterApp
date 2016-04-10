@@ -23,13 +23,14 @@ namespace LokalReporter.App.Droid {
 
         protected override void OnCreate(Bundle bundle)
         {
-            base.OnCreate(bundle);
             MvxFormsApplicationActivity.Current = this;
 
-            Forms.Init(this, bundle);
             // appCompat stuff
             FormsAppCompatActivity.ToolbarResource = Resource.Layout.toolbar;
             FormsAppCompatActivity.TabLayoutResource = Resource.Layout.tabs;
+
+            base.OnCreate(bundle);
+            Forms.Init(this, bundle);
 
             var formsApp = new LokalReporterFormsApp();
             this.LoadApplication(formsApp);

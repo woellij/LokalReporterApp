@@ -2,8 +2,6 @@
 <ContentPage x:Class="LokalReporter.App.FormsApp.Pages.DetailsPage"
              xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
-             xmlns:responses="clr-namespace:LokalReporter.Responses;assembly=LokalReporter"
              IsBookmarked="{Binding IsBookmarked}">
     <ContentPage.ToolbarItems>
         <ToolbarItem x:Name="BookmarkItem"
@@ -25,14 +23,14 @@
                 <RowDefinition />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            <StackLayout Grid.Row="1">
-                <!--<controls:RepeaterView x:TypeArguments="responses:Tag"  ItemsSource="{Binding Article.Tags}">
-          <controls:RepeaterView.ItemTemplate>
-            <DataTemplate>
-              <Label Text="{Binding Name}" />
-            </DataTemplate>
-          </controls:RepeaterView.ItemTemplate>
-        </controls:RepeaterView>-->
+            <!--<StackLayout Grid.Row="1">
+                <controls:RepeaterView ItemsSource="{Binding Article.Tags}" x:TypeArguments="responses:Tag">
+                    <controls:RepeaterView.ItemTemplate>
+                        <DataTemplate>
+                            <Label Text="{Binding Name}" />
+                        </DataTemplate>
+                    </controls:RepeaterView.ItemTemplate>
+                </controls:RepeaterView>
                 <StackLayout Orientation="Horizontal">
                     <Button HorizontalOptions="FillAndExpand" Text="Vorheriger" />
                     <Button HorizontalOptions="FillAndExpand" Text="Nächster" />
@@ -40,7 +38,7 @@
                             IsVisible="{Binding IsBookmarked}"
                             Text="Bookmark" />
                 </StackLayout>
-            </StackLayout>
+            </StackLayout>-->
         </Grid>
     </ScrollView>
 </ContentPage>

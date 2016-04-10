@@ -2,19 +2,45 @@
 <ContentPage x:Class="LokalReporter.App.FormsApp.Pages.MenuPage"
              xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
              xmlns:views="clr-namespace:LokalReporter.App.FormsApp.Views;assembly=LokalReporter.App.FormsApp"
-             x:Name="Page">
+             x:Name="Page"
+             BackgroundColor="#f333">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="GroupHeaderTemplate">
+                <Grid BackgroundColor="#f444" Padding="16,4">
+                    <Label FontAttributes="Bold"
+                           FontSize="12"
+                           Text="{Binding}"
+                           TextColor="#fccc"
+                           VerticalOptions="End" />
+                </Grid>
+            </DataTemplate>
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
 
     <ListView x:Name="MenuListView"
               Footer="{Binding}"
-              GroupDisplayBinding="{Binding Title}"
               IsGroupingEnabled="True"
               ItemsSource="{Binding Items}"
-              SelectedItem="{Binding SelectedItem}"
+              SelectedItem="{Binding SelectedItem,
+                                     Mode=TwoWay}"
               SeparatorVisibility="None">
+
+        <ListView.GroupHeaderTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <controls:ContentControl BindingContext="{Binding Title}" ContentTemplate="{StaticResource GroupHeaderTemplate}" />
+                </ViewCell>
+            </DataTemplate>
+        </ListView.GroupHeaderTemplate>
         <ListView.Header>
-            <ContentView Padding="20,20,20,0" VerticalOptions="Fill">
+            <ContentView BackgroundColor="#feee"
+                         Padding="20,20,20,20"
+                         VerticalOptions="Fill">
                 <Image Source="lokalreporter_logo.png" VerticalOptions="Fill" />
             </ContentView>
         </ListView.Header>
@@ -24,21 +50,26 @@
                                             Source={x:Reference Page}}"
                           CommandParameter="{Binding}"
                           Text="{Binding Title}"
-                          TextColor="{Binding ForegroundColor}" />
+                          TextColor="White" />
             </DataTemplate>
         </ListView.ItemTemplate>
         <ListView.FooterTemplate>
             <DataTemplate>
-                <Grid>
-                    <views:DistrictSelectionView AnchorX="0"
-                                                 AnchorY="0"
-                                                 HorizontalOptions="Start"
-                                                 Scale="0.7"
-                                                 SelectedDistrict="{Binding SelectedDistrict,
-                                                                            Mode=TwoWay}"
-                                                 VerticalOptions="Start"
-                                                 WidthRequest="700" />
-                </Grid>
+                <StackLayout>
+                    <controls:ContentControl BindingContext="Regionen"
+                                             ContentTemplate="{StaticResource GroupHeaderTemplate}"
+                                             HeightRequest="40" />
+                    <Grid Padding="0,20">
+                        <views:DistrictSelectionView AnchorX="0"
+                                                     AnchorY="0"
+                                                     HorizontalOptions="Center"
+                                                     Scale="0.7"
+                                                     SelectedDistrict="{Binding SelectedDistrict,
+                                                                                Mode=TwoWay}"
+                                                     VerticalOptions="Start"
+                                                     WidthRequest="700" />
+                    </Grid>
+                </StackLayout>
             </DataTemplate>
         </ListView.FooterTemplate>
     </ListView>
