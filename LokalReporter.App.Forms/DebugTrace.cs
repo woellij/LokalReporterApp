@@ -1,8 +1,9 @@
 using System;
 using System.Diagnostics;
+
 using MvvmCross.Platform.Platform;
 
-namespace LokalReporter.App.Droid
+namespace LokalReporter.App.FormsApp
 {
     public class DebugTrace : IMvxTrace
     {
@@ -24,7 +25,7 @@ namespace LokalReporter.App.Droid
             }
             catch (FormatException)
             {
-                Trace(MvxTraceLevel.Error, tag, "Exception during trace of {0} {1}", level, message);
+                this.Trace(MvxTraceLevel.Error, tag, "Exception during trace of {0} {1}", level, message);
             }
         }
     }

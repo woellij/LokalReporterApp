@@ -5,16 +5,13 @@
              xmlns:views="clr-namespace:LokalReporter.App.FormsApp.Views;assembly=LokalReporter.App.FormsApp"
              Title="{Binding Title}">
 
-    <views:FeedsListView Footer="{Binding}"
-                         HasUnevenRows="True"
-                         ItemsSource="{Binding Feeds}"
-                         VerticalOptions="Fill">
-        <ListView.FooterTemplate>
+    <views:FeedsListView ItemsSource="{Binding Feeds}" VerticalOptions="Fill">
+        <!--<ListView.FooterTemplate>
             <DataTemplate>
                 <Grid Padding="0,10,0,20">
                     <views:AddFilterView Command="{Binding AddNewFeedFilter}" HorizontalOptions="Center" />
                 </Grid>
             </DataTemplate>
-        </ListView.FooterTemplate>
+        </ListView.FooterTemplate>-->
     </views:FeedsListView>
 </ContentPage>

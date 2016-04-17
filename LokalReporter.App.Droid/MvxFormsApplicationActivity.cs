@@ -32,17 +32,12 @@ namespace LokalReporter.App.Droid {
             base.OnCreate(bundle);
             Forms.Init(this, bundle);
 
-            var formsApp = new LokalReporterFormsApp();
-            this.LoadApplication(formsApp);
-
-
-            Mvx.LazyConstructAndRegisterSingleton<IToastNotificator,ToastNotificatorImplementation>();
-            ToastNotificatorImplementation.Init(Current);
-
+            this.LoadApplication(new LokalReporterFormsApp());
+            
             var presenter = (MvxFormsPagePresenter) Mvx.Resolve<IMvxViewPresenter>();
-            presenter.MvxFormsApp = formsApp;
+            presenter.MvxFormsApp = new LokalReporterFormsApp();
 
-            Dependencies.Initialize();
+            Dependencies.Initialize(Current);
         }
 
     }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -5,14 +6,16 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 
 using LokalReporter.App.FormsApp.Presenter;
+using LokalReporter.App.FormsApp.ViewModels.Messages;
 using LokalReporter.Common;
 using LokalReporter.Requests;
 using LokalReporter.Responses;
 
-using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
 
 using PropertyChanged;
+
+using ReactiveUI;
 
 using XLabs;
 
@@ -23,7 +26,7 @@ namespace LokalReporter.App.FormsApp.ViewModels
     {
 
         private readonly IUserSettings userSettings;
-        private IReadOnlyCollection<FilterPreset> filters;
+        private IReadOnlyCollection<Tuple<bool, FilterPreset>> filters;
 
         public PersonalFeedsViewModel(IUserSettings userSettings)
         {
@@ -32,7 +35,9 @@ namespace LokalReporter.App.FormsApp.ViewModels
             this.AddNewFeedFilter = new RelayCommand(() => this.ShowViewModel<SetupFeedFilterViewModel>());
 
             this.BookmarksViewModel = Mvx.IocConstruct<BookmarksViewModel>();
-            
+
+            MessageBus.Current.Listen<FeedSubscribedChangedMessage>().Subscribe(this.OnFeedSubscribedChanged);
+
             this.Title = "Startseite";
         }
 
@@ -53,6 +58,29 @@ namespace LokalReporter.App.FormsApp.ViewModels
             this.BookmarksViewModel.Start();
         }
 
+        public void OnFeedSubscribedChanged(FeedSubscribedChangedMessage message)
+        {
+            var match = this.Feeds?.FirstOrDefault(f => f.Filter.Equals(message.Preset.Filter));
+            if (message.IsSubscribed == false)
+            {
+                if (match != null)
+                {
+                    this.userSettings.UserFiltersSetting.RemoveAndSave(match.FilterPreset);
+                    this.Feeds.Remove(match);
+                }
+            }
+            else if (message.IsSubscribed)
+            {
+                if (match != null)
+                {
+                    return;
+                }
+                this.userSettings.UserFiltersSetting.AddItemAndSave(message.Preset);
+                this.Feeds.Add(this.CreateFeedViewModel(0, message.Preset, true));
+            }
+        }
+
+
         public override async void Start()
         {
             this.BookmarksViewModel.Start();
@@ -65,17 +93,18 @@ namespace LokalReporter.App.FormsApp.ViewModels
 
             if (this.filters != null)
             {
-                var additional = startFilters.Except(this.filters).ToList();
+                var additional = startFilters.Where(startFilter => !this.filters.Any(t => this.filters.Any(f => f.Item2.Equals(t.Item2)))).ToList();
+
                 if (additional.Any())
                 {
-                    var additionalFeeds = this.CreateFeeds(additional);
+                    var additionalFeeds = this.CreateFeedViewmodels(additional);
                     foreach (var additionalFeed in additionalFeeds)
                     {
                         this.Feeds.Add(additionalFeed);
                     }
                 }
-                
-                var deletedFeeds = this.Feeds.Where(f => this.filters.Except(startFilters).Any(preset => preset.Title == f.Title)).ToList();
+
+                var deletedFeeds = this.Feeds.Where(f => this.filters.Any(tuple => tuple.Item2.Equals(f))).ToList();
                 foreach (var feedViewModel in deletedFeeds)
                 {
                     this.Feeds.Remove(feedViewModel);
@@ -83,31 +112,37 @@ namespace LokalReporter.App.FormsApp.ViewModels
             }
             else
             {
-                this.Feeds = new ObservableCollection<FeedViewModel>(this.CreateFeeds(startFilters));
+                this.Feeds = new ObservableCollection<FeedViewModel>(this.CreateFeedViewmodels(startFilters));
             }
 
             this.filters = startFilters;
         }
 
-        private List<FeedViewModel> CreateFeeds(IReadOnlyCollection<FilterPreset> filters)
+        private List<FeedViewModel> CreateFeedViewmodels(IReadOnlyCollection<Tuple<bool, FilterPreset>> filters)
         {
-            return filters.Select((f, i) =>
-            {
-                var feedViewModel = Mvx.IocConstruct<FeedViewModel>();
-
-                Task.Delay(500*i)
-                    .ContinueWith(t => { feedViewModel.Setup(f, true); }, TaskScheduler.FromCurrentSynchronizationContext());
-                return feedViewModel;
-            }).ToList();
+            return filters.Select((tuple, i) => this.CreateFeedViewModel(i, tuple.Item2, tuple.Item1)).ToList();
         }
 
-        private async Task<IReadOnlyCollection<FilterPreset>> GetUserFeedFilters()
+        private FeedViewModel CreateFeedViewModel(int i, FilterPreset preset, bool canUserChangeSubscription)
+        {
+            var feedViewModel = Mvx.IocConstruct<FeedViewModel>();
+
+            Task.Delay(100*i)
+                .ContinueWith(t =>
+                {
+                    feedViewModel.Setup(preset, true);
+                    feedViewModel.CanChangeSubscription = canUserChangeSubscription;
+                }, TaskScheduler.FromCurrentSynchronizationContext());
+            return feedViewModel;
+        }
+
+        private async Task<IReadOnlyCollection<Tuple<bool, FilterPreset>>> GetUserFeedFilters()
         {
             var filters = await this.userSettings.UserFiltersSetting.GetValueAsync();
             var selectedDistrict = await this.userSettings.DistrictSetting.GetValueAsync();
             var districtFilter = new FilterPreset(selectedDistrict.Name, new Filter {District = selectedDistrict});
 
-            return new[] {districtFilter}.Concat(filters).ToList();
+            return new[] {new Tuple<bool, FilterPreset>(false, districtFilter)}.Concat(filters.Select(f => new Tuple<bool, FilterPreset>(true, f))).ToList();
         }
 
     }

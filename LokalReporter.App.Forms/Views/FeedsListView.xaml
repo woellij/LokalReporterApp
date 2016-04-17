@@ -1,15 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ListView xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:views="clr-namespace:LokalReporter.App.FormsApp.Views;assembly=LokalReporter.App.FormsApp"
-             x:Class="LokalReporter.App.FormsApp.Views.FeedsListView"
-          SeparatorVisibility="None"
-      >
-  <ListView.ItemTemplate>
-    <DataTemplate>
-      <ViewCell>
-        <views:FeedView />
-      </ViewCell>
-    </DataTemplate>
-  </ListView.ItemTemplate>
-</ListView>
+<Grid x:Class="LokalReporter.App.FormsApp.Views.FeedsListView"
+      xmlns="http://xamarin.com/schemas/2014/forms"
+      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+      xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+      xmlns:viewModels="clr-namespace:LokalReporter.App.FormsApp.ViewModels;assembly=LokalReporter.App.FormsApp"
+      xmlns:views="clr-namespace:LokalReporter.App.FormsApp.Views;assembly=LokalReporter.App.FormsApp"
+      x:Name="Root"
+      VerticalOptions="Fill">
+
+    <ScrollView Orientation="Vertical" VerticalOptions="Fill">
+        <controls:RepeaterView ItemsSource="{Binding Source={x:Reference Root}, Path=ItemsSource}" x:TypeArguments="viewModels:FeedViewModel">
+            <controls:RepeaterView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <views:FeedView />
+                    </ViewCell>
+                </DataTemplate>
+            </controls:RepeaterView.ItemTemplate>
+        </controls:RepeaterView>
+    </ScrollView>
+</Grid>

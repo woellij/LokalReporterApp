@@ -19,17 +19,14 @@ namespace LokalReporter.App.FormsApp {
             // The root page of your application
 
             this.MainPage = new ContentPage();
+            Instance = this;
         }
+
+        public static LokalReporterFormsApp Instance { get; private set; }
 
         protected override async void OnStart()
         {
             // Handle when your app starts
-            var presenter = Mvx.Resolve<IMvxViewPresenter>();
-            var districtSetting = await Mvx.Resolve<IUserSettings>().DistrictSetting.GetValueAsync();
-            var vmType = districtSetting == null ? typeof (FirstUseViewModel) : typeof (PersonalFeedsViewModel);
-            presenter.Show(new MvxViewModelRequest(vmType, null, null, null));
-
-            Mvx.LazyConstructAndRegisterSingleton<IMvxViewModelLocator, MvxDefaultViewModelLocator>();
         }
 
         protected override void OnSleep()

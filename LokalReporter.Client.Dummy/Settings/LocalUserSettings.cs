@@ -7,7 +7,7 @@ namespace LokalReporter.Client.Dummy.Settings
 {
     public class LocalUserSettings : IUserSettings
     {
-
+        
         public IAsyncSetting<District> DistrictSetting
         {
             get { return new SettingsAsyncSetting<District>("district", null); }

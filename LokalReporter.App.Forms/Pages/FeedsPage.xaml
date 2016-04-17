@@ -5,9 +5,8 @@
              xmlns:controls1="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
              xmlns:viewModels="clr-namespace:LokalReporter.App.FormsApp.ViewModels;assembly=LokalReporter.App.FormsApp"
              xmlns:views="clr-namespace:LokalReporter.App.FormsApp.Views;assembly=LokalReporter.App.FormsApp"
-             Title="{Binding Title}">
+             Title="{Binding Title}"
+             IsEnabled="True">
 
-    <views:FeedsListView HasUnevenRows="True"
-                         ItemsSource="{Binding Feeds}"
-                         VerticalOptions="Fill" />
+    <views:FeedsListView ItemsSource="{Binding Feeds}" VerticalOptions="Fill" />
 </ContentPage>

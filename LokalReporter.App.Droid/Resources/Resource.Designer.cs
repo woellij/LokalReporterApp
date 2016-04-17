@@ -6861,17 +6861,23 @@ namespace LokalReporter.App.Droid
 			// aapt resource value: 0x7f020092
 			public const int mr_ic_settings_light = 2130837650;
 			
-			// aapt resource value: 0x7f020096
-			public const int notification_template_icon_bg = 2130837654;
+			// aapt resource value: 0x7f020098
+			public const int notification_template_icon_bg = 2130837656;
 			
 			// aapt resource value: 0x7f020093
 			public const int splash = 2130837651;
 			
 			// aapt resource value: 0x7f020094
-			public const int success = 2130837652;
+			public const int star = 2130837652;
 			
 			// aapt resource value: 0x7f020095
-			public const int warning = 2130837653;
+			public const int star_outline = 2130837653;
+			
+			// aapt resource value: 0x7f020096
+			public const int success = 2130837654;
+			
+			// aapt resource value: 0x7f020097
+			public const int warning = 2130837655;
 			
 			static Drawable()
 			{

@@ -8,6 +8,14 @@ namespace LokalReporter.App.FormsApp.Presenter
     public class LokalReporterAppMvxFormsPagePresenter : MvxFormsPagePresenter
     {
 
+        public LokalReporterAppMvxFormsPagePresenter()
+        {
+        }
+
+        protected LokalReporterAppMvxFormsPagePresenter(LokalReporterFormsApp xamarinFormsApp) : base(xamarinFormsApp)
+        {
+        }
+
         public MasterDetailPresenter MasterDetailPresenter { get; set; }
 
         public override async void Show(MvxViewModelRequest request)

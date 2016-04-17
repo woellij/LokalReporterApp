@@ -4,7 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using LokalReporter.App.FormsApp.Helpers;
+using LokalReporter.App.FormsApp.ViewModels.Messages;
 using LokalReporter.Common;
+
+using ReactiveUI;
 
 using XLabs;
 
@@ -39,6 +42,7 @@ namespace LokalReporter.App.FormsApp.ViewModels {
             }
             this.Filters.Remove(obj);
             await this.setting.SetValueAsync(this.Filters.ToList());
+            MessageBus.Current.SendMessage(new FeedSubscribedChangedMessage(false, obj));
         }
 
         public ICollection<FilterPreset> Filters { get; set; }

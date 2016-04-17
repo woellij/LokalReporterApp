@@ -1,33 +1,37 @@
 ﻿using System;
 using System.Collections;
+
 using LokalReporter.App.FormsApp.ViewModels;
+
 using NControl.Controls;
+
 using Xamarin.Forms;
 
 namespace LokalReporter.App.FormsApp.Views
 {
     public partial class ArticleCarouselView : GalleryView
     {
+
         public static readonly BindableProperty ItemsSourceProperty =
             BindableProperty.Create<ArticleCarouselView, object>(b => b.ItemsSource, default(object),
                 propertyChanged: ItemsSourcePropertyChanged);
 
         public ArticleCarouselView()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
 
         public object ItemsSource
         {
-            get { return GetValue(ItemsSourceProperty); }
-            set { SetValue(ItemsSourceProperty, value); }
+            get { return this.GetValue(ItemsSourceProperty); }
+            set { this.SetValue(ItemsSourceProperty, value); }
         }
 
         private static void ItemsSourcePropertyChanged(BindableObject bindable, object oldValue, object newValue)
         {
             var articles = newValue as IEnumerable;
-            var view = bindable as ArticleCarouselView;
-            if (view != null)
+            var galery = bindable as ArticleCarouselView;
+            if (galery != null)
             {
                 if (articles != null)
                 {
@@ -35,9 +39,9 @@ namespace LokalReporter.App.FormsApp.Views
                     {
                         try
                         {
-                            view.BatchBegin();
-                            view.Children.Add(new BigArticleView {BindingContext = article});
-                            view.BatchCommit();
+                            galery.BatchBegin();
+                            galery.Children.Add(new BigArticleView {BindingContext = article});
+                            galery.BatchCommit();
                         }
                         catch
                         {
@@ -46,7 +50,13 @@ namespace LokalReporter.App.FormsApp.Views
                 }
                 else
                 {
-                    view.Children.Clear();
+                    try
+                    {
+                        galery.Children.Clear();
+                    }
+                    catch
+                    {
+                    }
                 }
             }
         }
@@ -56,8 +66,9 @@ namespace LokalReporter.App.FormsApp.Views
             var article = ((GalleryView) sender)?.Page?.BindingContext;
             if (article != null)
             {
-                ((FilteredArticlesViewModel) BindingContext).ShowDetails.Execute(article);
+                ((FilteredArticlesViewModel) this.BindingContext).ShowDetails.Execute(article);
             }
         }
+
     }
 }

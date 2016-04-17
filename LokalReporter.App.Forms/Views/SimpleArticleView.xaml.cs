@@ -1,4 +1,6 @@
-﻿using System.Windows.Input;
+﻿using System;
+using System.Linq;
+using System.Windows.Input;
 
 using Xamarin.Forms;
 
@@ -17,6 +19,20 @@ namespace LokalReporter.App.FormsApp.Views
         public SimpleArticleView()
         {
             this.InitializeComponent();
+        }
+
+        //protected override void OnBindingContextChanged()
+        //{
+        //    base.OnBindingContextChanged();
+        //    foreach (var tapGestureRecognizer in this.GestureRecognizers.OfType<TapGestureRecognizer>())
+        //    {
+        //        tapGestureRecognizer.Tapped += TapGestureRecognizerOnTapped;
+        //    }
+        //}
+
+        private void TapGestureRecognizerOnTapped(object sender, EventArgs eventArgs)
+        {
+            
         }
 
     }

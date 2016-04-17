@@ -1,28 +1,37 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage x:Class="LokalReporter.App.FormsApp.Pages.BookmarksPage"
+             xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:behaviors="clr-namespace:Xamarin.Behaviors;assembly=Xamarin.Behaviors"
              xmlns:controls="clr-namespace:NControl.Controls;assembly=NControl.Controls"
              xmlns:controls1="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
              xmlns:responses="clr-namespace:LokalReporter.Responses;assembly=LokalReporter"
-             xmlns:views="clr-namespace:LokalReporter.App.FormsApp.Views;assembly=LokalReporter.App.FormsApp"
-             xmlns:viewModels="clr-namespace:LokalReporter.App.FormsApp.ViewModels;assembly=LokalReporter.App.FormsApp"
              xmlns:statics="clr-namespace:LokalReporter.App.FormsApp.Statics;assembly=LokalReporter.App.FormsApp"
-             x:Class="LokalReporter.App.FormsApp.Pages.BookmarksPage"
+             xmlns:viewModels="clr-namespace:LokalReporter.App.FormsApp.ViewModels;assembly=LokalReporter.App.FormsApp"
+             xmlns:views="clr-namespace:LokalReporter.App.FormsApp.Views;assembly=LokalReporter.App.FormsApp"
              x:Name="Page"
-  Title="{Binding Title}">
-  <Grid>
-    <ListView SeparatorVisibility="None" x:Name="ArticlesListView" ItemsSource="{Binding BookmarkedArticles}" HasUnevenRows="False" RowHeight="90" >
-      <ListView.ItemTemplate>
-        <DataTemplate>
-          <ViewCell>
-            <views:SimpleArticleView Command="{Binding Source={x:Reference Page}, Path=BindingContext.ShowDetails}" VerticalOptions="Fill" />
-          </ViewCell>
-        </DataTemplate>
-      </ListView.ItemTemplate>
-    </ListView>
-    
-    <Label FontSize="Large" IsVisible="{Binding HasNoItems}" Text="Sobald Sie Artikel mit einem Lesezeichen versehen, erscheinen diese hier und sie können sie später lesen."></Label>
-    <ActivityIndicator VerticalOptions="Center" HorizontalOptions="Center" IsRunning="{Binding IsLoading}" InputTransparent="True" />
-  </Grid>
+             Title="{Binding Title}">
+    <Grid>
+        <ListView x:Name="ArticlesListView"
+                  HasUnevenRows="False"
+                  ItemsSource="{Binding BookmarkedArticles}"
+                  RowHeight="90"
+                  SeparatorVisibility="None">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <views:SimpleArticleView Command="{Binding Source={x:Reference Page}, Path=BindingContext.ShowDetails}" VerticalOptions="Fill" />
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Label FontSize="Large"
+               IsVisible="{Binding HasNoItems}"
+               Text="Sobald Sie Artikel mit einem Lesezeichen versehen, erscheinen diese hier und sie können sie später lesen." />
+        <ActivityIndicator HorizontalOptions="Center"
+                           InputTransparent="True"
+                           IsRunning="{Binding IsLoading}"
+                           VerticalOptions="Center" />
+    </Grid>
 </ContentPage>

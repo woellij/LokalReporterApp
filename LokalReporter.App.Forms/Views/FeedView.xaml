@@ -4,21 +4,34 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
       xmlns:views="clr-namespace:LokalReporter.App.FormsApp.Views;assembly=LokalReporter.App.FormsApp"
       x:Name="Root"
-      Padding="0,8,0,4">
+      Padding="0,8,0,12">
     <StackLayout>
         <Grid>
-            <StackLayout Orientation="Horizontal">
-                <Label FontAttributes="Bold"
-                       FontSize="24"
-                       LineBreakMode="TailTruncation"
-                       Text="{Binding Title}" />
-                <Label FontSize="Large" Text=" &gt;" />
-            </StackLayout>
-            <Button Command="{Binding ShowMore}"
-                    HeightRequest="0"
-                    MinimumHeightRequest="0"
-                    Opacity="0"
-                    VerticalOptions="Fill" />
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Grid VerticalOptions="End">
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding ShowMore}" />
+                </Grid.GestureRecognizers>
+                <StackLayout Orientation="Horizontal">
+                    <Label FontAttributes="Bold"
+                           FontSize="24"
+                           LineBreakMode="TailTruncation"
+                           Text="{Binding Title}" />
+                    <Label FontSize="Large" Text=" &gt;" />
+                </StackLayout>
+            </Grid>
+
+            <views:ToggleImageView Grid.Column="1"
+                                   HeightRequest="36"
+                                   IsChecked="{Binding IsSubscribed}"
+                                   IsCheckedImageSource="star"
+                                   IsVisible="{Binding CanChangeSubscription}"
+                                   Source="star_outline"
+                                   VerticalOptions="Fill" />
+
         </Grid>
 
         <views:ArticleCarouselView BindingContext="{Binding TopArticles}"

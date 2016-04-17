@@ -32,7 +32,7 @@ namespace LokalReporter.Common {
             if (ReferenceEquals(this, other)) {
                 return true;
             }
-            return string.Equals(this.Title, other.Title) && Equals(this.Filter, other.Filter);
+            return Equals(this.Filter, other.Filter);
         }
 
         public override bool Equals(object obj)

@@ -1,22 +1,25 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ScrollView xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
-             xmlns:responses="clr-namespace:LokalReporter.Responses;assembly=LokalReporter"
-             xmlns:views="clr-namespace:LokalReporter.App.FormsApp.Views;assembly=LokalReporter.App.FormsApp"
-             x:Class="LokalReporter.App.FormsApp.Views.SimpleFeed" 
-            HeightRequest="90"
+<ScrollView x:Class="LokalReporter.App.FormsApp.Views.SimpleFeed"
+            xmlns="http://xamarin.com/schemas/2014/forms"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+            xmlns:responses="clr-namespace:LokalReporter.Responses;assembly=LokalReporter"
+            xmlns:views="clr-namespace:LokalReporter.App.FormsApp.Views;assembly=LokalReporter.App.FormsApp"
             x:Name="Root"
-            Scrolled="OnScrolled"
-            Orientation="Horizontal" InputTransparent="True"  >
-  <controls:RepeaterView x:Name="ItemsView" x:TypeArguments="responses:Article"
-                          Orientation="Horizontal" ItemsSource="{Binding Source={x:Reference Root}, Path=ItemsSource}"
-                          VerticalOptions="Fill"
-                          HorizontalOptions="Fill">
-    <controls:RepeaterView.ItemTemplate>
-      <DataTemplate>
-        <views:SimpleArticleView Command="{Binding Source={x:Reference Root}, Path=ItemClickCommand}" WidthRequest="200"/>
-      </DataTemplate>
-    </controls:RepeaterView.ItemTemplate>
-  </controls:RepeaterView>
+            HeightRequest="90"
+            Orientation="Horizontal"
+            Scrolled="OnScrolled">
+    <controls:RepeaterView x:Name="ItemsView"
+                           HorizontalOptions="Fill"
+                           ItemsSource="{Binding Source={x:Reference Root},
+                                                 Path=ItemsSource}"
+                           Orientation="Horizontal"
+                           VerticalOptions="Fill"
+                           x:TypeArguments="responses:Article">
+        <controls:RepeaterView.ItemTemplate>
+            <DataTemplate>
+                <views:SimpleArticleView Command="{Binding Source={x:Reference Root}, Path=ItemClickCommand}" WidthRequest="200" />
+            </DataTemplate>
+        </controls:RepeaterView.ItemTemplate>
+    </controls:RepeaterView>
 </ScrollView>

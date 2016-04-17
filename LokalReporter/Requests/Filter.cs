@@ -39,8 +39,7 @@ namespace LokalReporter.Requests {
             if (ReferenceEquals(this, other)) {
                 return true;
             }
-            return Equals(this.Tag, other.Tag) && Equals(this.Category, other.Category) && Equals(this.District, other.District) &&
-                   this.IsTopStory == other.IsTopStory;
+            return Equals(this.Tag, other.Tag) && Equals(this.Category, other.Category) && Equals(this.District, other.District);
         }
 
         public override bool Equals(object obj)

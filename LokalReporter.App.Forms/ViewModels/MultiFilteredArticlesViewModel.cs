@@ -63,7 +63,7 @@ namespace LokalReporter.App.FormsApp.ViewModels
                 var filterClone = filter.Clone();
                 setter(filter, entity);
                 var viewModel = Mvx.IocConstruct<FeedViewModel>();
-                Task.Delay(500*i)
+                Task.Delay(100*i)
                     .ContinueWith(t =>
                     {
                         var filterPreset = new FilterPreset {Title = entity.Name, ExtendedTitle = $"{this.Title} - {entity.Name}", Filter = filterClone};

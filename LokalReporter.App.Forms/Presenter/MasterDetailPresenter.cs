@@ -22,10 +22,10 @@ namespace LokalReporter.App.FormsApp.Presenter
 
         public MasterDetailPresenter(MvxViewModelRequest request)
         {
-            this.masterDetailPage = new MasterDetailPage();
+            this.masterDetailPage = new LokalReporterMasterDetailPage();
             this.menuPage = new MenuPage
             {
-                Title = "test",
+                Title = "Menu",
                 BindingContext =
                     MvxPresenterHelpers.LoadViewModel(new MvxViewModelRequest(typeof (MenuViewModel), null, null, null))
             };

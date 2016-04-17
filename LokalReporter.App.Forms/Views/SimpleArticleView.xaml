@@ -1,23 +1,31 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentView x:Class="LokalReporter.App.FormsApp.Views.SimpleArticleView"
+             xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="LokalReporter.App.FormsApp.Views.SimpleArticleView"
-       x:Name="Root"
-             InputTransparent="True"
-         Padding="4"
-       VerticalOptions="Fill"  >
-  <Frame HasShadow="True"
-       Padding="10,5" >
-    <Grid VerticalOptions="Fill">
-      <Grid.RowDefinitions>
-        <RowDefinition />
-        <RowDefinition Height="Auto" />
-      </Grid.RowDefinitions>
+             x:Name="Root"
+             InputTransparent="False"
+             IsEnabled="True"
+             Padding="4"
+             VerticalOptions="Fill">
 
-      <Label LineBreakMode="WordWrap" VerticalOptions="Fill" FontSize="Medium" Text="{Binding Title}" />
-      <Label Grid.Row="1"  FontSize="14" Text="{Binding Date, StringFormat='{0:ddd. d.M, HH:mm}'}" />
+    <Frame HasShadow="True" Padding="10,5">
+        <Grid VerticalOptions="Fill">
+            <View.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding Source={x:Reference Root}, Path=Command}" CommandParameter="{Binding}" />
+            </View.GestureRecognizers>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
 
-      <Button Grid.Row="0" Grid.RowSpan="2" Opacity="0" Command="{Binding Source={x:Reference Root}, Path=Command}" CommandParameter="{Binding}" />
-    </Grid>
-  </Frame>
+            <Label FontSize="Medium"
+                   LineBreakMode="WordWrap"
+                   Text="{Binding Title}"
+                   VerticalOptions="Fill" />
+            <Label Grid.Row="1"
+                   FontSize="14"
+                   Text="{Binding Date,
+                                  StringFormat='{0:ddd. d.M, HH:mm}'}" />
+        </Grid>
+    </Frame>
 </ContentView>

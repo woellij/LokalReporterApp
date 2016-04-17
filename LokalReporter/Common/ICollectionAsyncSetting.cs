@@ -8,5 +8,7 @@ namespace LokalReporter.Common
 
         Task AddItemAndSave(TItem item);
 
+        Task RemoveAndSave(TItem item);
+
     }
 }

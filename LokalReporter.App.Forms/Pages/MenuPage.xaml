@@ -5,7 +5,9 @@
              xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
              xmlns:views="clr-namespace:LokalReporter.App.FormsApp.Views;assembly=LokalReporter.App.FormsApp"
              x:Name="Page"
-             BackgroundColor="#f333">
+             BackgroundColor="#f333"
+             Icon="menu.png">
+
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -23,6 +25,7 @@
 
 
     <ListView x:Name="MenuListView"
+              BackgroundColor="#f333"
               Footer="{Binding}"
               IsGroupingEnabled="True"
               ItemsSource="{Binding Items}"
