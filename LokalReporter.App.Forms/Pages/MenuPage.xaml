@@ -23,57 +23,58 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
+    <Grid BackgroundColor="#f333">
+        <ListView x:Name="MenuListView"
+                  BackgroundColor="#f333"
+                  Footer="{Binding}"
+                  IsGroupingEnabled="True"
+                  ItemsSource="{Binding Items}"
+                  SelectedItem="{Binding SelectedItem,
+                                         Mode=TwoWay}"
+                  SeparatorVisibility="None">
 
-    <ListView x:Name="MenuListView"
-              BackgroundColor="#f333"
-              Footer="{Binding}"
-              IsGroupingEnabled="True"
-              ItemsSource="{Binding Items}"
-              SelectedItem="{Binding SelectedItem,
-                                     Mode=TwoWay}"
-              SeparatorVisibility="None">
-
-        <ListView.GroupHeaderTemplate>
-            <DataTemplate>
-                <ViewCell>
-                    <controls:ContentControl BindingContext="{Binding Title}" ContentTemplate="{StaticResource GroupHeaderTemplate}" />
-                </ViewCell>
-            </DataTemplate>
-        </ListView.GroupHeaderTemplate>
-        <ListView.Header>
-            <ContentView BackgroundColor="#feee"
-                         Padding="20,20,20,20"
-                         VerticalOptions="Fill">
-                <Image Source="lokalreporter_logo.png" VerticalOptions="Fill" />
-            </ContentView>
-        </ListView.Header>
-        <ListView.ItemTemplate>
-            <DataTemplate>
-                <TextCell Command="{Binding BindingContext.Navigate,
-                                            Source={x:Reference Page}}"
-                          CommandParameter="{Binding}"
-                          Text="{Binding Title}"
-                          TextColor="White" />
-            </DataTemplate>
-        </ListView.ItemTemplate>
-        <ListView.FooterTemplate>
-            <DataTemplate>
-                <StackLayout>
-                    <controls:ContentControl BindingContext="Regionen"
-                                             ContentTemplate="{StaticResource GroupHeaderTemplate}"
-                                             HeightRequest="40" />
-                    <Grid Padding="0,20">
-                        <views:DistrictSelectionView AnchorX="0"
-                                                     AnchorY="0"
-                                                     HorizontalOptions="Center"
-                                                     Scale="0.7"
-                                                     SelectedDistrict="{Binding SelectedDistrict,
-                                                                                Mode=TwoWay}"
-                                                     VerticalOptions="Start"
-                                                     WidthRequest="700" />
-                    </Grid>
-                </StackLayout>
-            </DataTemplate>
-        </ListView.FooterTemplate>
-    </ListView>
+            <ListView.GroupHeaderTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <controls:ContentControl BindingContext="{Binding Title}" ContentTemplate="{StaticResource GroupHeaderTemplate}" />
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.GroupHeaderTemplate>
+            <ListView.Header>
+                <ContentView BackgroundColor="#feee"
+                             Padding="20,20,20,20"
+                             VerticalOptions="Fill">
+                    <Image Source="lokalreporter_logo.png" VerticalOptions="Fill" />
+                </ContentView>
+            </ListView.Header>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Command="{Binding BindingContext.Navigate,
+                                                Source={x:Reference Page}}"
+                              CommandParameter="{Binding}"
+                              Text="{Binding Title}"
+                              TextColor="White" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            <ListView.FooterTemplate>
+                <DataTemplate>
+                    <StackLayout>
+                        <controls:ContentControl BindingContext="Regionen"
+                                                 ContentTemplate="{StaticResource GroupHeaderTemplate}"
+                                                 HeightRequest="40" />
+                        <Grid Padding="0,20">
+                            <views:DistrictSelectionView AnchorX="0"
+                                                         AnchorY="0"
+                                                         HorizontalOptions="Center"
+                                                         Scale="0.7"
+                                                         SelectedDistrict="{Binding SelectedDistrict,
+                                                                                    Mode=TwoWay}"
+                                                         VerticalOptions="Start"
+                                                         WidthRequest="700" />
+                        </Grid>
+                    </StackLayout>
+                </DataTemplate>
+            </ListView.FooterTemplate>
+        </ListView>
+    </Grid>
 </ContentPage>

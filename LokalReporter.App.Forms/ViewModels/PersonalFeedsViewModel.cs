@@ -33,16 +33,12 @@ namespace LokalReporter.App.FormsApp.ViewModels
             this.userSettings = userSettings;
             this.ShowDetails = new RelayCommand<Article>(a => this.ShowViewModel<DetailsViewModel>(new Identifier(a.Id.ToString())));
             this.AddNewFeedFilter = new RelayCommand(() => this.ShowViewModel<SetupFeedFilterViewModel>());
-
-            this.BookmarksViewModel = Mvx.IocConstruct<BookmarksViewModel>();
-
+            
             MessageBus.Current.Listen<FeedSubscribedChangedMessage>().Subscribe(this.OnFeedSubscribedChanged);
 
             this.Title = "Startseite";
         }
-
-        public BookmarksViewModel BookmarksViewModel { get; set; }
-
+        
         public ICommand AddNewFeedFilter { get; }
 
         public ICommand ShowDetails { get; }
@@ -55,7 +51,6 @@ namespace LokalReporter.App.FormsApp.ViewModels
             {
                 this.Start();
             }
-            this.BookmarksViewModel.Start();
         }
 
         public void OnFeedSubscribedChanged(FeedSubscribedChangedMessage message)
@@ -83,9 +78,7 @@ namespace LokalReporter.App.FormsApp.ViewModels
 
         public override async void Start()
         {
-            this.BookmarksViewModel.Start();
-
-            var startFilters = await this.GetUserFeedFilters();
+            var startFilters = await GetUserFeedFilters();
             if (startFilters == null)
             {
                 return;
@@ -93,7 +86,7 @@ namespace LokalReporter.App.FormsApp.ViewModels
 
             if (this.filters != null)
             {
-                var additional = startFilters.Where(startFilter => !this.filters.Any(t => this.filters.Any(f => f.Item2.Equals(t.Item2)))).ToList();
+                var additional = startFilters.Where(startFilter => !this.filters.Any(t => t.Item2.Equals(startFilter.Item2))).ToList();
 
                 if (additional.Any())
                 {

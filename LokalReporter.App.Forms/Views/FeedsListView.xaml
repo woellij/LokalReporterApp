@@ -9,14 +9,17 @@
       VerticalOptions="Fill">
 
     <ScrollView Orientation="Vertical" VerticalOptions="Fill">
-        <controls:RepeaterView ItemsSource="{Binding Source={x:Reference Root}, Path=ItemsSource}" x:TypeArguments="viewModels:FeedViewModel">
-            <controls:RepeaterView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <views:FeedView />
-                    </ViewCell>
-                </DataTemplate>
-            </controls:RepeaterView.ItemTemplate>
-        </controls:RepeaterView>
+        <StackLayout>
+            <controls:RepeaterView ItemsSource="{Binding Source={x:Reference Root}, Path=ItemsSource}" x:TypeArguments="viewModels:FeedViewModel">
+                <controls:RepeaterView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <views:FeedView />
+                        </ViewCell>
+                    </DataTemplate>
+                </controls:RepeaterView.ItemTemplate>
+            </controls:RepeaterView>
+            <controls:ContentControl Content="{Binding Footer, Source={x:Reference Root}}" ContentTemplate="{Binding FooterTemplate, Source={x:Reference Root}}" />
+        </StackLayout>
     </ScrollView>
 </Grid>

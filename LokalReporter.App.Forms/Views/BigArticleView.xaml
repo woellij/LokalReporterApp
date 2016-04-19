@@ -1,21 +1,35 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:statics="clr-namespace:LokalReporter.App.FormsApp.Statics;assembly=LokalReporter.App.FormsApp"
-             x:Class="LokalReporter.App.FormsApp.Views.BigArticleView"
-             VerticalOptions="Fill" HorizontalOptions="Fill" HeightRequest="150">
-  <Grid>
-    <Image VerticalOptions="Fill" HorizontalOptions="Fill" Aspect="AspectFill" >
-      <Image.Source>
-        <UriImageSource CachingEnabled="False" Uri="{Binding Images[0].Source, Converter={x:Static statics:Converters.StringToUri}}" />
-      </Image.Source>
+<Grid x:Class="LokalReporter.App.FormsApp.Views.BigArticleView"
+      xmlns="http://xamarin.com/schemas/2014/forms"
+      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+      xmlns:statics="clr-namespace:LokalReporter.App.FormsApp.Statics;assembly=LokalReporter.App.FormsApp"
+      HeightRequest="150"
+      HorizontalOptions="Fill"
+      InputTransparent="False"
+      VerticalOptions="Fill">
+    <Image Aspect="AspectFill"
+           HorizontalOptions="Fill"
+           VerticalOptions="Fill">
+        <Image.Source>
+            <UriImageSource CachingEnabled="True" Uri="{Binding Images[0].Source, Converter={x:Static statics:Converters.StringToUri}}" />
+        </Image.Source>
     </Image>
-    <ContentView Padding="10" VerticalOptions="End" HorizontalOptions="Fill" BackgroundColor="#5000">
-      <StackLayout>
-        <Label TextColor="White" Text="{Binding Title}" LineBreakMode="WordWrap"
-               VerticalOptions="EndAndExpand" FontSize="Large" HorizontalOptions="Fill" />
-        <Label TextColor="White"  FontSize="14" Text="{Binding Date, StringFormat='{0:ddd. d.M, HH:mm}'}" />
-      </StackLayout>
-    </ContentView>
-  </Grid>
-</ContentView>
+    <Grid BackgroundColor="#5000"
+          HorizontalOptions="Fill"
+          InputTransparent="False"
+          Padding="10"
+          VerticalOptions="End">
+        <StackLayout>
+            <Label FontSize="Large"
+                   HorizontalOptions="Fill"
+                   LineBreakMode="WordWrap"
+                   Text="{Binding Title}"
+                   TextColor="White"
+                   VerticalOptions="EndAndExpand" />
+            <Label FontSize="14"
+                   Text="{Binding Date,
+                                  StringFormat='{0:ddd. d.M, HH:mm}'}"
+                   TextColor="White" />
+        </StackLayout>
+    </Grid>
+</Grid>

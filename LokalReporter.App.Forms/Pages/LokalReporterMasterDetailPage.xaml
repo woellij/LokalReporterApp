@@ -6,7 +6,9 @@
                   Title="{Binding Title}">
 
     <Page.ToolbarItems>
-        <ToolbarItem Clicked="ProfileMenuItemClicked" Text="Profil">
+        <ToolbarItem Clicked="ProfileMenuItemClicked"
+                     Icon="settings.png"
+                     Text="Profil">
             <ToolbarItem.Order>
                 <OnPlatform Android="Secondary"
                             WinPhone="Secondary"

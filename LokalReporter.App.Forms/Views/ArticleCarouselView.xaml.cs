@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 
 using LokalReporter.App.FormsApp.ViewModels;
 
 using NControl.Controls;
 
 using Xamarin.Forms;
+
+using Point = NGraphics.Point;
 
 namespace LokalReporter.App.FormsApp.Views
 {
@@ -19,6 +22,16 @@ namespace LokalReporter.App.FormsApp.Views
         public ArticleCarouselView()
         {
             this.InitializeComponent();
+            this.Clicked += OnClicked;
+        }
+
+        private void OnClicked(object sender, EventArgs eventArgs)
+        {
+            var article = ((GalleryView)sender)?.Page?.BindingContext;
+            if (article != null)
+            {
+                ((FilteredArticlesViewModel)this.BindingContext).ShowDetails.Execute(article);
+            }
         }
 
         public object ItemsSource
@@ -58,15 +71,6 @@ namespace LokalReporter.App.FormsApp.Views
                     {
                     }
                 }
-            }
-        }
-
-        private void TapGestureRecognizer_OnTapped(object sender, EventArgs e)
-        {
-            var article = ((GalleryView) sender)?.Page?.BindingContext;
-            if (article != null)
-            {
-                ((FilteredArticlesViewModel) this.BindingContext).ShowDetails.Execute(article);
             }
         }
 

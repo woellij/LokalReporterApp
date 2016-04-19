@@ -1,12 +1,12 @@
-﻿using Xamarin.Forms;
-
-namespace LokalReporter.App.FormsApp.Views
+﻿namespace LokalReporter.App.FormsApp.Views
 {
-    public partial class BigArticleView : ContentView
+    public partial class BigArticleView
     {
+
         public BigArticleView()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
+
     }
 }

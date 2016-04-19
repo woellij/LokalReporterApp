@@ -5,13 +5,15 @@
              xmlns:views="clr-namespace:LokalReporter.App.FormsApp.Views;assembly=LokalReporter.App.FormsApp"
              Title="{Binding Title}">
 
-    <views:FeedsListView ItemsSource="{Binding Feeds}" VerticalOptions="Fill">
-        <!--<ListView.FooterTemplate>
+    <views:FeedsListView Footer="{Binding}"
+                         ItemsSource="{Binding Feeds}"
+                         VerticalOptions="Fill">
+        <views:FeedsListView.FooterTemplate>
             <DataTemplate>
                 <Grid Padding="0,10,0,20">
                     <views:AddFilterView Command="{Binding AddNewFeedFilter}" HorizontalOptions="Center" />
                 </Grid>
             </DataTemplate>
-        </ListView.FooterTemplate>-->
+        </views:FeedsListView.FooterTemplate>
     </views:FeedsListView>
 </ContentPage>

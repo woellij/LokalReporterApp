@@ -13,6 +13,22 @@ namespace LokalReporter.App.FormsApp.Views
             set { this.SetValue(ItemsSourceProperty, value); }
         }
 
+        public static readonly BindableProperty FooterTemplateProperty = BindableProperty.Create("FooterTemplate", typeof (DataTemplate), typeof (FeedsListView), default(DataTemplate));
+
+        public DataTemplate FooterTemplate
+        {
+            get { return (DataTemplate) this.GetValue(FooterTemplateProperty); }
+            set { this.SetValue(FooterTemplateProperty, value); }
+        }
+
+        public static readonly BindableProperty FooterProperty = BindableProperty.Create("Footer", typeof (object), typeof (FeedsListView), default(object));
+
+        public object Footer
+        {
+            get { return (object) this.GetValue(FooterProperty); }
+            set { this.SetValue(FooterProperty, value); }
+        }
+
         public FeedsListView()
         {
             this.InitializeComponent();

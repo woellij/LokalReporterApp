@@ -10,6 +10,9 @@ using MvvmCross.Core.Views;
 using MvvmCross.Forms.Presenter.Core;
 using MvvmCross.Platform;
 using MvvmCross.Platform.IoC;
+
+using NControl.Controls.Droid;
+
 using Plugin.Toasts;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
@@ -23,21 +26,34 @@ namespace LokalReporter.App.Droid {
 
         protected override void OnCreate(Bundle bundle)
         {
+
             MvxFormsApplicationActivity.Current = this;
 
+            Forms.Init(this, bundle);
             // appCompat stuff
             FormsAppCompatActivity.ToolbarResource = Resource.Layout.toolbar;
             FormsAppCompatActivity.TabLayoutResource = Resource.Layout.tabs;
 
             base.OnCreate(bundle);
-            Forms.Init(this, bundle);
 
-            this.LoadApplication(new LokalReporterFormsApp());
+            // Leverage controls' StyleId attrib. to Xamarin.UITest
+            Forms.ViewInitialized += (sender, e) => {
+                if (!string.IsNullOrWhiteSpace(e.View.StyleId))
+                {
+                    e.NativeView.ContentDescription = e.View.StyleId;
+                }
+            };
+            NControls.Init();
+
+            var lokalReporterFormsApp = new LokalReporterFormsApp();
+            this.LoadApplication(lokalReporterFormsApp);
             
             var presenter = (MvxFormsPagePresenter) Mvx.Resolve<IMvxViewPresenter>();
-            presenter.MvxFormsApp = new LokalReporterFormsApp();
+            presenter.MvxFormsApp = lokalReporterFormsApp;
 
             Dependencies.Initialize(Current);
+
+            Mvx.Resolve<IMvxAppStart>().Start();
         }
 
     }

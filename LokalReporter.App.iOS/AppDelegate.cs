@@ -34,15 +34,11 @@ namespace LokalReporter.App.iOS
             // create a new window instance based on the screen size
             Forms.Init();
             NControls.Init();
-
-
-            var xamarinFormsApp = new LokalReporterFormsApp();
-
-            this.LoadApplication(xamarinFormsApp);
+            
+            this.LoadApplication(new LokalReporterFormsApp());
             base.FinishedLaunching(application, launchOptions);
 
-            var fieldInfo = typeof(FormsApplicationDelegate).GetField("window", BindingFlags.NonPublic | BindingFlags.Instance);
-            var window = fieldInfo.GetValue(this);
+            var window = typeof(FormsApplicationDelegate).GetField("window", BindingFlags.NonPublic | BindingFlags.Instance).GetValue(this);
             var setup = new Setup(this, (UIWindow) window);
             setup.Initialize();
             Dependencies.Initialize();
